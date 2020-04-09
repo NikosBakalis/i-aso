@@ -12,7 +12,7 @@ public class test {
 
     void createConnection(){
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://iaso_db:3306/iaso_hospital_db_v06", "root", "password");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/iaso_db/iaso_hospital_db_v06", "root", "password");
             System.out.println("LELLELELELELEL");
             System.out.println("Database Connection Success!");
         } catch (SQLException ex) {
