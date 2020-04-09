@@ -13,6 +13,7 @@ public class test {
     void createConnection(){
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/iaso_hospital_db_v06", "root", "password");
+            System.out.println("LELLELELELELEL");
             System.out.println("Database Connection Success!");
         } catch (SQLException ex) {
             Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
