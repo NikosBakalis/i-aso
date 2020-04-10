@@ -49,31 +49,23 @@ public class Hospital {
         return Hospital.first_street_number;
     }
 
-    public void setFirst_street_number(int first_street_number) {
-        Hospital.first_street_number = first_street_number;
-    }
+    public void setFirst_street_number(int first_street_number) { Hospital.first_street_number = first_street_number; }
 
     public int getPrimary_phone_number(String primary_phone_number) {
         return Hospital.primary_phone_number;
     }
 
-    public void setPrimary_phone_number(int primary_phone_number) {
-        Hospital.primary_phone_number = primary_phone_number;
-    }
+    public void setPrimary_phone_number(int primary_phone_number) { Hospital.primary_phone_number = primary_phone_number; }
 
     public int getEmergency_phone_number(String emergency_phone_number) {
         return Hospital.emergency_phone_number;
     }
 
-    public void setEmergency_phone_number(int emergency_phone_number) {
-        Hospital.emergency_phone_number = emergency_phone_number;
-    }
+    public void setEmergency_phone_number(int emergency_phone_number) { Hospital.emergency_phone_number = emergency_phone_number; }
 
     public int getSecond_street_number(String second_street_number) {
         return Hospital.second_street_number;
     }
 
-    public void setSecond_street_number(int second_street_number) {
-        Hospital.second_street_number = second_street_number;
-    }
+    public void setSecond_street_number(int second_street_number) { Hospital.second_street_number = second_street_number; }
 }
