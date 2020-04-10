@@ -11,18 +11,57 @@ public class ICRUDImpl implements ICRUD {
 
     private static Connection connection;
 
-
     public User getUser(String username) {
-        return null;
+        try {
+            String query = "SELECT * FROM user WHERE user.user_name = '" + username + "'";
+
+            ResultSet resultSet;
+            User user;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                resultSet = preparedStatement.executeQuery();
+                user = null;
+                if(resultSet.next()) {
+                    user = new User();
+                    user.setUsername(resultSet.getString("user_name"));
+                    user.setHospital_afm(resultSet.getString("hospital_afm"));
+                    user.setFirst_name(resultSet.getString("user_first_name"));
+                    user.setLast_name(resultSet.getString("user_last_name"));
+                    user.setBirth_date(resultSet.getDate("user_birth_date"));
+                    user.setPassword(resultSet.getString("user_password"));
+                    user.setEncryption_key(resultSet.getString("user_encryption_key"));
+                }
+            }
+            resultSet.close();
+            return user;
+        } catch (SQLException e) {
+            return null;
+        }
     }
 
-    public Doctor getDoctor(String sector, String profile, String clinic) {
-        return null;
+    public Doctor getDoctor(String username) {
+        try {
+            String query = "SELECT * FROM doctor WHERE doctor.user_name = '" + username + "'";
+
+            ResultSet resultSet;
+            Doctor doctor;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                resultSet = preparedStatement.executeQuery();
+                doctor = null;
+                if(resultSet.next()) {
+                    doctor = new Doctor();
+                    doctor.setUsername(resultSet.getString("user_name"));
+                    doctor.setSector(resultSet.getString("doctor_sector"));
+                }
+            }
+            resultSet.close();
+            return doctor;
+        } catch (SQLException e) {
+            return null;
+        }
     }
 
     public Hospital getHospital(String afm) {
         try {
-            openConnection();
             String query = "SELECT * FROM hospital WHERE hospital.hospital_afm = '" + afm + "'";
 
             ResultSet resultSet;
@@ -50,7 +89,7 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
-    void openConnection(){
+    public void openConnection(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             setConnection(DriverManager.getConnection("jdbc:mysql://localhost:3306/iaso_hospital_db_v06", "root", "password"));

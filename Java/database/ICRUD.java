@@ -6,6 +6,6 @@ import model.User;
 
 public interface ICRUD {
     User getUser(String username);
-    Doctor getDoctor(String sector, String profile, String clinic);
+    Doctor getDoctor(String username);
     Hospital getHospital(String afm);
 }
