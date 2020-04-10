@@ -6,10 +6,7 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
-//        openConnection();
         ICRUDImpl obj = new ICRUDImpl();
         obj.getHospital("123456");
     }
-
-
 }
