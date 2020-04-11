@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.DoctorAdmission">
+   <children>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="37.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="96.0" text="Επιστροφή" textAlignment="CENTER" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="148.0" layoutY="37.0" prefHeight="39.0" prefWidth="63.0" text="Logo" textAlignment="CENTER" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="251.0" layoutY="37.0" prefHeight="39.0" prefWidth="308.0" text="Ημερομηνία" textAlignment="CENTER" />
+       <ScrollPane hbarPolicy="NEVER" layoutX="105.0" layoutY="109.0" prefHeight="196.0" prefWidth="390.0">
+           <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0"/>
+           </content>
+       </ScrollPane>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="219.0" layoutY="314.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="163.0" text="Αποθήκευση" textAlignment="CENTER" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="35.0" layoutY="361.0" prefHeight="21.0" prefWidth="191.0" text="Όνομα κλινικής" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="382.0" layoutY="361.0" prefHeight="21.0" prefWidth="163.0" text="i-aso" />
+   </children>
+</AnchorPane>
