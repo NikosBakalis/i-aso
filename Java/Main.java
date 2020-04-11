@@ -1,7 +1,6 @@
 import database.ICRUDImpl;
-import ui.Login;
 
-public class Main {
+public class Main  {
     public static void main(String[] args) {
         ICRUDImpl icrudimpl = new ICRUDImpl();
         icrudimpl.openConnection();
