@@ -89,7 +89,7 @@ public class clinic_1 extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Αννα\\Downloads\\final_font.jpg")); // NOI18N
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 460, 290);
+        jLabel3.setBounds(0, 0, 460, 300);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
