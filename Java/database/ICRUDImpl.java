@@ -4,7 +4,10 @@ import model.Doctor;
 import model.Hospital;
 import model.User;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 
 public class ICRUDImpl implements ICRUD {
@@ -91,13 +94,17 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
-    public void openConnection(){
+    public void openConnection() {
         try {
+            Properties connection_properties = new Properties();
+            connection_properties.load(new FileInputStream("MySQL/connection.properties"));
+            String url_property = connection_properties.getProperty("url");
+            String user_property = connection_properties.getProperty("user");
+            String password_property = connection_properties.getProperty("password");
             Class.forName("com.mysql.cj.jdbc.Driver");
-            setConnection(DriverManager.getConnection("jdbc:mysql://localhost:3306/iaso_hospital_db_v06", "root", "password"));
+            setConnection(DriverManager.getConnection(url_property, user_property, password_property));
             System.out.println("Connection established successfully with the database server.");
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | SQLException | IOException e) {
             e.printStackTrace();
         }
     }

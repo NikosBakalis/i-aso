@@ -1,5 +1,7 @@
 import database.ICRUDImpl;
 
+import java.util.Properties;
+
 public class Main {
     public static void main(String[] args) {
         ICRUDImpl icrudimpl = new ICRUDImpl();
@@ -7,5 +9,6 @@ public class Main {
         icrudimpl.getUser("name");
         icrudimpl.getDoctor("name");
         icrudimpl.getHospital("123456");
+
     }
 }
