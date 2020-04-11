@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.InitialClinic">
+   <children>
+      <Button layoutX="43.0" layoutY="29.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="107.0" text="Αποσύνδεση" />
+      <Button layoutX="189.0" layoutY="187.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="223.0" text="Εκκρεμή εισιτήρια ασθενών" />
+      <Button layoutX="189.0" layoutY="225.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="223.0" text="Posts νοσυλευτών κλινικής" />
+      <Button layoutX="189.0" layoutY="266.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="223.0" text="Λεπτομέριες κλινικής" />
+      <Button layoutX="189.0" layoutY="308.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="223.0" text="Αλλαγή κλινικής" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="359.0" prefHeight="17.0" prefWidth="149.0" text="i-aso" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="34.0" prefHeight="17.0" prefWidth="241.0" text="Ημερομηνία" />
+   </children>
+</AnchorPane>
