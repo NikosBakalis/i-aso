@@ -1,6 +1,5 @@
 import database.ICRUDImpl;
-
-import java.util.Properties;
+import ui.Login;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,6 +8,7 @@ public class Main {
         icrudimpl.getUser("name");
         icrudimpl.getDoctor("name");
         icrudimpl.getHospital("123456");
-
+//        Login login = new Login();
+//        login.setVisible(true);
     }
 }
