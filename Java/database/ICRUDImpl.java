@@ -13,11 +13,11 @@ public class ICRUDImpl implements ICRUD {
 
     public User getUser(String username) {
         try {
-            String query = "SELECT * FROM user WHERE user.user_name = '" + username + "'";
-
+            String query = "SELECT * FROM user WHERE user.user_name = ?";
             ResultSet resultSet;
             User user;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, username);
                 resultSet = preparedStatement.executeQuery();
                 user = null;
                 if(resultSet.next()) {
@@ -40,11 +40,12 @@ public class ICRUDImpl implements ICRUD {
 
     public Doctor getDoctor(String username) {
         try {
-            String query = "SELECT * FROM doctor WHERE doctor.user_name = '" + username + "'";
+            String query = "SELECT * FROM doctor WHERE doctor.user_name = ?";
 
             ResultSet resultSet;
             Doctor doctor;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, username);
                 resultSet = preparedStatement.executeQuery();
                 doctor = null;
                 if(resultSet.next()) {
@@ -62,11 +63,12 @@ public class ICRUDImpl implements ICRUD {
 
     public Hospital getHospital(String afm) {
         try {
-            String query = "SELECT * FROM hospital WHERE hospital.hospital_afm = '" + afm + "'";
+            String query = "SELECT * FROM hospital WHERE hospital.hospital_afm = ?";
 
             ResultSet resultSet;
             Hospital hospital;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, afm);
                 resultSet = preparedStatement.executeQuery();
                 hospital = null;
                 if(resultSet.next()) {
