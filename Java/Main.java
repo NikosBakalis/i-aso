@@ -7,7 +7,5 @@ public class Main  {
         icrudimpl.getUser("name");
         icrudimpl.getDoctor("name");
         icrudimpl.getHospital("123456");
-//        Login login = new Login();
-//        login.setVisible(true);
     }
 }
