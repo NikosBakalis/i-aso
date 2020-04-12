@@ -1,4 +1,4 @@
-# H1 i-aso
+# i-aso
 This project named after a deity intertwined with the concept of healing Iaso *(Ιασώ)*.
 
 ## Contributors
