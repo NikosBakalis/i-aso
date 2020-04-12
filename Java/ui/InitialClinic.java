@@ -17,7 +17,7 @@ public class InitialClinic extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("initial_clinic.fxml"));
-        Scene scene = new Scene(parent, 550, 250);
+        Scene scene = new Scene(parent);
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();

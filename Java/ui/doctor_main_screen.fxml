@@ -4,19 +4,19 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.DoctorMainScreen">
+<AnchorPane prefHeight="680.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.DoctorMainScreen">
    <children>
-      <Button layoutX="34.0" layoutY="29.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="122.0" text="Αποσύνδεση" />
-      <Label alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="CENTER" layoutX="156.0" layoutY="29.0" prefHeight="31.0" prefWidth="289.0" text="Τίτλος Ιατρού" textAlignment="CENTER" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="232.0" layoutY="60.0" prefHeight="31.0" prefWidth="137.0" text="Ημερομηνία" textAlignment="CENTER" />
-      <Button alignment="CENTER" layoutX="445.0" layoutY="29.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="122.0" text="Επεξεργασία Προφίλ" textAlignment="CENTER" wrapText="true" />
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="135.0" layoutY="377.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="337.0" text="Προσθήκη ασθενή" textAlignment="CENTER" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="135.0" layoutY="439.0" prefHeight="17.0" prefWidth="337.0" text="i-aso" textAlignment="CENTER" />
-      <ScrollPane layoutX="100.0" layoutY="150.0" prefHeight="200.0" prefWidth="400.0">
+      <Label alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="CENTER" layoutX="356.0" layoutY="29.0" prefHeight="31.0" prefWidth="289.0" text="Τίτλος Ιατρού" textAlignment="CENTER" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="361.0" layoutY="547.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="278.0" text="Προσθήκη ασθενή" textAlignment="CENTER" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="333.0" layoutY="613.0" prefHeight="17.0" prefWidth="337.0" text="i-aso" textAlignment="CENTER" />
+      <ScrollPane layoutX="137.0" layoutY="168.0" prefHeight="345.0" prefWidth="727.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
         </content>
       </ScrollPane>
       <ImageView fitHeight="50.0" fitWidth="72.0" layoutX="268.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" />
+      <DatePicker layoutX="414.0" layoutY="77.0" />
+      <Button layoutX="95.0" layoutY="32.0" mnemonicParsing="false" text="Αποσύνδεση" />
+      <Button layoutX="800.0" layoutY="32.0" mnemonicParsing="false" text="Επεξεργασία Προφίλ" />
    </children>
 </AnchorPane>
