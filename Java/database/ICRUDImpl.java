@@ -3,6 +3,7 @@ package database;
 import model.Doctor;
 import model.Hospital;
 import model.User;
+import ui.Login;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -32,6 +33,7 @@ public class ICRUDImpl implements ICRUD {
                     user.setBirth_date(resultSet.getDate("user_birth_date"));
                     user.setPassword(resultSet.getString("user_password"));
                     user.setEncryption_key(resultSet.getString("user_encryption_key"));
+                    user.setKind(resultSet.getString("kind"));
                 }
             }
             resultSet.close();
