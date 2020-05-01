@@ -16,12 +16,12 @@ import java.io.IOException;
 
 public class Login extends Application {
 
-    ICRUDImpl iCRUDImpl = new ICRUDImpl();
-    User user = new User();
-
     public Button loginButtonId;
     public TextField usernameTextId;
     public PasswordField passwordTextId;
+
+    ICRUDImpl iCRUDImpl = new ICRUDImpl();
+    User user = new User();
 
     public static void main(String[] args) {
         launch(args);
