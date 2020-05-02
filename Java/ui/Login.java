@@ -17,31 +17,38 @@ public class Login {
     User user = new User();
 
     public void clickLoginButton(ActionEvent actionEvent) {
-        iCRUDImpl.openConnection();
-        if(iCRUDImpl.getUser(usernameTextId.getText()) != null){
-            if(user.getPassword().equals(passwordTextId.getText())){
-                System.out.println("Logged in");
-                String option = user.getKind();
-                switch (option){
-                    case "Doctor":
-                        System.out.println("Doctor");
-                        break;
-                    case "Lab_Agent":
-                        System.out.println("Lab Agent");
-                        break;
-                    case "Clinic_Agent":
-                        System.out.println("Clinic Agent");
-                        break;
-                    case "Transfer_Office_Agent":
-                        System.out.println("Transfer Office Agent");
-                        break;
-                    case "Admin":
-                        System.out.println("Admin");
-                        break;
-                    default:
-                        System.out.println("No match");
+        if(!usernameTextId.getText().trim().isEmpty() && !passwordTextId.getText().trim().isEmpty()){
+            if(iCRUDImpl.getUser(usernameTextId.getText()) != null){
+                if(user.getPassword().equals(passwordTextId.getText())){
+                    System.out.println("Logged in");
+                    String option = user.getKind();
+                    switch (option){
+                        case "Doctor":
+                            System.out.println("Doctor");
+                            break;
+                        case "Lab_Agent":
+                            System.out.println("Lab Agent");
+                            break;
+                        case "Clinic_Agent":
+                            System.out.println("Clinic Agent");
+                            break;
+                        case "Transfer_Office_Agent":
+                            System.out.println("Transfer Office Agent");
+                            break;
+                        case "Admin":
+                            System.out.println("Admin");
+                            break;
+                        default:
+                            System.out.println("No match");
+                    }
+                } else {
+                    System.err.println("Wrong password!");
                 }
+            } else {
+                System.err.println("There is no user with that username!");
             }
+        } else {
+            System.err.println("Null values!");
         }
     }
 }

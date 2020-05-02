@@ -1,3 +1,4 @@
+import database.ICRUDImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,5 +21,7 @@ public class TestTheMain extends Application {
         scene.getStylesheets().add(getClass().getResource("ui/application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
+        ICRUDImpl iCRUDImpl = new ICRUDImpl();
+        iCRUDImpl.openConnection();
     }
 }
