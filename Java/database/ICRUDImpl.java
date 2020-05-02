@@ -3,7 +3,6 @@ package database;
 import model.Doctor;
 import model.Hospital;
 import model.User;
-import ui.Login;
 
 import java.io.FileInputStream;
 import java.io.IOException;
