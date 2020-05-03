@@ -2,6 +2,7 @@ package ui;
 
 import database.ICRUDImpl;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -12,6 +13,10 @@ public class Login {
     public Button loginButtonId;
     public TextField usernameTextId;
     public PasswordField passwordTextId;
+
+    Alert information = new Alert(Alert.AlertType.INFORMATION);
+    Alert warning = new Alert(Alert.AlertType.WARNING);
+    Alert error = new Alert(Alert.AlertType.ERROR);
 
     ICRUDImpl iCRUDImpl = new ICRUDImpl();
     User user = new User();
@@ -43,12 +48,24 @@ public class Login {
                     }
                 } else {
                     System.err.println("Wrong password!");
+                    information.setTitle("Information");
+                    information.setHeaderText("Wrong password");
+                    information.setContentText("Please try again!");
+                    information.showAndWait();
                 }
             } else {
                 System.err.println("There is no user with that username!");
+                warning.setTitle("Warning");
+                warning.setHeaderText("No user found");
+                warning.setContentText("No-one with that username is recorded on our database!");
+                warning.showAndWait();
             }
         } else {
             System.err.println("Null values!");
+            error.setTitle("Error");
+            error.setHeaderText("Empty fields");
+            error.setContentText("Please fill all fields!");
+            error.showAndWait();
         }
     }
 }
