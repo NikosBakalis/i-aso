@@ -92,9 +92,7 @@ public class Login {
     }
 
     private void closeButtonAction(){
-        // get a handle to the stage
         Stage stage = (Stage) loginButtonId.getScene().getWindow();
-        // do what you have to do
         stage.close();
     }
 }
