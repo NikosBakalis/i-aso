@@ -97,6 +97,7 @@ public class ICRUDImpl implements ICRUD {
 
     public void openConnection() {
         try {
+            System.out.println("Setting up connection.");
             Properties connection_properties = new Properties();
             connection_properties.load(new FileInputStream("MySQL/connection.properties"));
             String url_property = connection_properties.getProperty("url");
