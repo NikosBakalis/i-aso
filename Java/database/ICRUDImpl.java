@@ -31,8 +31,7 @@ public class ICRUDImpl implements ICRUD {
                     user.setLast_name(resultSet.getString("user_last_name"));
                     user.setBirth_date(resultSet.getDate("user_birth_date"));
                     user.setPassword(resultSet.getString("user_password"));
-                    user.setEncryption_key(resultSet.getString("user_encryption_key"));
-                    user.setKind(resultSet.getString("kind"));
+                    user.setSpecification(resultSet.getString("specification"));
                 }
             }
             resultSet.close();

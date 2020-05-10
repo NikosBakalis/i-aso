@@ -21,6 +21,7 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getResource("ui/application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
+//        primaryStage.setResizable(false);
         ICRUDImpl iCRUDImpl = new ICRUDImpl();
         iCRUDImpl.openConnection();
     }
