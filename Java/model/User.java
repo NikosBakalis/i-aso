@@ -14,7 +14,7 @@ public class User {
         User.username = username;
     }
 
-    public  String getHospital_afm() {
+    public String getHospital_afm() {
         return hospital_afm;
     }
 

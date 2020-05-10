@@ -25,7 +25,9 @@ public class TestTheMain extends Application {
         primaryStage.show();
         ICRUDImpl iCRUDImpl = new ICRUDImpl();
         iCRUDImpl.openConnection();
+
         iCRUDImpl.getLab("123456", "lab");
-        System.out.println(Lab.getName());
+        Lab lab = new Lab();
+        System.out.println(lab.getName());
     }
 }
