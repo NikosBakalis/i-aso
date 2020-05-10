@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS iaso_hospital_db_v06 CHARACTER SET utf8mb4;
-USE iaso_hospital_db_v06;
+CREATE DATABASE IF NOT EXISTS iaso_hospital_db_v07 CHARACTER SET utf8mb4;
+USE iaso_hospital_db_v07;
 
 CREATE TABLE IF NOT EXISTS hospital (	
 	hospital_afm BIGINT UNSIGNED PRIMARY KEY,
@@ -18,7 +18,6 @@ CREATE TABLE IF NOT EXISTS patient_folder (
 	patient_first_name VARCHAR(20) NOT NULL,
     patient_last_name VARCHAR(20) NOT NULL,
     patient_birth_date DATETIME NOT NULL,
-    patient_encryption_key VARCHAR(255) NOT NULL,
     patient_nationality VARCHAR(2) NOT NULL,
     patient_religion VARCHAR(20),
     patient_gender TINYINT,
@@ -35,7 +34,7 @@ CREATE TABLE IF NOT EXISTS patient_folder (
     first_street_name VARCHAR(30) NOT NULL,
     first_street_number SMALLINT NOT NULL,
     primary_phone_number BIGINT UNSIGNED NOT NULL,
-    secondary_phone_number BIGINT UNSIGNED,
+    emergency_phone_number BIGINT UNSIGNED,
     email_address VARCHAR(30),
     second_street_name VARCHAR(30),
     second_street_number SMALLINT UNSIGNED,
@@ -52,10 +51,8 @@ CREATE TABLE IF NOT EXISTS patient_file (
     patient_hospital BIGINT UNSIGNED,
     created_at TIMESTAMP DEFAULT NOW() NOT NULL,
     diagnosis TEXT,
-    treatment TEXT,    
+    treatment TEXT,
     drugs TINYTEXT,
-    discharge_note_description TINYTEXT,
-    discharge_note_date TIMESTAMP,
     PRIMARY KEY (patient_id, created_at),
     CONSTRAINT patient_history FOREIGN KEY (patient_id) REFERENCES patient_folder(patient_id) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT hospital_patient FOREIGN KEY (patient_hospital) REFERENCES hospital(hospital_afm) ON UPDATE CASCADE ON DELETE CASCADE
@@ -79,9 +76,20 @@ CREATE TABLE IF NOT EXISTS discharge_note (
     created_at TIMESTAMP DEFAULT NOW() NOT NULL,
 	discharge_ticket_text TEXT NOT NULL,
     admition_clinic VARCHAR(30) NOT NULL,
+    stage ENUM('SENT','APPROVED') NOT NULL DEFAULT 'SENT',
     PRIMARY KEY (patient_id, created_at),
     INDEX (patient_id, created_at),
     FOREIGN KEY (patient_id, created_at) REFERENCES patient_file(patient_id, created_at) ON UPDATE CASCADE ON DELETE CASCADE
+)ENGINE=INNODB;
+
+CREATE TABLE IF NOT EXISTS discharge_billing (
+    patient_id BIGINT UNSIGNED NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW() NOT NULL,
+    billing_id BIGINT UNSIGNED NOT NULL,
+	price INT NOT NULL,
+    PRIMARY KEY (patient_id, created_at),
+    INDEX (patient_id, created_at),
+    FOREIGN KEY (patient_id, created_at) REFERENCES discharge_note(patient_id, created_at) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS user (
@@ -91,7 +99,7 @@ CREATE TABLE IF NOT EXISTS user (
     user_last_name VARCHAR(20) NOT NULL,
     user_birth_date DATETIME NOT NULL,
     user_password VARCHAR(255) NOT NULL,
-    user_encryption_key VARCHAR(255) NOT NULL,
+    specification ENUM('Doctor','Lab_Agent','Clinc_Agent','Transfer_Office_Agent', 'Admin') NOT NULL,
     CONSTRAINT hospital_user FOREIGN KEY (hospital_afm) REFERENCES hospital(hospital_afm) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 
@@ -113,6 +121,32 @@ CREATE TABLE IF NOT EXISTS doctor (
     CONSTRAINT user_doctor FOREIGN KEY (user_name) REFERENCES user(user_name) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 
+CREATE TABLE IF NOT EXISTS doctor_profile (
+	user_name VARCHAR(20) NOT NULL,
+    degrees VARCHAR(20) NOT NULL,
+    PRIMARY KEY (user_name, degrees),
+	CONSTRAINT user_name_profile FOREIGN KEY (user_name) REFERENCES doctor(user_name) ON UPDATE CASCADE ON DELETE CASCADE
+)ENGINE=INNODB;
+
+CREATE TABLE IF NOT EXISTS doctor_patient_association (
+	doctor_name VARCHAR(20) NOT NULL,
+	patient_id BIGINT UNSIGNED NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+	PRIMARY KEY (patient_id, created_at, doctor_name),
+    INDEX (patient_id, created_at),
+    FOREIGN KEY (patient_id, created_at) REFERENCES patient_file(patient_id, created_at) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT doctor_association FOREIGN KEY (doctor_name) REFERENCES doctor(user_name) ON UPDATE CASCADE ON DELETE CASCADE
+)ENGINE=INNODB;
+
+CREATE TABLE IF NOT EXISTS doctor_hours (
+	user_name  VARCHAR(20) NOT NULL,
+    office_day ENUM('MON', 'TUE', 'WED', 'THU',' FRI', 'SAT', 'SUN') NOT NULL,
+	office_hours_start TIME NOT NULL,
+    office_hours_end TIME NOT NULL,
+    PRIMARY KEY (user_name, office_day, office_hours_start, office_hours_end),
+    CONSTRAINT doctor_name_hours FOREIGN KEY (user_name) REFERENCES doctor(user_name) ON UPDATE CASCADE ON DELETE CASCADE
+)ENGINE=INNODB;
+
 CREATE TABLE IF NOT EXISTS contact (
 	first_street_name VARCHAR(30) NOT NULL,
     first_street_number SMALLINT NOT NULL,
@@ -126,17 +160,28 @@ CREATE TABLE IF NOT EXISTS contact (
 	CONSTRAINT user_contact FOREIGN KEY (user_name) REFERENCES user(user_name) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 
+CREATE TABLE IF NOT EXISTS clinic (
+	clinic_name VARCHAR(30) NOT NULL,
+    hospital_afm BIGINT UNSIGNED NOT NULL,
+    PRIMARY KEY (clinic_name, hospital_afm),
+    CONSTRAINT hospital_clinic FOREIGN KEY (hospital_afm) REFERENCES hospital(hospital_afm) ON UPDATE CASCADE ON DELETE CASCADE
+)ENGINE=INNODB;
+
 CREATE TABLE IF NOT EXISTS transfer_request (
 	transfer_id TIMESTAMP DEFAULT NOW() PRIMARY KEY,
     authorised_by VARCHAR(20) NOT NULL,
 	patient_id BIGINT UNSIGNED NOT NULL,
-    source_hospital BIGINT UNSIGNED,
+    source_hospital BIGINT UNSIGNED NOT NULL,
     destination_hospital BIGINT UNSIGNED NOT NULL,
+    source_clinic_name VARCHAR(30),
+    destination_clinic_name VARCHAR(30),
     transfer_request_stage ENUM('SENT', 'RECEIVED', 'ACKNOWLEDGED', 'STARTING TRANSFER',' TRANSFER COMPLETE') NOT NULL DEFAULT 'SENT',
     transfer_schedule_start TIMESTAMP,
     CONSTRAINT present_hospital FOREIGN KEY (destination_hospital) REFERENCES hospital(hospital_afm) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT transfer_request_authority FOREIGN KEY (authorised_by) REFERENCES user(user_name) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT asset FOREIGN KEY (patient_id) REFERENCES patient_folder(patient_id) ON UPDATE CASCADE ON DELETE CASCADE
+    CONSTRAINT asset FOREIGN KEY (patient_id) REFERENCES patient_folder(patient_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT source_transfer_clinic FOREIGN KEY (source_clinic_name) REFERENCES clinic(clinic_name) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT destination_transfer_clinic FOREIGN KEY (destination_clinic_name) REFERENCES clinic(clinic_name) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS patient_transfer_office (
@@ -150,13 +195,19 @@ CREATE TABLE IF NOT EXISTS transfer_office_agent (
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS lab (
-	hospital_afm BIGINT UNSIGNED PRIMARY KEY,
-    lab_name VARCHAR(20),
+	hospital_afm BIGINT UNSIGNED NOT NULL,
+    lab_name VARCHAR(20) NOT NULL,
+    PRIMARY KEY(hospital_afm, lab_name),
     CONSTRAINT hospital_lab FOREIGN KEY (hospital_afm) REFERENCES hospital(hospital_afm) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS lab_agent (
-    user_name VARCHAR(20) PRIMARY KEY,
+    user_name VARCHAR(20) NOT NULL,
+    lab_name VARCHAR(20) NOT NULL,
+    hospital_afm BIGINT UNSIGNED NOT NULL,
+    PRIMARY KEY(user_name, lab_name, hospital_afm),
+    INDEX (hospital_afm, lab_name),
+    FOREIGN KEY (hospital_afm, lab_name) REFERENCES lab(hospital_afm, lab_name) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT user_lab FOREIGN KEY (user_name) REFERENCES user(user_name) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 
@@ -192,21 +243,6 @@ CREATE TABLE IF NOT EXISTS test (
     CONSTRAINT test_predecessor FOREIGN KEY (root_test_name) REFERENCES test(test_name) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 
-
-CREATE TABLE IF NOT EXISTS clinic (
-	clinic_name VARCHAR(30) NOT NULL,
-    hospital_afm BIGINT UNSIGNED NOT NULL,
-    PRIMARY KEY (clinic_name, hospital_afm),
-    CONSTRAINT hospital_clinic FOREIGN KEY (hospital_afm) REFERENCES hospital(hospital_afm) ON UPDATE CASCADE ON DELETE CASCADE
-)ENGINE=INNODB;
-
-CREATE TABLE IF NOT EXISTS linked_to_clinic (
-	user_name VARCHAR(20) PRIMARY KEY,
-    clinic_name VARCHAR(30) NOT NULL,
-    CONSTRAINT linked_user FOREIGN KEY (user_name) REFERENCES user(user_name) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT clinic_linked FOREIGN KEY (clinic_name) REFERENCES clinic(clinic_name) ON UPDATE CASCADE ON DELETE CASCADE
-)ENGINE=INNODB;
-
 CREATE TABLE IF NOT EXISTS chamber (	
     chamber_id TINYINT PRIMARY KEY,
     clinic_name VARCHAR(30) NOT NULL,
@@ -216,10 +252,13 @@ CREATE TABLE IF NOT EXISTS chamber (
 CREATE TABLE IF NOT EXISTS bed (
 	bed_number TINYINT PRIMARY KEY,
     chamber_id TINYINT NOT NULL,
+    is_free BOOLEAN NOT NULL DEFAULT FALSE,
     CONSTRAINT chamber_bed FOREIGN KEY (chamber_id) REFERENCES chamber(chamber_id) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS clinic_agent (	
     user_name VARCHAR(20) PRIMARY KEY, 
-    CONSTRAINT clinic_nurse FOREIGN KEY (user_name) REFERENCES user(user_name) ON UPDATE CASCADE ON DELETE CASCADE
+    clinic_name VARCHAR(30) NOT NULL,
+    CONSTRAINT clinic_nurse FOREIGN KEY (user_name) REFERENCES user(user_name) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT agent_clinic FOREIGN KEY (clinic_name) REFERENCES clinic(clinic_name) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
