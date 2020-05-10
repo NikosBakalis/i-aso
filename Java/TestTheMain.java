@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Lab;
 
 import java.io.IOException;
 
@@ -20,8 +21,11 @@ public class TestTheMain extends Application {
         primaryStage.setTitle("I-aso");
         scene.getStylesheets().add(getClass().getResource("ui/application.css").toExternalForm());
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
         ICRUDImpl iCRUDImpl = new ICRUDImpl();
         iCRUDImpl.openConnection();
+        iCRUDImpl.getLab("123456", "lab");
+        System.out.println(Lab.getName());
     }
 }

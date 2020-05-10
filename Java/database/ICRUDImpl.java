@@ -2,6 +2,7 @@ package database;
 
 import model.Doctor;
 import model.Hospital;
+import model.Lab;
 import model.User;
 
 import java.io.FileInputStream;
@@ -25,13 +26,13 @@ public class ICRUDImpl implements ICRUD {
                 user = null;
                 if(resultSet.next()) {
                     user = new User();
-                    user.setUsername(resultSet.getString("user_name"));
-                    user.setHospital_afm(resultSet.getString("hospital_afm"));
-                    user.setFirst_name(resultSet.getString("user_first_name"));
-                    user.setLast_name(resultSet.getString("user_last_name"));
-                    user.setBirth_date(resultSet.getDate("user_birth_date"));
-                    user.setPassword(resultSet.getString("user_password"));
-                    user.setSpecification(resultSet.getString("specification"));
+                    User.setUsername(resultSet.getString("user_name"));
+                    User.setHospital_afm(resultSet.getString("hospital_afm"));
+                    User.setFirst_name(resultSet.getString("user_first_name"));
+                    User.setLast_name(resultSet.getString("user_last_name"));
+                    User.setBirth_date(resultSet.getDate("user_birth_date"));
+                    User.setPassword(resultSet.getString("user_password"));
+                    User.setSpecification(resultSet.getString("specification"));
                 }
             }
             resultSet.close();
@@ -53,8 +54,8 @@ public class ICRUDImpl implements ICRUD {
                 doctor = null;
                 if(resultSet.next()) {
                     doctor = new Doctor();
-                    doctor.setUsername(resultSet.getString("user_name"));
-                    doctor.setSector(resultSet.getString("doctor_sector"));
+                    Doctor.setUsername(resultSet.getString("user_name"));
+                    Doctor.setSector(resultSet.getString("doctor_sector"));
                 }
             }
             resultSet.close();
@@ -76,15 +77,15 @@ public class ICRUDImpl implements ICRUD {
                 hospital = null;
                 if(resultSet.next()) {
                     hospital = new Hospital();
-                    hospital.setAfm(resultSet.getString("hospital_afm"));
-                    hospital.setName(resultSet.getString("hospital_name"));
-                    hospital.setFirst_street_name(resultSet.getString("first_street_name"));
-                    hospital.setFirst_street_number(resultSet.getInt("first_street_number"));
-                    hospital.setPrimary_phone_number(resultSet.getInt("primary_phone_number"));
-                    hospital.setEmergency_phone_number(resultSet.getInt("emergency_phone_number"));
-                    hospital.setEmail_address(resultSet.getString("email_address"));
-                    hospital.setSecond_street_name(resultSet.getString("second_street_name"));
-                    hospital.setSecond_street_number(resultSet.getInt("second_street_number"));
+                    Hospital.setAfm(resultSet.getString("hospital_afm"));
+                    Hospital.setName(resultSet.getString("hospital_name"));
+                    Hospital.setFirst_street_name(resultSet.getString("first_street_name"));
+                    Hospital.setFirst_street_number(resultSet.getInt("first_street_number"));
+                    Hospital.setPrimary_phone_number(resultSet.getInt("primary_phone_number"));
+                    Hospital.setEmergency_phone_number(resultSet.getInt("emergency_phone_number"));
+                    Hospital.setEmail_address(resultSet.getString("email_address"));
+                    Hospital.setSecond_street_name(resultSet.getString("second_street_name"));
+                    Hospital.setSecond_street_number(resultSet.getInt("second_street_number"));
                 }
             }
             resultSet.close();
@@ -93,6 +94,32 @@ public class ICRUDImpl implements ICRUD {
             return null;
         }
     }
+
+    @Override
+    public Lab getLab(String hospital_afm, String name) {
+        try {
+            String query = "SELECT * FROM lab WHERE lab.hospital_afm = ? AND lab.lab_name = ?";
+
+            ResultSet resultSet;
+            Lab lab;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, hospital_afm);
+                preparedStatement.setString(2, name);
+                resultSet = preparedStatement.executeQuery();
+                lab = null;
+                if(resultSet.next()) {
+                    lab = new Lab();
+                    Lab.setHospital_afm(resultSet.getString("hospital_afm"));
+                    Lab.setName(resultSet.getString("lab_name"));
+                }
+            }
+            resultSet.close();
+            return lab;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
 
     public void openConnection() {
         try {

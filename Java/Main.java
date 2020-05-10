@@ -20,8 +20,8 @@ public class Main extends Application {
         primaryStage.setTitle("I-aso");
         scene.getStylesheets().add(getClass().getResource("ui/application.css").toExternalForm());
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
-//        primaryStage.setResizable(false);
         ICRUDImpl iCRUDImpl = new ICRUDImpl();
         iCRUDImpl.openConnection();
     }
