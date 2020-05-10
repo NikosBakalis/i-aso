@@ -6,59 +6,59 @@ public class User {
     private static String username, hospital_afm, first_name, last_name, password, specification;
     private static Date birth_date;
 
-    public static String getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public static void setUsername(String username) {
+    public void setUsername(String username) {
         User.username = username;
     }
 
-    public static String getHospital_afm() {
+    public  String getHospital_afm() {
         return hospital_afm;
     }
 
-    public static void setHospital_afm(String hospital_afm) {
+    public void setHospital_afm(String hospital_afm) {
         User.hospital_afm = hospital_afm;
     }
 
-    public static String getFirst_name() {
+    public String getFirst_name() {
         return first_name;
     }
 
-    public static void setFirst_name(String first_name) {
+    public void setFirst_name(String first_name) {
         User.first_name = first_name;
     }
 
-    public static String getLast_name() {
+    public String getLast_name() {
         return last_name;
     }
 
-    public static void setLast_name(String last_name) {
+    public void setLast_name(String last_name) {
         User.last_name = last_name;
     }
 
-    public static String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public static void setPassword(String password) {
+    public void setPassword(String password) {
         User.password = password;
     }
 
-    public static String getSpecification() {
+    public String getSpecification() {
         return specification;
     }
 
-    public static void setSpecification(String specification) {
+    public void setSpecification(String specification) {
         User.specification = specification;
     }
 
-    public static Date getBirth_date() {
+    public Date getBirth_date() {
         return birth_date;
     }
 
-    public static void setBirth_date(Date birth_date) {
+    public void setBirth_date(Date birth_date) {
         User.birth_date = birth_date;
     }
 }

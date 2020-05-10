@@ -3,19 +3,19 @@ package model;
 public class Doctor extends User{
     private static String username, sector;
 
-    public static String getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public static void setUsername(String username) {
+    public void setUsername(String username) {
         Doctor.username = username;
     }
 
-    public static String getSector() {
+    public String getSector() {
         return sector;
     }
 
-    public static void setSector(String sector) {
+    public void setSector(String sector) {
         Doctor.sector = sector;
     }
 }

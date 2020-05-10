@@ -3,19 +3,19 @@ package model;
 public class Lab {
     private static String hospital_afm, name;
 
-    public static String getHospital_afm() {
+    public String getHospital_afm() {
         return hospital_afm;
     }
 
-    public static void setHospital_afm(String hospital_afm) {
+    public  void setHospital_afm(String hospital_afm) {
         Lab.hospital_afm = hospital_afm;
     }
 
-    public static String getName() {
+    public String getName() {
         return name;
     }
 
-    public static void setName(String name) {
+    public  void setName(String name) {
         Lab.name = name;
     }
 }
