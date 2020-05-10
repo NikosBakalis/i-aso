@@ -32,7 +32,7 @@ public class Login {
             if(iCRUDImpl.getUser(usernameTextId.getText()) != null){
                 if(user.getPassword().equals(passwordTextId.getText())){
                     System.out.println("Logged in");
-                    String option = user.getKind();
+                    String option = user.getSpecification();
                     switch (option){
                         case "Doctor":
                             System.out.println("Doctor");

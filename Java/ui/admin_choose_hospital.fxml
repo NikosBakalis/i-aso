@@ -3,14 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="680.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AdminChooseHospital">
-   <children>
-      <Button layoutX="122.0" layoutY="67.0" mnemonicParsing="false" text="Επιστροφή" />
-      <DatePicker layoutX="704.0" layoutY="67.0" />
-      <ScrollPane layoutX="122.0" layoutY="158.0" prefHeight="365.0" prefWidth="756.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
-      </ScrollPane>
-   </children>
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AdminChooseHospital">
+    <Button layoutX="122.0" layoutY="67.0" mnemonicParsing="false" text="Επιστροφή"/>
+    <DatePicker layoutX="704.0" layoutY="67.0"/>
+    <ScrollPane layoutX="122.0" layoutY="158.0" prefHeight="365.0" prefWidth="756.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0"/>
+    </ScrollPane>
 </AnchorPane>
