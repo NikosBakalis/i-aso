@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS patient_folder (
     patient_insurance VARCHAR(20),
     patient_afm BIGINT UNSIGNED,
     chronic_disease TEXT,
-    patient_alergies TEXT,
+    patient_allergies TEXT,
     patient_surgeries TEXT,
     patient_eopy_webpage TEXT,
     patient_father_first_name VARCHAR(20),
@@ -58,13 +58,13 @@ CREATE TABLE IF NOT EXISTS patient_file (
     CONSTRAINT hospital_patient FOREIGN KEY (patient_hospital) REFERENCES hospital(hospital_afm) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 
-CREATE TABLE IF NOT EXISTS admition_ticket (
+CREATE TABLE IF NOT EXISTS admission_ticket (
     patient_id BIGINT UNSIGNED NOT NULL,
     created_at TIMESTAMP NOT NULL,
     patient_bed TINYINT NOT NULL,
     patient_chamber TINYINT NOT NULL,
     patient_clinic VARCHAR(30) NOT NULL,
-    admition_clinic VARCHAR(30) NOT NULL,
+    admission_clinic VARCHAR(30) NOT NULL,
     cause TEXT NOT NULL,
     PRIMARY KEY (patient_id, created_at),
     INDEX (patient_id, created_at),
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS discharge_note (
     patient_id BIGINT UNSIGNED NOT NULL,
     created_at TIMESTAMP DEFAULT NOW() NOT NULL,
 	discharge_ticket_text TEXT NOT NULL,
-    admition_clinic VARCHAR(30) NOT NULL,
+    admission_clinic VARCHAR(30) NOT NULL,
     stage ENUM('SENT','APPROVED') NOT NULL DEFAULT 'SENT',
     PRIMARY KEY (patient_id, created_at),
     INDEX (patient_id, created_at),
@@ -99,11 +99,11 @@ CREATE TABLE IF NOT EXISTS user (
     user_last_name VARCHAR(20) NOT NULL,
     user_birth_date DATETIME NOT NULL,
     user_password VARCHAR(255) NOT NULL,
-    specification ENUM('Doctor','Lab_Agent','Clinc_Agent','Transfer_Office_Agent', 'Admin') NOT NULL,
+    specification ENUM('Doctor','Lab_Agent','Clinic_Agent','Transfer_Office_Agent', 'Admin') NOT NULL,
     CONSTRAINT hospital_user FOREIGN KEY (hospital_afm) REFERENCES hospital(hospital_afm) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 
-CREATE TABLE IF NOT EXISTS patient_admition_request (
+CREATE TABLE IF NOT EXISTS patient_admission_request (
 	created_at TIMESTAMP DEFAULT NOW() NOT NULL,
     patient_id BIGINT UNSIGNED NOT NULL,
     authorized_by VARCHAR(20) NOT NULL,
@@ -111,8 +111,8 @@ CREATE TABLE IF NOT EXISTS patient_admition_request (
     chamber TINYINT,
     bed TINYINT,
     PRIMARY KEY (patient_id, created_at),
-    CONSTRAINT patient_admition_id FOREIGN KEY (patient_id) REFERENCES patient_folder(patient_id) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT admition_request_author FOREIGN KEY (authorized_by) REFERENCES user(user_name) ON UPDATE CASCADE ON DELETE CASCADE
+    CONSTRAINT patient_admission_id FOREIGN KEY (patient_id) REFERENCES patient_folder(patient_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT admission_request_author FOREIGN KEY (authorized_by) REFERENCES user(user_name) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS doctor (
@@ -237,7 +237,7 @@ CREATE TABLE IF NOT EXISTS test (
     'IgA','IgG','IgE','IgD',
     'tsh','T4','T3','FREE T3','REVERSE T3',
     'AFP','B2M','Beta-hGG','CA 15-3','CA 14-9','Calcitonin','CEA','CgA','HE4','NSE','Nuclear matrix protein 22','Thyroglobulin') UNIQUE,
-    test_tesults TEXT,  
+    test_results TEXT,
     CONSTRAINT patient_lab_test FOREIGN KEY (patient_id) REFERENCES test_request(patient_id) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT patient_lab_test_id FOREIGN KEY (test_request_id) REFERENCES test_request(test_request_id) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT test_predecessor FOREIGN KEY (root_test_name) REFERENCES test(test_name) ON UPDATE CASCADE ON DELETE CASCADE
