@@ -13,6 +13,6 @@
     </ScrollPane>
     <ImageView fitHeight="50.0" fitWidth="72.0" layoutX="268.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" />
     <DatePicker layoutX="414.0" layoutY="77.0" />
-    <Button layoutX="95.0" layoutY="32.0" mnemonicParsing="false" text="Αποσύνδεση" />
+    <Button fx:id="logoutButton" layoutX="95.0" layoutY="32.0" mnemonicParsing="false" onAction="#onLogoutClick" text="Αποσύνδεση" />
     <Button layoutX="800.0" layoutY="32.0" mnemonicParsing="false" text="Επεξεργασία Προφίλ" />
 </AnchorPane>

@@ -1,9 +1,6 @@
 package database;
 
-import model.Doctor;
-import model.Hospital;
-import model.Lab;
-import model.User;
+import model.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -115,6 +112,30 @@ public class ICRUDImpl implements ICRUD {
             }
             resultSet.close();
             return lab;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public ClinicAgent getClinicAgent(String username) {
+        try {
+            String query = "SELECT * FROM clinic_agent WHERE clinic_agent.user_name = ?";
+
+            ResultSet resultSet;
+            ClinicAgent clinicAgent;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, username);
+                resultSet = preparedStatement.executeQuery();
+                clinicAgent = null;
+                if(resultSet.next()) {
+                    clinicAgent = new ClinicAgent();
+                    clinicAgent.setUsername(resultSet.getString("user_name"));
+                    clinicAgent.setClinic(resultSet.getString("clinic_name"));
+                }
+            }
+            resultSet.close();
+            return clinicAgent;
         } catch (SQLException e) {
             return null;
         }

@@ -16,7 +16,7 @@ public class TestTheMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("ui/login.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("ui/doctor_main_screen.fxml"));
         Scene scene = new Scene(parent);
         primaryStage.setTitle("I-aso");
         scene.getStylesheets().add(getClass().getResource("ui/application.css").toExternalForm());
@@ -26,8 +26,8 @@ public class TestTheMain extends Application {
         ICRUDImpl iCRUDImpl = new ICRUDImpl();
         iCRUDImpl.openConnection();
 
-        iCRUDImpl.getLab("123456", "lab");
-        Lab lab = new Lab();
-        System.out.println(lab.getName());
+//        iCRUDImpl.getLab("123456", "lab");
+//        Lab lab = new Lab();
+//        System.out.println(lab.getName());
     }
 }
