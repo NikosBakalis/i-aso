@@ -4,19 +4,15 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.InitialClinic">
-   <Button layoutX="80.0" layoutY="29.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="107.0" text="Αποσύνδεση"/>
-   <Button layoutX="352.0" layoutY="230.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="332.0"
-           text="Εκκρεμή εισιτήρια ασθενών"/>
-   <Button layoutX="352.0" layoutY="287.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="332.0"
-           text="Posts νοσυλευτών κλινικής"/>
-   <Button layoutX="352.0" layoutY="346.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="332.0"
-           text="Λεπτομέριες κλινικής"/>
-   <Button layoutX="352.0" layoutY="401.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="332.0"
-           text="Αλλαγή κλινικής"/>
-   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="426.0" layoutY="585.0" prefHeight="17.0" prefWidth="149.0"
-          text="i-aso"/>
-   <DatePicker layoutX="413.0" layoutY="30.0"/>
-   <ImageView fitHeight="84.0" fitWidth="93.0" layoutX="425.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true"/>
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.InitialClinic">
+   <Button fx:id="logoutButton" layoutX="80.0" layoutY="29.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="27.0" prefWidth="107.0" text="Αποσύνδεση" />
+   <Button fx:id="pendingAdmissionTicketsButton" layoutX="352.0" layoutY="230.0" mnemonicParsing="false" onAction="#onPendingAdmissionTicketsClick" prefHeight="27.0" prefWidth="293.0" text="Εκκρεμή εισιτήρια ασθενών" />
+   <Button fx:id="postButton" layoutX="352.0" layoutY="290.0" mnemonicParsing="false" onAction="#onGetAllPostClick" prefHeight="27.0" prefWidth="293.0" text="Posts νοσυλευτών κλινικής" />
+   <Button fx:id="clinicInfoButton" layoutX="352.0" layoutY="346.0" mnemonicParsing="false" onAction="#onClinicInfoClick" prefHeight="27.0" prefWidth="332.0" text="Λεπτομέριες κλινικής" />
+   <Button fx:id="clinicChangeButton" layoutX="352.0" layoutY="401.0" mnemonicParsing="false" onAction="#onClinicChangeClick" prefHeight="27.0" prefWidth="332.0" text="Αλλαγή κλινικής" />
+   <Label fx:id="iasoLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="426.0" layoutY="585.0" prefHeight="17.0" prefWidth="149.0" text="i-aso" />
+   <DatePicker layoutX="413.0" layoutY="30.0" />
+   <ImageView fitHeight="84.0" fitWidth="93.0" layoutX="425.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" />
+   <Label fx:id="numberOfPendingTicketsLabel" layoutX="656.0" layoutY="230.0" prefHeight="27.0" prefWidth="40.0" text="Label" />
+   <Label fx:id="postNumLabel" layoutX="656.0" layoutY="287.0" prefHeight="27.0" prefWidth="40.0" text="Label" />
 </AnchorPane>
