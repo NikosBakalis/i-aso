@@ -5,15 +5,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class PostClinic {
+public class PostDetailsClinic {
     public Button returnButton;
-    public ScrollPane postList;
-    public Button createPostButton;
+
+    public void onReturnClick(ActionEvent actionEvent) throws IOException {
+        openScene("post_clinic.fxml");
+        //closeButtonAction();
+    }
+  //  public void onLogoutClick(ActionEvent actionEvent) throws IOException {
+    //    openScene("login.fxml");
+      //  closeButtonAction();
+   // }
 
     private void openScene(String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
@@ -23,19 +29,5 @@ public class PostClinic {
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    //private void closeButtonAction(){
-    //    Stage stage = (Stage) logoutButton.getScene().getWindow();
-    //    stage.close();
-   // }
-
-    public void onReturnClick(ActionEvent actionEvent) throws IOException {
-        openScene("initial_clinic.fxml");
-    //    closeButtonAction();
-    }
-
-    public void onCreatePostClick(ActionEvent actionEvent) throws IOException {
-        openScene("initial_clinic.fxml");
     }
 }
