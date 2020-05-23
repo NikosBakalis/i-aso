@@ -13,6 +13,6 @@
    <Label fx:id="iasoLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="426.0" layoutY="585.0" prefHeight="17.0" prefWidth="149.0" text="i-aso" />
    <DatePicker layoutX="413.0" layoutY="30.0" />
    <ImageView fitHeight="84.0" fitWidth="93.0" layoutX="425.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" />
-   <Label fx:id="numberOfPendingTicketsLabel" layoutX="656.0" layoutY="230.0" prefHeight="27.0" prefWidth="40.0" text="Label" />
+   <Label fx:id="numberOfPendingTicketLabel" layoutX="656.0" layoutY="230.0" prefHeight="27.0" prefWidth="40.0" text="Label" />
    <Label fx:id="postNumLabel" layoutX="656.0" layoutY="287.0" prefHeight="27.0" prefWidth="40.0" text="Label" />
 </AnchorPane>

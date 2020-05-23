@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PostClinic">
+   <children>
+      <Button fx:id="returnButton" layoutX="57.0" layoutY="58.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="133.0" text="Επιστροφή" />
+   </children>
+</AnchorPane>

@@ -4,16 +4,13 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ClinicChange">
-    <Button layoutX="34.0" layoutY="29.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="107.0" text="Επιστροφή"/>
-    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="457.0" layoutY="610.0" prefHeight="17.0" prefWidth="87.0"
-           text="i-aso"/>
-    <ScrollPane layoutX="87.0" layoutY="179.0" prefHeight="377.0" prefWidth="828.0">
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0"/>
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ClinicChange">
+    <Button fx:id="logoutButton" layoutX="34.0" layoutY="29.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="27.0" prefWidth="107.0" text="Επιστροφή" />
+    <Label fx:id="iasoLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="457.0" layoutY="610.0" prefHeight="17.0" prefWidth="87.0" text="i-aso" />
+    <ScrollPane fx:id="clinicLists" layoutX="87.0" layoutY="179.0" prefHeight="377.0" prefWidth="828.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
     </ScrollPane>
-    <DatePicker layoutX="414.0" layoutY="30.0"/>
-    <ImageView fitHeight="80.0" fitWidth="94.0" layoutX="453.0" layoutY="77.0" pickOnBounds="true"
-               preserveRatio="true"/>
+    <ImageView fitHeight="80.0" fitWidth="94.0" layoutX="453.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
+   <Button fx:id="returnButton" layoutX="799.0" layoutY="30.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="139.0" text="Επιστροφή" />
 
 </AnchorPane>

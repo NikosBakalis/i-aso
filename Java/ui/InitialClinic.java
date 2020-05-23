@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,6 +16,10 @@ public class InitialClinic {
     public Button postButton;
     public Button clinicInfoButton;
     public Button clinicChangeButton;
+    public Label numberOfPendingTicketLabel;
+    public Label postNumLabel;
+
+
 
     public void onPendingAdmissionTicketsClick(ActionEvent actionEvent) throws IOException {
         openScene("AdmissionTicketClinic.fxml");
@@ -42,12 +47,17 @@ public class InitialClinic {
     }
 
 
-    public void onGetAllPostClick(ActionEvent actionEvent) {
+    public void onGetAllPostClick(ActionEvent actionEvent) throws IOException {
+        openScene("post_clinic.fxml");
+        closeButtonAction();
+
     }
 
-    public void onClinicInfoClick(ActionEvent actionEvent) {
+    public void onClinicInfoClick(ActionEvent actionEvent) throws IOException {
     }
 
-    public void onClinicChangeClick(ActionEvent actionEvent) {
+    public void onClinicChangeClick(ActionEvent actionEvent) throws IOException {
+        openScene("clinic_change.fxml");
+        closeButtonAction();
     }
 }
