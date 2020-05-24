@@ -11,7 +11,7 @@ public interface ICRUD {
     Chamber getChamber(String id);
     Bed getBed(String number);
     AdmissionTicket getAdmissionTicket(String ticket_id);
-    // DischargeNote
+    DischargeNote getDischargeNote(String note_id);
     // Billing
     User getUser(String username);
     Doctor getDoctor(String username);

@@ -214,7 +214,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public AdmissionTicket getAdmissionTicket(String ticket_id) {
         try {
-            String query = "SELECT * FROM bed WHERE bed.number = ?";
+            String query = "SELECT * FROM admission_ticket WHERE admission_ticket.ticket_id = ?";
             ResultSet resultSet;
             AdmissionTicket admissionTicket;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
@@ -235,6 +235,32 @@ public class ICRUDImpl implements ICRUD {
             }
             resultSet.close();
             return admissionTicket;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public DischargeNote getDischargeNote(String note_id) {
+        try {
+            String query = "SELECT * FROM discharge_note WHERE discharge_note.note_id = ?";
+            ResultSet resultSet;
+            DischargeNote dischargeNote;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, note_id);
+                resultSet = preparedStatement.executeQuery();
+                dischargeNote = null;
+                if(resultSet.next()) {
+                    dischargeNote = new DischargeNote();
+                    dischargeNote.setNoteId(resultSet.getString("note_id"));
+                    dischargeNote.setCreatedAt(resultSet.getDate("created_at"));
+                    dischargeNote.setDischargeText(resultSet.getString("discharge_text"));
+                    dischargeNote.setAdmissionClinic(resultSet.getString("admission_clinic"));
+                    dischargeNote.setStage(resultSet.getString("stage"));
+                }
+            }
+            resultSet.close();
+            return dischargeNote;
         } catch (SQLException e) {
             return null;
         }
