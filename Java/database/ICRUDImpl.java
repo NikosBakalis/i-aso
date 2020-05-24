@@ -113,6 +113,7 @@ public class ICRUDImpl implements ICRUD {
     public PatientFolder getPatientFolder(String patient_amka) {
         try {
             String query = "SELECT * FROM patient_folder WHERE patient_folder.patient_amka = ?";
+
             ResultSet resultSet;
             PatientFolder patientFolder;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
@@ -141,6 +142,7 @@ public class ICRUDImpl implements ICRUD {
     public PatientFile getPatientFile(String file_id) {
         try {
             String query = "SELECT * FROM patient_file WHERE patient_file.file_id = ?";
+
             ResultSet resultSet;
             PatientFile patientFile;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
@@ -168,6 +170,7 @@ public class ICRUDImpl implements ICRUD {
     public Chamber getChamber(String id) {
         try {
             String query = "SELECT * FROM chamber WHERE chamber.id = ?";
+
             ResultSet resultSet;
             Chamber chamber;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
@@ -191,6 +194,7 @@ public class ICRUDImpl implements ICRUD {
     public Bed getBed(String number) {
         try {
             String query = "SELECT * FROM bed WHERE bed.number = ?";
+
             ResultSet resultSet;
             Bed bed;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
@@ -215,6 +219,7 @@ public class ICRUDImpl implements ICRUD {
     public AdmissionTicket getAdmissionTicket(String ticket_id) {
         try {
             String query = "SELECT * FROM admission_ticket WHERE admission_ticket.ticket_id = ?";
+
             ResultSet resultSet;
             AdmissionTicket admissionTicket;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
@@ -244,6 +249,7 @@ public class ICRUDImpl implements ICRUD {
     public DischargeNote getDischargeNote(String note_id) {
         try {
             String query = "SELECT * FROM discharge_note WHERE discharge_note.note_id = ?";
+
             ResultSet resultSet;
             DischargeNote dischargeNote;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
@@ -270,6 +276,7 @@ public class ICRUDImpl implements ICRUD {
     public Billing getBilling(String billing_id) {
         try {
             String query = "SELECT * FROM billing WHERE billing.billing_id = ?";
+
             ResultSet resultSet;
             Billing billing;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
@@ -293,6 +300,7 @@ public class ICRUDImpl implements ICRUD {
     public User getUser(String username) {
         try {
             String query = "SELECT * FROM user WHERE user.user_name = ?";
+
             ResultSet resultSet;
             User user;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
@@ -486,6 +494,31 @@ public class ICRUDImpl implements ICRUD {
             }
             resultSet.close();
             return clinicAgent;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public ClinicAgentPost getClinicAgentPost(String username) {
+        try {
+            String query = "SELECT * FROM clinic_agent_post WHERE clinic_agent_post.user_name = ?";
+
+            ResultSet resultSet;
+            ClinicAgentPost clinicAgentPost;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, username);
+                resultSet = preparedStatement.executeQuery();
+                clinicAgentPost = null;
+                if(resultSet.next()) {
+                    clinicAgentPost = new ClinicAgentPost();
+                    clinicAgentPost.setUsername(resultSet.getString("user_name"));
+                    clinicAgentPost.setTitle(resultSet.getString("title"));
+                    clinicAgentPost.setPostText(resultSet.getString("post_text"));
+                }
+            }
+            resultSet.close();
+            return clinicAgentPost;
         } catch (SQLException e) {
             return null;
         }

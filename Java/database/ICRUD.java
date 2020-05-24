@@ -23,5 +23,5 @@ public interface ICRUD {
     Lab getLab(String hospital_afm, String name);
     LabAgent getLabAgent(String username);
     ClinicAgent getClinicAgent(String username);
-    // ClinicAgentPost
+    ClinicAgentPost getClinicAgentPost(String username);
 }
