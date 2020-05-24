@@ -167,6 +167,48 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    @Override
+    public Patient getPatient(String amka) {
+        try {
+            String query = "SELECT * FROM patient WHERE patient.amka = ?";
+
+            ResultSet resultSet;
+            Patient patient;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, amka);
+                resultSet = preparedStatement.executeQuery();
+                patient = null;
+                if(resultSet.next()) {
+                    patient = new Patient();
+                    patient.setAmka(resultSet.getString("amka"));
+                    patient.setAfm(resultSet.getString("afm"));
+                    patient.setFirstName(resultSet.getString("first_name"));
+                    patient.setLastName(resultSet.getString("last_name"));
+                    patient.setBirthDate(resultSet.getDate("birth_date"));
+                    patient.setNationality(resultSet.getString("nationality"));
+                    patient.setReligion(resultSet.getString("religion"));
+                    patient.setGender(resultSet.getString("gender"));
+                    patient.setInsurance(resultSet.getString("insurance"));
+                    patient.setFatherFirstName(resultSet.getString("father_first_name"));
+                    patient.setFatherLastName(resultSet.getString("father_last_name"));
+                    patient.setMotherFirstName(resultSet.getString("mother_first_name"));
+                    patient.setMotherLastName(resultSet.getString("mother_last_name"));
+                    patient.setFirstStreetName(resultSet.getString("first_street_name"));
+                    patient.setFirstStreetNumber(resultSet.getString("first_street_number"));
+                    patient.setPrimaryPhoneNumber(resultSet.getString("primary_phone_number"));
+                    patient.setEmergencePhoneNumber(resultSet.getString("emergency_phone_number"));
+                    patient.setEmainAddress(resultSet.getString("email_address"));
+                    patient.setSecondStreetName(resultSet.getString("second_street_name"));
+                    patient.setSecondStreetNumber(resultSet.getString("second_street_number"));
+                }
+            }
+            resultSet.close();
+            return patient;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
 
     public void openConnection() {
         try {
