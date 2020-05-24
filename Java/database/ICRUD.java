@@ -10,7 +10,7 @@ public interface ICRUD {
     PatientFile getPatientFile(String file_id);
     Chamber getChamber(String id);
     Bed getBed(String number);
-    // AdmissionTicket
+    AdmissionTicket getAdmissionTicket(String ticket_id);
     // DischargeNote
     // Billing
     User getUser(String username);

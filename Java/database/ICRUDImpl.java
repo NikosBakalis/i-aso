@@ -211,6 +211,35 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    @Override
+    public AdmissionTicket getAdmissionTicket(String ticket_id) {
+        try {
+            String query = "SELECT * FROM bed WHERE bed.number = ?";
+            ResultSet resultSet;
+            AdmissionTicket admissionTicket;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, ticket_id);
+                resultSet = preparedStatement.executeQuery();
+                admissionTicket = null;
+                if(resultSet.next()) {
+                    admissionTicket = new AdmissionTicket();
+                    admissionTicket.setTicketId(resultSet.getString("ticket_id"));
+                    admissionTicket.setCreatedAt(resultSet.getDate("created_at"));
+                    admissionTicket.setAdmissionClinic(resultSet.getString("admission_clinic"));
+                    admissionTicket.setHostClinic(resultSet.getString("host_clinic"));
+                    admissionTicket.setPatientChamber(resultSet.getString("patient_chamber"));
+                    admissionTicket.setPatientBed(resultSet.getString("patient_bed"));
+                    admissionTicket.setAdmissionText(resultSet.getString("admission_text"));
+                    admissionTicket.setStage(resultSet.getString("stage"));
+                }
+            }
+            resultSet.close();
+            return admissionTicket;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
     public User getUser(String username) {
         try {
             String query = "SELECT * FROM user WHERE user.user_name = ?";
