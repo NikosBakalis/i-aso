@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PostDetailsClinic">
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.clinic.PostDescriptionScreen">
    <children>
       <Button fx:id="returnButton" layoutX="55.0" layoutY="66.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="121.0" text="Επιστροφή" />
       <Label fx:id="postLabel" layoutX="323.0" layoutY="130.0" text="Post" />

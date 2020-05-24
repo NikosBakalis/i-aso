@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AdmissionTicketDetailsScreen">
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.clinic.AdmissionTicketDetailsScreen">
          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:     rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
     <Label fx:id="clinicNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="462.0" layoutY="109.0" prefHeight="17.0" prefWidth="112.0" style="-fx-background-color: rgba(255,255,255,0.75);" text="Όνομα κλινικής">
       <font>

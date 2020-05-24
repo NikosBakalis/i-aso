@@ -21,7 +21,7 @@ public class PendingAdmissionTicketScreen {
     //  onPendingAdmissionTicketClick is missing
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
-        openScene("login.fxml");
+        openScene("../login.fxml");
         closeButtonAction();
     }
 
@@ -35,7 +35,7 @@ public class PendingAdmissionTicketScreen {
         Scene scene = new Scene(parent);
         Stage primaryStage = new Stage();
         primaryStage.setTitle("I-aso");
-        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }

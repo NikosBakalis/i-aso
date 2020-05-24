@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.InitialClinicScreen">
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.clinic.InitialClinicScreen">
    <Button fx:id="logoutButton" layoutX="80.0" layoutY="29.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="27.0" prefWidth="107.0" text="Αποσύνδεση" />
    <Button fx:id="pendingAdmissionTicketsButton" layoutX="268.0" layoutY="230.0" mnemonicParsing="false" onAction="#onPendingAdmissionTicketsClick" prefHeight="27.0" prefWidth="444.0" text="Εκκρεμή εισιτήρια ασθενών">
       <font>

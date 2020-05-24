@@ -28,7 +28,7 @@ public class AdmissionTicketDetailsScreen {
         Scene scene = new Scene(parent);
         Stage primaryStage = new Stage();
         primaryStage.setTitle("I-aso");
-        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }

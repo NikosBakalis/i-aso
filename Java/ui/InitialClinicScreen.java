@@ -1,4 +1,5 @@
-package ui;
+
+        package ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -14,15 +15,18 @@ public class InitialClinicScreen {
     public Button logoutButton;
     public Button pendingAdmissionTicketsButton;
     public Button postButton;
-    public Button clinicInfoButton;
-    public Button clinicChangeButton;
     public Label numberOfPendingTicketLabel;
     public Label postNumLabel;
+    public Button clinicInfoButton;
+    public Button clinicChangeButton;
     public Label iasoLabel;
+    ;
 
-
+    // <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:
+//    rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
+//        style="-fx-background-color: rgba(255,255,255,0.75);" >
     public void onPendingAdmissionTicketsClick(ActionEvent actionEvent) throws IOException {
-        openScene("AdmissionTicketClinic.fxml");
+        openScene("pending_admission_ticket_screen.fxml");
         closeButtonAction();
     }
 
@@ -47,18 +51,14 @@ public class InitialClinicScreen {
     }
 
 
-    public void onGetAllPostClick(ActionEvent actionEvent) throws IOException {
-        openScene("post_clinic.fxml");
-        closeButtonAction();
-
-    }
-
-    public void onClinicInfoClick(ActionEvent actionEvent) {
-
+    public void onClinicInfoClick(ActionEvent actionEvent) throws IOException {
     }
 
     public void onClinicChangeClick(ActionEvent actionEvent) throws IOException {
         openScene("clinic_change.fxml");
         closeButtonAction();
+    }
+
+    public void onPostClick(ActionEvent actionEvent) {
     }
 }

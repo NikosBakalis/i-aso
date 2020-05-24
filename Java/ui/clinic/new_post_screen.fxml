@@ -2,15 +2,12 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.NewPostScreen">
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.clinic.NewPostScreen">
    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:     rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
    <Button fx:id="returnButton" layoutX="37.0" layoutY="35.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="108.0" text="Επιστροφή" />
-   <Label fx:id="authorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="312.0" prefHeight="25.0" prefWidth="237.0" style="-fx-background-color: rgba(255,255,255,0.75);" text="Συντάκτης">
-      <font>
-         <Font size="14.0" />
-      </font></Label>
    <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="347.0" prefHeight="25.0" prefWidth="237.0" style="-fx-background-color: rgba(255,255,255,0.75);" text="Ημερομηνία">
       <font>
          <Font size="14.0" />
@@ -19,11 +16,20 @@
       <font>
          <Font size="14.0" />
       </font></Label>
-   <TextArea fx:id="postText" layoutX="458.0" layoutY="194.0" prefHeight="200.0" prefWidth="372.0" />
-   <Button fx:id="uploadButton" layoutX="584.0" layoutY="430.0" mnemonicParsing="false" onAction="#onUploadClick" prefHeight="25.0" prefWidth="132.0" text="Ανάρτηση" />
-   <TextField alignment="CENTER" layoutX="57.0" layoutY="263.0" prefHeight="25.0" prefWidth="237.0" style="-fx-background-color: rgba(255,255,255,0.75);" text="Τίτλος">
+   <TextArea fx:id="postText" layoutX="453.0" layoutY="118.0" prefHeight="344.0" prefWidth="469.0" />
+   <Button fx:id="uploadButton" layoutX="57.0" layoutY="517.0" mnemonicParsing="false" onAction="#onUploadClick" prefHeight="25.0" prefWidth="237.0" text="Ανάρτηση">
+      <font>
+         <Font size="14.0" />
+      </font></Button>
+   <TextField fx:id="titleField" alignment="CENTER" layoutX="57.0" layoutY="263.0" prefHeight="25.0" prefWidth="237.0" promptText="Τίτλος" style="-fx-background-color: rgba(255,255,255,0.75);">
       <font>
          <Font size="14.0" />
       </font>
    </TextField>
+   <TextField fx:id="authorField" alignment="CENTER" layoutX="57.0" layoutY="308.0" prefHeight="25.0" prefWidth="237.0" promptText="Συντάκτης" style="-fx-background-color: rgba(255,255,255,0.75);">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </TextField>
+   <Line endX="100.0" endY="255.0" layoutX="276.0" layoutY="259.0" startX="100.0" startY="-198.0" />
 </AnchorPane>

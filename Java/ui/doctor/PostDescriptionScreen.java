@@ -1,4 +1,4 @@
-package ui.clinic;
+package ui.doctor;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -9,18 +9,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class PostDetailsClinic {
+public class PostDescriptionScreen {
     public Button returnButton;
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
         openScene("post_list_screen.fxml");
-        //closeButtonAction();
+        closeButtonAction();
     }
-  //  public void onLogoutClick(ActionEvent actionEvent) throws IOException {
-    //    openScene("login.fxml");
-      //  closeButtonAction();
-   // }
 
+
+    private void closeButtonAction(){
+        Stage stage = (Stage) returnButton.getScene().getWindow();
+        stage.close();
+    }
     private void openScene(String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);

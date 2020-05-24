@@ -4,25 +4,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PostListScreen">
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.clinic.PostListScreen">
     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:     rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
     <Button fx:id="returnButton" layoutX="57.0" layoutY="58.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="133.0" text="Επιστροφή" />
     <Label fx:id="postLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="413.0" layoutY="129.0" prefHeight="17.0" prefWidth="146.0" style="-fx-background-color: rgba(255,255,255,0.75);" text="Posts">
       <font>
          <Font size="14.0" />
       </font></Label>
-    <ScrollPane layoutX="124.0" layoutY="175.0" prefHeight="305.0" prefWidth="724.0" style="-fx-background-color: rgba(255,255,255,0.75);">
-      <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-            <children>
-               <TableView fx:id="postList" layoutX="34.0" layoutY="14.0" prefHeight="274.0" prefWidth="666.0">
-                 <columns>
-                   <TableColumn prefWidth="75.0" text="C1" />
-                   <TableColumn prefWidth="75.0" text="C2" />
-                 </columns>
-               </TableView>
-            </children></AnchorPane>
-      </content>
+    <ScrollPane layoutX="124.0" layoutY="175.0" prefHeight="305.0" prefWidth="724.0"
+                style="-fx-background-color: rgba(255,255,255,0.75);">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="postList" layoutX="34.0" layoutY="14.0" prefHeight="274.0" prefWidth="666.0">
+                <columns>
+                    <TableColumn prefWidth="75.0" text="C1"/>
+                    <TableColumn prefWidth="75.0" text="C2"/>
+                </columns>
+            </TableView>
+        </AnchorPane>
     </ScrollPane>
     <Button fx:id="createPostButton" layoutX="343.0" layoutY="510.0" mnemonicParsing="false" onAction="#onCreatePostClick" prefHeight="25.0" prefWidth="286.0" text="Δημιουργία Post" />
 </AnchorPane>
