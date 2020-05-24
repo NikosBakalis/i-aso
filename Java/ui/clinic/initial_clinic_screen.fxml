@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.InitialClinicScreen">
+   <Button fx:id="logoutButton" layoutX="80.0" layoutY="29.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="27.0" prefWidth="107.0" text="Αποσύνδεση" />
+   <Button fx:id="pendingAdmissionTicketsButton" layoutX="268.0" layoutY="230.0" mnemonicParsing="false" onAction="#onPendingAdmissionTicketsClick" prefHeight="27.0" prefWidth="444.0" text="Εκκρεμή εισιτήρια ασθενών">
+      <font>
+         <Font size="14.0" />
+      </font></Button>
+   <Button fx:id="postButton" layoutX="271.0" layoutY="290.0" mnemonicParsing="false" onAction="#onPostClick" prefHeight="27.0" prefWidth="444.0" text="Posts νοσυλευτών κλινικής">
+      <font>
+         <Font size="14.0" />
+      </font></Button>
+   <Button fx:id="clinicInfoButton" layoutX="271.0" layoutY="346.0" mnemonicParsing="false" onAction="#onClinicInfoClick" prefHeight="27.0" prefWidth="444.0" text="Λεπτομέριες κλινικής">
+      <font>
+         <Font size="14.0" />
+      </font></Button>
+   <Button fx:id="clinicChangeButton" layoutX="271.0" layoutY="399.0" mnemonicParsing="false" onAction="#onClinicChangeClick" prefHeight="27.0" prefWidth="444.0" text="Αλλαγή κλινικής">
+      <font>
+         <Font size="14.0" />
+      </font></Button>
+   <Label fx:id="iasoLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:    rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
+   <ImageView fitHeight="84.0" fitWidth="93.0" layoutX="425.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" />
+   <Label fx:id="numberOfPendingTicketLabel" layoutX="725.0" layoutY="230.0" prefHeight="27.0" prefWidth="40.0" text="Label" />
+   <Label fx:id="postNumLabel" layoutX="725.0" layoutY="290.0" prefHeight="27.0" prefWidth="40.0" text="Label" />
+</AnchorPane>

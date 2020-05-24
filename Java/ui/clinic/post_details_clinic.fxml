@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PostDetailsClinic">
+   <children>
+      <Button fx:id="returnButton" layoutX="55.0" layoutY="66.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="121.0" text="Επιστροφή" />
+      <Label fx:id="postLabel" layoutX="390.0" layoutY="153.0" text="Post" />
+      <ScrollPane fx:id="selectedPost" layoutX="116.0" layoutY="180.0" prefHeight="284.0" prefWidth="570.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

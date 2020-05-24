@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AdmissionTicketDetailsScreen">
+         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:     rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
+    <Label fx:id="clinicNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="462.0" layoutY="109.0" prefHeight="17.0" prefWidth="112.0" style="-fx-background-color: rgba(255,255,255,0.75);" text="Όνομα κλινικής">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+    <Button fx:id="returnButton" layoutX="38.0" layoutY="64.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="112.0" text="Επιστροφή" />
+    <ScrollPane layoutX="103.0" layoutY="189.0" prefHeight="211.0" prefWidth="780.0" style="-fx-background-color: rgba(255,255,255,0.75);;">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="195.0" prefWidth="193.0">
+            <TableView layoutX="18.0" layoutY="19.0" prefHeight="175.0" prefWidth="715.0">
+                <columns>
+                    <TableColumn prefWidth="75.0" text="C1" />
+                    <TableColumn prefWidth="75.0" text="C2" />
+                </columns>
+            </TableView>
+        </AnchorPane>
+    </ScrollPane>
+    <Pane layoutX="103.0" layoutY="400.0" prefHeight="131.0" prefWidth="780.0" style="-fx-background-color: rgba(255,255,255,0.75);;">
+        <Label layoutX="57.0" layoutY="33.0" prefHeight="17.0" prefWidth="112.0" text="Θάλμος">
+           <font>
+               <Font size="14.0" />
+           </font>
+        </Label>
+        <Label layoutX="57.0" layoutY="73.0" prefHeight="17.0" prefWidth="71.0" text="Κρεβάτι">
+           <font>
+               <Font size="14.0" />
+           </font>
+        </Label>
+        <Button fx:id="saveButton" layoutX="534.0" layoutY="53.0" mnemonicParsing="false" onAction="#onSaveClick" prefHeight="25.0" prefWidth="133.0" text="Αποθήκευση">
+           <font>
+               <Font size="14.0" />
+           </font>
+        </Button>
+        <ComboBox fx:id="chamberMenu" layoutX="145.0" layoutY="31.0" onAction="#onChamberSelect" prefWidth="150.0" />
+        <ComboBox fx:id="bedMenu" layoutX="145.0" layoutY="71.0" onAction="#onBedSelect" prefWidth="150.0" />
+        <Line endX="18.0" endY="109.0" layoutX="385.0" layoutY="22.0" startX="18.0" startY="-22.0" />
+    </Pane>
+</AnchorPane>
