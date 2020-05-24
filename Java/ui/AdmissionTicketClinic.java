@@ -37,7 +37,7 @@ public class AdmissionTicketClinic {
     }
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
-        openScene("initial_clinic.fxml");
+        openScene("initial_clinic_screen.fxml");
         closeButtonAction();
     }
 }

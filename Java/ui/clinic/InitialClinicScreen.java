@@ -1,4 +1,4 @@
-package ui;
+package ui.clinic;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class InitialClinic {
+public class InitialClinicScreen {
     public Button logoutButton;
     public Button pendingAdmissionTicketsButton;
     public Button postButton;
@@ -18,7 +18,7 @@ public class InitialClinic {
     public Button clinicChangeButton;
     public Label numberOfPendingTicketLabel;
     public Label postNumLabel;
-
+    public Label iasoLabel;
 
 
     public void onPendingAdmissionTicketsClick(ActionEvent actionEvent) throws IOException {
@@ -53,7 +53,8 @@ public class InitialClinic {
 
     }
 
-    public void onClinicInfoClick(ActionEvent actionEvent) throws IOException {
+    public void onClinicInfoClick(ActionEvent actionEvent) {
+
     }
 
     public void onClinicChangeClick(ActionEvent actionEvent) throws IOException {
