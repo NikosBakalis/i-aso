@@ -187,6 +187,30 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    @Override
+    public Bed getBed(String number) {
+        try {
+            String query = "SELECT * FROM bed WHERE bed.number = ?";
+            ResultSet resultSet;
+            Bed bed;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, number);
+                resultSet = preparedStatement.executeQuery();
+                bed = null;
+                if(resultSet.next()) {
+                    bed = new Bed();
+                    bed.setNumber(resultSet.getString("number"));
+                    bed.setChamberId(resultSet.getString("chamber_id"));
+                    bed.setIsFree(resultSet.getBoolean("is_free"));
+                }
+            }
+            resultSet.close();
+            return bed;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
     public User getUser(String username) {
         try {
             String query = "SELECT * FROM user WHERE user.user_name = ?";
