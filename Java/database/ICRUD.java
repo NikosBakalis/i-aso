@@ -3,11 +3,22 @@ package database;
 import model.*;
 
 public interface ICRUD {
+    Hospital getHospital(String afm);
+    Clinic getClinic(String name, String hospital_afm);
+    Patient getPatient(String amka);
+    // PatientFolder
+    // PatientFile
+    // Chamber
+    // Bed
+    // AdmissionTicket
+    // DischargeNote
+    // Billing
     User getUser(String username);
     Doctor getDoctor(String username);
-    Hospital getHospital(String afm);
+    // Transfer
+    // PatientTransferOffice
+    // TransferOfficeAgent
     Lab getLab(String hospital_afm, String name);
-    Clinic getClinic(String name, String hospital_afm);
+    // LabAgent
     ClinicAgent getClinicAgent(String username);
-    Patient getPatient(String amka);
 }
