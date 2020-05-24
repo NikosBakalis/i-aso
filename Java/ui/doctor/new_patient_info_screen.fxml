@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.doctor.NewPatientInfoScreen">
+   <Pane layoutX="128.0" layoutY="152.0" prefHeight="360.0" prefWidth="745.0"
+         style="-fx-background-color: rgba(255,255,255,0.75);">
+      <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="15.0" prefHeight="17.0" prefWidth="121.0" text="ΑΜΚΑ"
+             textAlignment="RIGHT"/>
+      <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="50.0" prefHeight="17.0" prefWidth="121.0" text="ΑΦΜ"/>
+      <TextField layoutX="165.0" layoutY="11.0"/>
+      <TextField layoutX="165.0" layoutY="46.0"/>
+      <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="84.0" prefHeight="17.0" prefWidth="121.0" text="Όνομα"/>
+      <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="119.0" prefHeight="17.0" prefWidth="121.0"
+             text="Επώνυμο"/>
+      <TextField layoutX="165.0" layoutY="80.0"/>
+      <TextField layoutX="165.0" layoutY="115.0"/>
+      <Label alignment="CENTER_RIGHT" layoutX="11.0" layoutY="153.0" prefHeight="17.0" prefWidth="149.0"
+             text="Ημερομηνία γέννησης"/>
+      <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="188.0" prefHeight="17.0" prefWidth="121.0"
+             text="Όνομα πατέρα"/>
+      <TextField layoutX="165.0" layoutY="184.0"/>
+      <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="223.0" prefHeight="17.0" prefWidth="121.0"
+             text="Επώνυμο πατέρα"/>
+      <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="259.0" prefHeight="17.0" prefWidth="121.0"
+             text="Όνομα μητέρας"/>
+      <TextField layoutX="165.0" layoutY="219.0"/>
+      <TextField layoutX="165.0" layoutY="255.0"/>
+      <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="291.0" prefHeight="17.0" prefWidth="121.0"
+             text="Επώνυμο μητέρας"/>
+      <Label alignment="CENTER_RIGHT" layoutX="38.0" layoutY="326.0" prefHeight="17.0" prefWidth="121.0" text="Φύλο"/>
+      <TextField layoutX="165.0" layoutY="287.0"/>
+      <Label alignment="CENTER_RIGHT" layoutX="418.0" layoutY="15.0" prefHeight="17.0" prefWidth="121.0"
+             text="Εθνικότητα"/>
+      <Label alignment="CENTER_RIGHT" layoutX="418.0" layoutY="50.0" prefHeight="17.0" prefWidth="121.0"
+             text="Θρήσκευμα"/>
+      <TextField layoutX="542.0" layoutY="11.0"/>
+      <TextField layoutX="542.0" layoutY="46.0" text="πρέπει να διαγραφτεί"/>
+      <Label alignment="CENTER_RIGHT" layoutX="418.0" layoutY="84.0" prefHeight="17.0" prefWidth="121.0"
+             text="Αριθμός τηλεφώνου"/>
+      <Label alignment="CENTER_RIGHT" layoutX="376.0" layoutY="119.0" prefHeight="17.0" prefWidth="163.0"
+             text="Τηλέφωνο έκτακτης ανάγκης"/>
+      <TextField layoutX="542.0" layoutY="80.0"/>
+      <TextField layoutX="542.0" layoutY="115.0"/>
+      <Label alignment="CENTER_RIGHT" layoutX="418.0" layoutY="153.0" prefHeight="17.0" prefWidth="121.0"
+             text="Ασφαλιστικός φορέας"/>
+      <Label alignment="CENTER_RIGHT" layoutX="418.0" layoutY="188.0" prefHeight="17.0" prefWidth="121.0"
+             text="Οδός κατοικίας"/>
+      <TextField layoutX="542.0" layoutY="149.0"/>
+      <TextField layoutX="542.0" layoutY="184.0"/>
+      <Label alignment="CENTER_RIGHT" layoutX="390.0" layoutY="223.0" prefHeight="17.0" prefWidth="149.0"
+             text="Αριθμος οδού κατοικίας"/>
+      <Label alignment="CENTER_RIGHT" layoutX="390.0" layoutY="259.0" prefHeight="17.0" prefWidth="149.0"
+             text="Δευτερεύουσα οδός"/>
+      <TextField layoutX="542.0" layoutY="255.0"/>
+      <TextField layoutX="542.0" layoutY="322.0"/>
+      <Label alignment="CENTER_RIGHT" layoutX="369.0" layoutY="291.0" prefHeight="17.0" prefWidth="170.0"
+             text="Αριθμός δευτερεύουσας οδού"/>
+      <Label alignment="CENTER_RIGHT" layoutX="390.0" layoutY="326.0" prefHeight="17.0" prefWidth="149.0"
+             text="Ηλεκτρονική διεύθυνση"/>
+      <TextField layoutX="542.0" layoutY="219.0"/>
+      <TextField layoutX="542.0" layoutY="287.0"/>
+      <DatePicker layoutX="165.0" layoutY="149.0" prefHeight="25.0" prefWidth="149.0"/>
+      <ComboBox layoutX="164.0" layoutY="322.0" prefWidth="150.0"/>
+   </Pane>
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color: rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
+    <Button fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="566.0" mnemonicParsing="false" onAction="#onSearchClick" prefHeight="31.0" prefWidth="163.0" text="Αναζήτηση" textAlignment="CENTER" />
+    <Button fx:id="returnButton" layoutX="56.0" layoutY="48.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="38.0" prefWidth="85.0" text="Επιστροφή" />
+</AnchorPane>
