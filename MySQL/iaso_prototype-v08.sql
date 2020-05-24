@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS user (
     first_name VARCHAR(20),
     last_name VARCHAR(20),
     birth_date DATETIME,
-    password VARCHAR(20) NOT NULL,
+    password VARCHAR(20),
     specification ENUM('Doctor','Lab_Agent','Clinic_Agent','Transfer_Office_Agent') NOT NULL,
     CONSTRAINT hospital_user FOREIGN KEY (hospital_afm) REFERENCES hospital(afm) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
@@ -211,8 +211,9 @@ CREATE TABLE IF NOT EXISTS transfer_office_agent (
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS lab (
-	name VARCHAR(20) PRIMARY KEY,
+	name VARCHAR(20) NOT NULL,
 	hospital_afm VARCHAR(20) NOT NULL,
+	PRIMARY KEY (name, hospital_afm),
     CONSTRAINT hospital_lab FOREIGN KEY (hospital_afm) REFERENCES hospital(afm) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 

@@ -25,10 +25,10 @@ public class ICRUDImpl implements ICRUD {
                     user = new User();
                     user.setUsername(resultSet.getString("user_name"));
                     user.setHospital_afm(resultSet.getString("hospital_afm"));
-                    user.setFirst_name(resultSet.getString("user_first_name"));
-                    user.setLast_name(resultSet.getString("user_last_name"));
-                    user.setBirth_date(resultSet.getDate("user_birth_date"));
-                    user.setPassword(resultSet.getString("user_password"));
+                    user.setFirst_name(resultSet.getString("first_name"));
+                    user.setLast_name(resultSet.getString("last_name"));
+                    user.setBirth_date(resultSet.getDate("birth_date"));
+                    user.setPassword(resultSet.getString("password"));
                     user.setSpecification(resultSet.getString("specification"));
                 }
             }
@@ -52,7 +52,8 @@ public class ICRUDImpl implements ICRUD {
                 if(resultSet.next()) {
                     doctor = new Doctor();
                     doctor.setUsername(resultSet.getString("user_name"));
-                    doctor.setSector(resultSet.getString("doctor_sector"));
+                    doctor.setSector(resultSet.getString("sector"));
+                    doctor.setClinic(resultSet.getString("clinic"));
                 }
             }
             resultSet.close();
@@ -74,8 +75,8 @@ public class ICRUDImpl implements ICRUD {
                 hospital = null;
                 if(resultSet.next()) {
                     hospital = new Hospital();
-                    hospital.setAfm(resultSet.getString("hospital_afm"));
-                    hospital.setName(resultSet.getString("hospital_name"));
+                    hospital.setAfm(resultSet.getString("afm"));
+                    hospital.setName(resultSet.getString("name"));
                     hospital.setFirst_street_name(resultSet.getString("first_street_name"));
                     hospital.setFirst_street_number(resultSet.getInt("first_street_number"));
                     hospital.setPrimary_phone_number(resultSet.getInt("primary_phone_number"));
@@ -93,25 +94,50 @@ public class ICRUDImpl implements ICRUD {
     }
 
     @Override
-    public Lab getLab(String hospital_afm, String name) {
+    public Lab getLab(String name, String hospital_afm) {
         try {
-            String query = "SELECT * FROM lab WHERE lab.hospital_afm = ? AND lab.lab_name = ?";
+            String query = "SELECT * FROM lab WHERE lab.name = ? AND lab.hospital_afm = ?";
 
             ResultSet resultSet;
             Lab lab;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
-                preparedStatement.setString(1, hospital_afm);
-                preparedStatement.setString(2, name);
+                preparedStatement.setString(1, name);
+                preparedStatement.setString(2, hospital_afm);
                 resultSet = preparedStatement.executeQuery();
                 lab = null;
                 if(resultSet.next()) {
                     lab = new Lab();
+                    lab.setName(resultSet.getString("name"));
                     lab.setHospital_afm(resultSet.getString("hospital_afm"));
-                    lab.setName(resultSet.getString("lab_name"));
                 }
             }
             resultSet.close();
             return lab;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Clinic getClinic(String name, String hospital_afm) {
+        try {
+            String query = "SELECT * FROM clinic WHERE clinic.name = ? AND clinic.hospital_afm = ?";
+
+            ResultSet resultSet;
+            Clinic clinic;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, name);
+                preparedStatement.setString(2, hospital_afm);
+                resultSet = preparedStatement.executeQuery();
+                clinic = null;
+                if(resultSet.next()) {
+                    clinic = new Clinic();
+                    clinic.setName(resultSet.getString("name"));
+                    clinic.setHospitalAfm(resultSet.getString("hospital_afm"));
+                }
+            }
+            resultSet.close();
+            return clinic;
         } catch (SQLException e) {
             return null;
         }
