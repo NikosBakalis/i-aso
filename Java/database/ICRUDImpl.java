@@ -342,6 +342,35 @@ public class ICRUDImpl implements ICRUD {
     }
 
     @Override
+    public Transfer getTransfer(Date id, String patient_amka) {
+        try {
+            String query = "SELECT * FROM transfer WHERE transfer.id = ? AND transfer.patient_amka = ?";
+
+            ResultSet resultSet;
+            Transfer transfer;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setDate(1, id);
+                preparedStatement.setString(2, patient_amka);
+                resultSet = preparedStatement.executeQuery();
+                transfer = null;
+                if(resultSet.next()) {
+                    transfer = new Transfer();
+                    transfer.setId(resultSet.getDate("id"));
+                    transfer.setAuthorizedBy(resultSet.getString("authorized_by"));
+                    transfer.setPatientAmka(resultSet.getString("patient_amka"));
+                    transfer.setSourceClinic(resultSet.getString("source_clinic"));
+                    transfer.setDestinationClinic(resultSet.getString("destination_clinic"));
+                    transfer.setStage(resultSet.getString("stage"));
+                }
+            }
+            resultSet.close();
+            return transfer;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    @Override
     public Lab getLab(String name, String hospital_afm) {
         try {
             String query = "SELECT * FROM lab WHERE lab.name = ? AND lab.hospital_afm = ?";

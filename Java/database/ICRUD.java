@@ -2,6 +2,8 @@ package database;
 
 import model.*;
 
+import java.sql.Date;
+
 public interface ICRUD {
     Hospital getHospital(String afm);
     Clinic getClinic(String name, String hospital_afm);
@@ -15,7 +17,7 @@ public interface ICRUD {
     Billing getBilling(String billing_id);
     User getUser(String username);
     Doctor getDoctor(String username);
-    // Transfer
+    Transfer getTransfer(Date id, String patient_amka);
     // PatientTransferOffice
     // TransferOfficeAgent
     Lab getLab(String hospital_afm, String name);
