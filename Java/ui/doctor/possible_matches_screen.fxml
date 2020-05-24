@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="644.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.doctor.PossibleMatchesScreen">
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="609.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color: rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
+    <Button fx:id="returnButton" layoutX="53.0" layoutY="46.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="30.0" prefWidth="83.0" text="Επιστροφή" />
+    <ScrollPane layoutX="150.0" layoutY="149.0" prefHeight="346.0" prefWidth="700.0">
+        <TableView prefHeight="308.0" prefWidth="697.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="Όνομα"/>
+                <TableColumn prefWidth="75.0" text="Επώνυμο"/>
+                <TableColumn prefWidth="75.0" text="ΑΜΚΑ"/>
+                <TableColumn prefWidth="75.0" text="ΑΦΜ"/>
+                <TableColumn prefWidth="149.0" text="Ημερομηνία γέννησης"/>
+                <TableColumn prefWidth="106.0" text="Όνομα Πατέρα"/>
+                <TableColumn prefWidth="113.0" text="Επώνυμο Πατέρα"/>
+            </columns>
+        </TableView>
+    </ScrollPane>
+   <Button fx:id="confirmationButton" layoutX="435.0" layoutY="522.0" mnemonicParsing="false" onAction="#onConfirmationClick" prefHeight="38.0" prefWidth="131.0" text="Επιβεβαίωση" />
+</AnchorPane>
