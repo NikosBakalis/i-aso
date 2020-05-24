@@ -395,6 +395,30 @@ public class ICRUDImpl implements ICRUD {
     }
 
     @Override
+    public TransferOfficeAgent getTransferOfficeAgent(String username) {
+        try {
+            String query = "SELECT * FROM transfer_office_agent WHERE transfer_office_agent.user_name = ?";
+
+            ResultSet resultSet;
+            TransferOfficeAgent transferOfficeAgent;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, username);
+                resultSet = preparedStatement.executeQuery();
+                transferOfficeAgent = null;
+                if(resultSet.next()) {
+                    transferOfficeAgent = new TransferOfficeAgent();
+                    transferOfficeAgent.setUsername(resultSet.getString("user_name"));
+                    transferOfficeAgent.setOfficeNumber(resultSet.getString("office_number"));
+                }
+            }
+            resultSet.close();
+            return transferOfficeAgent;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    @Override
     public Lab getLab(String name, String hospital_afm) {
         try {
             String query = "SELECT * FROM lab WHERE lab.name = ? AND lab.hospital_afm = ?";
