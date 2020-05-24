@@ -266,6 +266,30 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    @Override
+    public Billing getBilling(String billing_id) {
+        try {
+            String query = "SELECT * FROM billing WHERE billing.billing_id = ?";
+            ResultSet resultSet;
+            Billing billing;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, billing_id);
+                resultSet = preparedStatement.executeQuery();
+                billing = null;
+                if(resultSet.next()) {
+                    billing = new Billing();
+                    billing.setBillingId(resultSet.getString("billing_id"));
+                    billing.setCreatedAt(resultSet.getDate("created_at"));
+                    billing.setPrice(resultSet.getFloat("price"));
+                }
+            }
+            resultSet.close();
+            return billing;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
     public User getUser(String username) {
         try {
             String query = "SELECT * FROM user WHERE user.user_name = ?";

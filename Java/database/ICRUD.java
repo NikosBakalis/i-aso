@@ -12,7 +12,7 @@ public interface ICRUD {
     Bed getBed(String number);
     AdmissionTicket getAdmissionTicket(String ticket_id);
     DischargeNote getDischargeNote(String note_id);
-    // Billing
+    Billing getBilling(String billing_id);
     User getUser(String username);
     Doctor getDoctor(String username);
     // Transfer
