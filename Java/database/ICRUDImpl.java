@@ -137,6 +137,33 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    @Override
+    public PatientFile getPatientFile(String file_id) {
+        try {
+            String query = "SELECT * FROM patient_file WHERE patient_file.file_id = ?";
+            ResultSet resultSet;
+            PatientFile patientFile;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, file_id);
+                resultSet = preparedStatement.executeQuery();
+                patientFile = null;
+                if(resultSet.next()) {
+                    patientFile = new PatientFile();
+                    patientFile.setPatientAmka(resultSet.getString("patient_amka"));
+                    patientFile.setFileId(resultSet.getString("file_id"));
+                    patientFile.setHospital(resultSet.getString("hospital"));
+                    patientFile.setDiagnosis(resultSet.getString("diagnosis"));
+                    patientFile.setTreatment(resultSet.getString("treatment"));
+                    patientFile.setLabTests(resultSet.getString("lab_tests"));
+                }
+            }
+            resultSet.close();
+            return patientFile;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
     public User getUser(String username) {
         try {
             String query = "SELECT * FROM user WHERE user.user_name = ?";

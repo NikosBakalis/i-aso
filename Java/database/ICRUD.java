@@ -7,7 +7,7 @@ public interface ICRUD {
     Clinic getClinic(String name, String hospital_afm);
     Patient getPatient(String amka);
     PatientFolder getPatientFolder(String patient_amka);
-    // PatientFile
+    PatientFile getPatientFile(String file_id);
     // Chamber
     // Bed
     // AdmissionTicket
