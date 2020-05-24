@@ -444,6 +444,30 @@ public class ICRUDImpl implements ICRUD {
     }
 
     @Override
+    public LabAgent getLabAgent(String username) {
+        try {
+            String query = "SELECT * FROM lab_agent WHERE lab_agent.user_name = ?";
+
+            ResultSet resultSet;
+            LabAgent labAgent;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, username);
+                resultSet = preparedStatement.executeQuery();
+                labAgent = null;
+                if(resultSet.next()) {
+                    labAgent = new LabAgent();
+                    labAgent.setUsername(resultSet.getString("user_name"));
+                    labAgent.setLabName(resultSet.getString("lab_name"));
+                }
+            }
+            resultSet.close();
+            return labAgent;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    @Override
     public ClinicAgent getClinicAgent(String username) {
         try {
             String query = "SELECT * FROM clinic_agent WHERE clinic_agent.user_name = ?";
