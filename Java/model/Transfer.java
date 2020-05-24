@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Transfer {
     private static Date id;
-    private static String authorizedBy, patientAmka, sourceClinic, destinationClinic, stage;
+    private static String authorisedBy, patientAmka, sourceClinic, destinationClinic, stage;
 
     public Date getId() {
         return id;
@@ -14,12 +14,12 @@ public class Transfer {
         Transfer.id = id;
     }
 
-    public String getAuthorizedBy() {
-        return authorizedBy;
+    public String getAuthorisedBy() {
+        return authorisedBy;
     }
 
-    public void setAuthorizedBy(String authorizedBy) {
-        Transfer.authorizedBy = authorizedBy;
+    public void setAuthorisedBy(String authorisedBy) {
+        Transfer.authorisedBy = authorisedBy;
     }
 
     public String getPatientAmka() {

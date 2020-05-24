@@ -356,7 +356,7 @@ public class ICRUDImpl implements ICRUD {
                 if(resultSet.next()) {
                     transfer = new Transfer();
                     transfer.setId(resultSet.getDate("id"));
-                    transfer.setAuthorizedBy(resultSet.getString("authorised_by"));
+                    transfer.setAuthorisedBy(resultSet.getString("authorised_by"));
                     transfer.setPatientAmka(resultSet.getString("patient_amka"));
                     transfer.setSourceClinic(resultSet.getString("source_clinic"));
                     transfer.setDestinationClinic(resultSet.getString("destination_clinic"));
