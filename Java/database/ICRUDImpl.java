@@ -164,6 +164,29 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    @Override
+    public Chamber getChamber(String id) {
+        try {
+            String query = "SELECT * FROM chamber WHERE chamber.id = ?";
+            ResultSet resultSet;
+            Chamber chamber;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, id);
+                resultSet = preparedStatement.executeQuery();
+                chamber = null;
+                if(resultSet.next()) {
+                    chamber = new Chamber();
+                    chamber.setId(resultSet.getString("id"));
+                    chamber.setClinicName(resultSet.getString("clinic_name"));
+                }
+            }
+            resultSet.close();
+            return chamber;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
     public User getUser(String username) {
         try {
             String query = "SELECT * FROM user WHERE user.user_name = ?";
