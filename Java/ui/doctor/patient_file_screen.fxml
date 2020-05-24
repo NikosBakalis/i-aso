@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="644.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.doctor.PatientFileScreen">
+   <Button fx:id="returnButton" layoutX="50.0" layoutY="44.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="37.0" prefWidth="120.0" text="Επιστροφή" />
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="609.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color: rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
+    <Pane layoutX="133.0" layoutY="148.0" prefHeight="348.0" prefWidth="735.0" style="-fx-background-color: rgba(255,255,255,0.75);">
+        <ScrollPane layoutX="205.0" layoutY="14.0" prefHeight="320.0" prefWidth="515.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="295.0" prefWidth="486.0" />
+        </ScrollPane>
+      <Button fx:id="patientInfoButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onPatientInfoClick" prefHeight="21.0" prefWidth="163.0" text="Στοιχέια Ασθενή" />
+      <Button fx:id="briefHistoryButton" layoutX="14.0" layoutY="51.0" mnemonicParsing="false" onAction="#onBriefHistoryClick" prefHeight="21.0" prefWidth="163.0" text="Σύντομο Ιστορικό" />
+      <Button fx:id="detailedHistoryButton" layoutX="14.0" layoutY="89.0" mnemonicParsing="false" onAction="#onDetailedHistoryClick" prefHeight="21.0" prefWidth="163.0" text="Αναλυτικό Ιστορικό" />
+      <Button fx:id="admissionTicketButton" layoutX="14.0" layoutY="126.0" mnemonicParsing="false" onAction="#onAdmissionTicketClick" prefHeight="21.0" prefWidth="163.0" text="Εισιτήριο" />
+      <Button fx:id="statusAndDiagnosisButton" layoutX="14.0" layoutY="163.0" mnemonicParsing="false" onAction="#onStatusAndDiagnosisClick" prefHeight="21.0" prefWidth="163.0" text="Πορεία και Διάγνωση" />
+      <Button fx:id="testsButton" layoutX="14.0" layoutY="200.0" mnemonicParsing="false" onAction="#onTestsClick" prefHeight="21.0" prefWidth="163.0" text="Παραγγελεία Εξετάσεων" />
+      <Button fx:id="testResultsButton" layoutX="14.0" layoutY="237.0" mnemonicParsing="false" onAction="#onTestResultsClick" prefHeight="21.0" prefWidth="163.0" text="Αποτελέσματα Εξετάσεων" />
+      <Button fx:id="treatmentButton" layoutX="14.0" layoutY="272.0" mnemonicParsing="false" onAction="#onTreatmentClick" prefHeight="21.0" prefWidth="163.0" text="Αγωγή" />
+      <Button fx:id="dischargeNoteButton" layoutX="14.0" layoutY="309.0" mnemonicParsing="false" onAction="#onDischargeNoteClick" prefHeight="21.0" prefWidth="163.0" text="Εξιτήριο" />
+    </Pane>
+
+</AnchorPane>
