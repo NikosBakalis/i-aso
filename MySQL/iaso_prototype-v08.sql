@@ -15,8 +15,9 @@ CREATE TABLE IF NOT EXISTS hospital (
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS clinic (
-	name VARCHAR(30) PRIMARY KEY,
+	name VARCHAR(30) NOT NULL,
     hospital_afm VARCHAR(20) NOT NULL,
+    PRIMARY KEY (name, hospital_afm),
     CONSTRAINT hospital_clinic FOREIGN KEY (hospital_afm) REFERENCES hospital(afm) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 

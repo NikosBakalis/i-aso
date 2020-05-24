@@ -19,7 +19,7 @@ public class Login {
     public Button loginButtonId;
     public TextField usernameTextId;
     public PasswordField passwordTextId;
-//hi
+
     Alert information = new Alert(Alert.AlertType.INFORMATION);
     Alert warning = new Alert(Alert.AlertType.WARNING);
     Alert error = new Alert(Alert.AlertType.ERROR);
