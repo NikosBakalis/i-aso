@@ -36,7 +36,7 @@ public class Login {
                     switch (option){
                         case "Doctor":
                             System.out.println("Doctor");
-                            openScene("doctor_main_screen.fxml");
+                            openScene("initial_doctor_screen.fxml");
                             break;
                         case "Lab_Agent":
                             System.out.println("Lab Agent");

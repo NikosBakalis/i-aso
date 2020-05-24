@@ -1,4 +1,4 @@
-package ui;
+package ui.doctor;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +10,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class DoctorMainScreen {
+public class InitialDoctorScreen {
     public Label titleLabelId;
     public Button logoutButton;
+    public Button newPatientButton;
+    public Button profileButton;
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Doctor log out");
@@ -35,6 +37,11 @@ public class DoctorMainScreen {
         stage.close();
     }
 
+    public void onNewPatientClick(ActionEvent actionEvent) {
+    }
+
+    public void onProfileClick(ActionEvent actionEvent) {
+    }
 }
 
 
