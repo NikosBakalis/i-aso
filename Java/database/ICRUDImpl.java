@@ -371,6 +371,30 @@ public class ICRUDImpl implements ICRUD {
     }
 
     @Override
+    public PatientTransferOffice getPatientTransferOffice(String number) {
+        try {
+            String query = "SELECT * FROM patient_transfer_office WHERE patient_transfer_office.number = ?";
+
+            ResultSet resultSet;
+            PatientTransferOffice patientTransferOffice;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, number);
+                resultSet = preparedStatement.executeQuery();
+                patientTransferOffice = null;
+                if(resultSet.next()) {
+                    patientTransferOffice = new PatientTransferOffice();
+                    patientTransferOffice.setNumber(resultSet.getString("number"));
+                    patientTransferOffice.setHospitalAfm(resultSet.getString("hospital_afm"));
+                }
+            }
+            resultSet.close();
+            return patientTransferOffice;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    @Override
     public Lab getLab(String name, String hospital_afm) {
         try {
             String query = "SELECT * FROM lab WHERE lab.name = ? AND lab.hospital_afm = ?";

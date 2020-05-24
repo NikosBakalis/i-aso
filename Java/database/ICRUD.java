@@ -18,7 +18,7 @@ public interface ICRUD {
     User getUser(String username);
     Doctor getDoctor(String username);
     Transfer getTransfer(Date id, String patient_amka);
-    // PatientTransferOffice
+    PatientTransferOffice getPatientTransferOffice(String number);
     // TransferOfficeAgent
     Lab getLab(String hospital_afm, String name);
     // LabAgent
