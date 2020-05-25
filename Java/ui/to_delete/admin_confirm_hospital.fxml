@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AdminConfirmHospital">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.to_delete.AdminConfirmHospital">
    <Button layoutX="76.0" layoutY="71.0" mnemonicParsing="false" text="Επιστροφή"/>
    <ImageView fitHeight="96.0" fitWidth="137.0" layoutX="432.0" layoutY="35.0" pickOnBounds="true"
               preserveRatio="true"/>

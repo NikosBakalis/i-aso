@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.DoctorPatientFile">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.to_delete.DoctorPatientFile">
     <Button alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="118.0" mnemonicParsing="false"
             prefHeight="25.0" prefWidth="176.0" text="Αρχικό menu | επιστροφή" textAlignment="CENTER"/>
     <Button alignment="CENTER" contentDisplay="CENTER" layoutX="607.0" layoutY="118.0" mnemonicParsing="false"

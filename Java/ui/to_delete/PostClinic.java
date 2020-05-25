@@ -1,26 +1,20 @@
-package ui;
+package ui.to_delete;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AdmissionTicketClinic {
-    public Button logoutButton;
+public class PostClinic {
     public Button returnButton;
-    public Label clinicNameLabel;
-    public ScrollPane pendingAdmmissionTicketList;
+    public ScrollPane postList;
+    public Button createPostButton;
 
-    public void onLogoutClick(ActionEvent actionEvent) throws IOException {
-        openScene("login.fxml");
-        closeButtonAction();
-    }
     private void openScene(String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
@@ -31,13 +25,17 @@ public class AdmissionTicketClinic {
         primaryStage.show();
     }
 
-    private void closeButtonAction(){
-        Stage stage = (Stage) logoutButton.getScene().getWindow();
-        stage.close();
-    }
+    //private void closeButtonAction(){
+    //    Stage stage = (Stage) logoutButton.getScene().getWindow();
+    //    stage.close();
+   // }
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
         openScene("initial_clinic_screen.fxml");
-        closeButtonAction();
+    //    closeButtonAction();
+    }
+
+    public void onCreatePostClick(ActionEvent actionEvent) throws IOException {
+        openScene("initial_clinic_screen.fxml");
     }
 }

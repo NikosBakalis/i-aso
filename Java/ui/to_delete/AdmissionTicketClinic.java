@@ -1,18 +1,21 @@
-package ui;
+package ui.to_delete;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ClinicChange {
-
+public class AdmissionTicketClinic {
     public Button logoutButton;
     public Button returnButton;
+    public Label clinicNameLabel;
+    public ScrollPane pendingAdmmissionTicketList;
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
         openScene("login.fxml");

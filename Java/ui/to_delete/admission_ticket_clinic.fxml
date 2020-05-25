@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AdmissionTicketClinic">
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.to_delete.AdmissionTicketClinic">
     <Button fx:id="logoutButton" layoutX="93.0" layoutY="67.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="27.0" prefWidth="107.0" text="Αποσύνδεση" />
     <Button fx:id="returnButton" layoutX="785.0" layoutY="67.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="27.0" prefWidth="140.0" text="Επιστροφή" />
     <Label fx:id="clinicNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="430.0" layoutY="138.0" prefHeight="17.0" prefWidth="140.0" text="Όνομα κλινικής" />
