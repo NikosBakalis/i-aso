@@ -15,25 +15,37 @@ public class InitialTransferOfficeScreen {
     public Button logoutButton;
     public Button acknowledgeNewPatientButton;
     public Label iasoLabel;
-    public Button DischargeNoteConfirmationButton;
     public Label acknowledgeNewPatientLabel;
     public Label DischargeNoteConfirmationLAbel;
     public Button patientList;
     public ImageView logoView;
+    public Button dischargeNoteConfirmationButton;
+    public Button confirmTransfersButton;
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Transfer office agent logout");
         openScene("../login.fxml");
         closeButtonAction();
     }
 
     public void onAcknowledgeNewPatientClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Show new patients with pending tickets");
         openScene("admission_ticket_confirmation_screen.fxml");
         closeButtonAction();
     }
 
     public void onDischargeNoteConfirmationClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Show pending discharge notes");
         openScene("discharge_note_confirmation_screen.fxml");
         closeButtonAction();
+    }
+
+    public void onPatientListClick(ActionEvent actionEvent) {
+        System.out.println("Show patients list");
+    }
+
+    public void onConfirmTransfersClick(ActionEvent actionEvent) {
+        System.out.println("Show transfers to confirm");
     }
 
     private void openScene(String fxmlFile) throws IOException {
@@ -49,8 +61,5 @@ public class InitialTransferOfficeScreen {
     private void closeButtonAction(){
         Stage stage = (Stage) logoutButton.getScene().getWindow();
         stage.close();
-    }
-
-    public void onPatientListClick(ActionEvent actionEvent) {
     }
 }

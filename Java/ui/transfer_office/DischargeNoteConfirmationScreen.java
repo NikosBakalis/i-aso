@@ -19,11 +19,13 @@ public class DischargeNoteConfirmationScreen {
 // note that onDischargeNoteClick listener is missing
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Transfer office agent logout");
         openScene("../login.fxml");
         closeButtonAction();
     }
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Return to initial transfer office screen");
         openScene("initial_transfer_office_screen.fxml");
         closeButtonAction();
     }

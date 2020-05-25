@@ -18,11 +18,13 @@ public class DischargeNoteAndBillingScreen {
     public Button confirmButton;
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Return to discharge notes list");
         openScene("discharge_note_confirmation_screen.fxml");
         closeButtonAction();
     }
 
     public void onConfirmClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Discharge note confirmed");
         openScene("discharge_note_confirmation_screen.fxml");
         closeButtonAction();
     }

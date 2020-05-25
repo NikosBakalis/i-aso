@@ -9,8 +9,8 @@
     <Button fx:id="logoutButton" layoutX="80.0" layoutY="29.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="27.0" prefWidth="107.0" text="Αποσύνδεση" />
     <Button fx:id="acknowledgeNewPatientButton" layoutX="265.0" layoutY="259.0" mnemonicParsing="false" onAction="#onAcknowledgeNewPatientClick" prefHeight="27.0" prefWidth="444.0" text="Επιβεβαίωση εισαγωγής" />
     <Label fx:id="iasoLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:    rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
-   <Button fx:id="DischargeNoteConfirmationButton" layoutX="265.0" layoutY="306.0" mnemonicParsing="false" onAction="#onDischargeNoteConfirmationClick" prefHeight="27.0" prefWidth="444.0" text="Επιβεβαίωση εξιτηρίου" />
-   <Button layoutX="265.0" layoutY="354.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="444.0" text="Επιβεβαίωση διακομιδής" />
+   <Button fx:id="dischargeNoteConfirmationButton" layoutX="265.0" layoutY="306.0" mnemonicParsing="false" onAction="#onDischargeNoteConfirmationClick" prefHeight="27.0" prefWidth="444.0" text="Επιβεβαίωση εξιτηρίου" />
+   <Button fx:id="confirmTransfersButton" layoutX="265.0" layoutY="354.0" mnemonicParsing="false" onAction="#onConfirmTransfersClick" prefHeight="27.0" prefWidth="444.0" text="Επιβεβαίωση διακομιδής" />
    <Button fx:id="patientList" layoutX="265.0" layoutY="405.0" mnemonicParsing="false" onAction="#onPatientListClick" prefHeight="27.0" prefWidth="444.0" text="Λίστα ασθενών" />
    <Label fx:id="acknowledgeNewPatientLabel" layoutX="727.0" layoutY="259.0" prefHeight="27.0" prefWidth="28.0" text="Label" />
    <Label fx:id="DischargeNoteConfirmationLAbel" layoutX="727.0" layoutY="306.0" prefHeight="27.0" prefWidth="28.0" text="Label" />

@@ -14,14 +14,17 @@ public class TemporaryAdmissionTicketScreen {
     public Button confirmButton;
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Return to admission tickets list");
         openScene("admission_ticket_confirmation_screen.fxml");
         closeButtonAction();
     }
 
     public void onConfirmClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Admission ticket confirmed");
         openScene("admission_ticket_confirmation_screen.fxml");
         closeButtonAction();
     }
+
     private void openScene(String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
