@@ -18,6 +18,7 @@ public class PostDescriptionScreen {
     public ScrollPane postSelect;
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Return to posts list screen");
         openScene("post_list_screen.fxml");
         closeButtonAction();
     }

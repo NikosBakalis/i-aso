@@ -15,7 +15,6 @@ import java.io.IOException;
 public class NewPostScreen {
     public Label clinicNameLabel;
     public Label dateLabel;
-    public Label authorLabel;
     public Button returnButton;
     public TextArea postText;
     public Button uploadButton;
@@ -23,9 +22,22 @@ public class NewPostScreen {
     public TextField authorField;
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Return to posts list screen");
         openScene("post_list_screen.fxml");
         closeButtonAction();
     }
+
+    public void onUploadClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Post uploaded");
+        openScene("post_list_screen.fxml");
+        closeButtonAction();
+    }
+
+    private void closeButtonAction(){
+        Stage stage = (Stage) returnButton.getScene().getWindow();
+        stage.close();
+    }
+
     private void openScene(String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
@@ -35,16 +47,4 @@ public class NewPostScreen {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
-    public void onUploadClick(ActionEvent actionEvent) throws IOException {
-        openScene("post_list_screen.fxml");
-         closeButtonAction();
-    }
-
-    private void closeButtonAction(){
-       Stage stage = (Stage) returnButton.getScene().getWindow();
-        stage.close();
-    }
-
-
 }

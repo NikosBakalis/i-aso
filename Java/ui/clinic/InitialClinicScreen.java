@@ -25,12 +25,28 @@ public class InitialClinicScreen {
 //    rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
 //        style="-fx-background-color: rgba(255,255,255,0.75);" >
     public void onPendingAdmissionTicketsClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Show pending admission tickets");
         openScene("pending_admission_ticket_screen.fxml");
         closeButtonAction();
     }
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Clinic agent logout");
         openScene("../login.fxml");
+        closeButtonAction();
+    }
+
+    public void onClinicInfoClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Show clinic info");
+    }
+
+    public void onClinicChangeClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Change clinic");
+    }
+
+    public void onPostClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Show posts list screen");
+        openScene("post_list_screen.fxml");
         closeButtonAction();
     }
 
@@ -47,19 +63,5 @@ public class InitialClinicScreen {
     private void closeButtonAction(){
         Stage stage = (Stage) logoutButton.getScene().getWindow();
         stage.close();
-    }
-
-
-    public void onClinicInfoClick(ActionEvent actionEvent) throws IOException {
-    }
-
-    public void onClinicChangeClick(ActionEvent actionEvent) throws IOException {
-        openScene("clinic_change.fxml");
-        closeButtonAction();
-    }
-
-    public void onPostClick(ActionEvent actionEvent) throws IOException {
-        openScene("post_list_screen.fxml");
-        closeButtonAction();
     }
 }

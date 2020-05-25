@@ -21,11 +21,13 @@ public class PendingAdmissionTicketScreen {
     //  onPendingAdmissionTicketClick is missing
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Clinic agent logout");
         openScene("../login.fxml");
         closeButtonAction();
     }
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Return to initial clinic screen");
         openScene("initial_clinic_screen.fxml");
         closeButtonAction();
     }

@@ -18,6 +18,18 @@ public class PostListScreen {
     public TableView postList;
     public Label postLabel;
 
+    public void onReturnClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Return to initial clinic screen");
+        openScene("initial_clinic_screen.fxml");
+        closeButtonAction();
+    }
+
+    public void onCreatePostClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Create new post");
+        openScene("new_post_screen.fxml");
+        closeButtonAction();
+    }
+
     private void openScene(String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
@@ -31,15 +43,5 @@ public class PostListScreen {
     private void closeButtonAction(){
         Stage stage = (Stage) returnButton.getScene().getWindow();
         stage.close();
-    }
-
-    public void onReturnClick(ActionEvent actionEvent) throws IOException {
-        openScene("initial_clinic_screen.fxml");
-        closeButtonAction();
-    }
-
-    public void onCreatePostClick(ActionEvent actionEvent) throws IOException {
-        openScene("new_post_screen.fxml");
-        closeButtonAction();
     }
 }

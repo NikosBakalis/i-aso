@@ -19,8 +19,23 @@ public class AdmissionTicketDetailsScreen {
     public ComboBox bedMenu;
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Show pending admission tickets");
         openScene("pending_admission_ticket_screen.fxml");
         closeButtonAction();
+    }
+
+    public void onSaveClick(ActionEvent actionEvent) throws IOException {
+        System.out.println("Return to posts list screen");
+        openScene("initial_clinic_screen.fxml");
+        closeButtonAction();
+    }
+
+    public void onChamberSelect(ActionEvent actionEvent) {
+        System.out.println("Chamber selected");
+    }
+
+    public void onBedSelect(ActionEvent actionEvent) {
+        System.out.println("Bed selected");
     }
 
     private void openScene(String fxmlFile) throws IOException {
@@ -36,16 +51,5 @@ public class AdmissionTicketDetailsScreen {
     private void closeButtonAction(){
         Stage stage = (Stage) returnButton.getScene().getWindow();
         stage.close();
-    }
-
-    public void onSaveClick(ActionEvent actionEvent) throws IOException {
-        openScene("initial_clinic_screen.fxml");
-        closeButtonAction();
-    }
-
-    public void onChamberSelect(ActionEvent actionEvent) {
-    }
-
-    public void onBedSelect(ActionEvent actionEvent) {
     }
 }
