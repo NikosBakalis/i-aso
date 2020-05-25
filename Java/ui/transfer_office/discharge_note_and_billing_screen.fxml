@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.transfer_office.DischargeNoteAndBillingScreen">
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:     rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
+    <Button fx:id="returnButton" layoutX="55.0" layoutY="53.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="112.0" text="Επιστροφή" />
+    <ScrollPane layoutX="77.0" layoutY="150.0" prefHeight="412.0" prefWidth="425.0"
+                style="-fx-background-color: rgba(255,255,255,0.75);">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="patientInfoList" layoutX="14.0" layoutY="14.0" prefHeight="378.0" prefWidth="398.0">
+                <columns>
+                    <TableColumn prefWidth="75.0" text="C1"/>
+                    <TableColumn prefWidth="75.0" text="C2"/>
+                </columns>
+            </TableView>
+        </AnchorPane>
+    </ScrollPane>
+   <Pane layoutX="618.0" layoutY="195.0" prefHeight="200.0" prefWidth="231.0" style="-fx-background-color: rgba(255,255,255,0.75);">
+      <children>
+         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="40.0" prefHeight="41.0" prefWidth="176.0" text="Συνολικό ποσό">
+            <font>
+               <Font size="18.0" />
+            </font></Label>
+         <Label fx:id="costLabel" layoutX="43.0" layoutY="100.0" prefHeight="58.0" prefWidth="163.0" />
+      </children>
+   </Pane>
+   <Button fx:id="confirmButton" layoutX="618.0" layoutY="469.0" mnemonicParsing="false" onAction="#onConfirmClick" prefHeight="25.0" prefWidth="231.0" text="Επιβεβαίωση" />
+
+</AnchorPane>
