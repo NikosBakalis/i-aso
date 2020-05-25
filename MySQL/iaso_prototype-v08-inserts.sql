@@ -182,6 +182,6 @@ INSERT INTO billing (billing_id, created_at, price) VALUES ('5875645345', NOW(),
 INSERT INTO billing (billing_id, created_at, price) VALUES ('8943678443', NOW(), 147.98);
 
 INSERT INTO transfer (id, authorised_by, patient_amka, stage) VALUES (NOW(), '56798024', '88374920', 1);
-INSERT INTO transfer (id, authorised_by, patient_amka, source_clinic, source_hospital, destination_clinic, destination_hospital, stage) VALUES (NOW(), '64980190', '86727365', 'ΜΕΘ', '1234567890', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', '2345678901', 2);
-INSERT INTO transfer (id, authorised_by, patient_amka, source_clinic, source_hospital, destination_clinic, destination_hospital, stage) VALUES (NOW(), '28488905', '67765234', 'ΧΕΙΡΟΥΡΓΙΚΗ', '2345678901', 'ΜΕΘ', '1234567890', 1);
-INSERT INTO transfer (id, authorised_by, patient_amka, source_clinic, source_hospital, destination_clinic, destination_hospital, stage) VALUES (NOW(), '65748033', '90876241', 'ΟΡΘΟΠΑΙΔΙΚΗ', '2345678901', 'ΜΕΘ', '1234567890', 1);
+INSERT INTO transfer (id, authorised_by, patient_amka, source_clinic, hospital_afm, destination_clinic, stage) VALUES (NOW(), '64980190', '86727365', 'ΜΕΘ', '1234567890', 'Α ΠΑΘΟΛΟΓΙΚΗ', 2);
+INSERT INTO transfer (id, authorised_by, patient_amka, source_clinic, hospital_afm, destination_clinic, stage) VALUES (NOW(), '28488905', '67765234', 'ΧΕΙΡΟΥΡΓΙΚΗ', '2345678901', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', 1);
+INSERT INTO transfer (id, authorised_by, patient_amka, source_clinic, hospital_afm, destination_clinic, stage) VALUES (NOW(), '65748033', '90876241', 'ΟΡΘΟΠΑΙΔΙΚΗ', '2345678901', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', 1);

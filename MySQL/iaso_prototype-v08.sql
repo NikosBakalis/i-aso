@@ -141,17 +141,16 @@ CREATE TABLE IF NOT EXISTS transfer (
     authorised_by VARCHAR(20) NOT NULL,
 	patient_amka VARCHAR(20) NOT NULL,
     source_clinic VARCHAR(30),
-    source_hospital  VARCHAR(20),
+    hospital_afm VARCHAR(20),
     destination_clinic VARCHAR(30),
-    destination_hospital  VARCHAR(20),
     stage ENUM('SENT', 'APPROVED') NOT NULL DEFAULT 'SENT',
     PRIMARY KEY (id, patient_amka),
-    INDEX (source_clinic, source_hospital),
-    FOREIGN KEY (source_clinic, source_hospital) REFERENCES clinic(name, hospital_afm) ON UPDATE CASCADE ON DELETE CASCADE,
-    INDEX (destination_clinic, destination_hospital),
-    FOREIGN KEY (destination_clinic, destination_hospital) REFERENCES clinic(name, hospital_afm) ON UPDATE CASCADE ON DELETE CASCADE,
+    INDEX (source_clinic, hospital_afm),
+    FOREIGN KEY (source_clinic, hospital_afm) REFERENCES clinic(name, hospital_afm) ON UPDATE CASCADE ON DELETE CASCADE,
+    INDEX (destination_clinic, hospital_afm),
+    FOREIGN KEY (destination_clinic, hospital_afm) REFERENCES clinic(name, hospital_afm) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT user_doctor_transfer FOREIGN KEY (authorised_by) REFERENCES doctor(user_name) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT trasfer_patient FOREIGN KEY (patient_amka) REFERENCES patient(amka) ON UPDATE CASCADE ON DELETE CASCADE
+    CONSTRAINT transfer_patient FOREIGN KEY (patient_amka) REFERENCES patient(amka) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS patient_transfer_office (

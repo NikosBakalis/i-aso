@@ -36,7 +36,7 @@ public class Login {
                     switch (option){
                         case "Doctor":
                             System.out.println("Doctor");
-                            openScene("initial_doctor_screen.fxml");
+                            openScene("doctor/initial_doctor_screen.fxml");
                             break;
                         case "Lab_Agent":
                             System.out.println("Lab Agent");
@@ -44,11 +44,11 @@ public class Login {
                             break;
                         case "Clinic_Agent":
                             System.out.println("Clinic Agent");
-                            openScene("clinic_change.fxml");
+                            openScene("clinic/initial_clinic_screen.fxml");
                             break;
                         case "Transfer_Office_Agent":
                             System.out.println("Transfer Office Agent");
-                            openScene(".fxml");
+                            openScene("transfer_office/initial_transfer_office_screen.fxml");
                             break;
                         case "Admin":
                             System.out.println("Admin");
