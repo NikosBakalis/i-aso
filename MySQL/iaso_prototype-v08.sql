@@ -94,13 +94,15 @@ CREATE TABLE IF NOT EXISTS patient_file (
 	patient_amka VARCHAR(20) NOT NULL,
 	file_id VARCHAR(20) PRIMARY KEY,
     hospital VARCHAR(20) NOT NULL,
+    clinic VARCHAR(30) NOT NULL,
     doctor VARCHAR(20) NOT NULL,
     diagnosis TEXT,
     treatment TEXT,
     lab_tests TEXT,
     CONSTRAINT patient_file_doctor FOREIGN KEY (doctor) REFERENCES doctor(user_name) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT patient_file_amka FOREIGN KEY (patient_amka) REFERENCES patient(amka) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT patient_file_hospital FOREIGN KEY (hospital) REFERENCES hospital(afm) ON UPDATE CASCADE ON DELETE CASCADE
+    CONSTRAINT patient_file_hospital FOREIGN KEY (hospital) REFERENCES hospital(afm) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT patient_file_clinic FOREIGN KEY (clinic) REFERENCES clinic(name) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS admission_ticket (

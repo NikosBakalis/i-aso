@@ -98,15 +98,15 @@ INSERT INTO clinic_agent_post (post_id, user_name, created_at, title, post_text)
 INSERT INTO clinic_agent_post (post_id, user_name, created_at, title, post_text) VALUES ('89765467787', '47938047', NOW(), 'CEID', 'Ούτε κι αυτοί ξέρουν τι είπαν');
 INSERT INTO clinic_agent_post (post_id, user_name, created_at, title, post_text) VALUES ('24354678987', '47938047', NOW(), 'CEID', 'Πόρε φίλε τι θες κι εσύ τώρα ... Πήγαινε για καφέ έξω και άστο το τμήμα στην τύχη του. Με αυτά και με αυτά, θα πάθεις καμιά κρίση άγχους και μετά θα πρέπει να έρθω να δουλέψω.');
 
-INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('88374920', '5627092159', '0123456789', '56798024');
-INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('86727365', '2354692304', '0123456789', '56798024');
-INSERT INTO patient_file (patient_amka, file_id, hospital, doctor, diagnosis, treatment, lab_tests) VALUES ('86727365', '2346234633', '0123456789', '56798024', 'COVID-1', 'ΘΑ ΠΕΘΑΝΕΤΕ', 'ΚΛΑΨΤΕ ΤΟΝ');
-INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('86727365', '6787655458', '0123456789', '56798024');
-INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('86727365', '4360564468', '0123456789', '56798024');
-INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('35723453', '5875645345', '2345678901', '29805303');
-INSERT INTO patient_file (patient_amka, file_id, hospital, doctor, diagnosis, treatment, lab_tests) VALUES ('35723453', '8943678443', '2345678901', '29805303', 'Μπυροκοιλιά', 'Συνεργείο ο Μάκης και οι Παίδαροι', '99% Ολυμπιακός 1% Βάζελος');
-INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('35723453', '0964352346', '2345678901', '29805303');
-INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('35723453', '2596543456', '2345678901', '29805303');
+INSERT INTO patient_file (patient_amka, file_id, hospital, clinic, doctor) VALUES ('88374920', '5627092159', '0123456789', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', '56798024');
+INSERT INTO patient_file (patient_amka, file_id, hospital, clinic, doctor) VALUES ('86727365', '2354692304', '0123456789', 'ΜΕΘ', '56798024');
+INSERT INTO patient_file (patient_amka, file_id, hospital, clinic, doctor, diagnosis, treatment, lab_tests) VALUES ('86727365', '2346234633', '0123456789', 'ΜΕΘ', '56798024', 'COVID-1', 'ΘΑ ΠΕΘΑΝΕΤΕ', 'ΚΛΑΨΤΕ ΤΟΝ');
+INSERT INTO patient_file (patient_amka, file_id, hospital, clinic, doctor) VALUES ('86727365', '6787655458', '0123456789', 'ΜΕΘ', '56798024');
+INSERT INTO patient_file (patient_amka, file_id, hospital, clinic, doctor) VALUES ('86727365', '4360564468', '0123456789', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', '56798024');
+INSERT INTO patient_file (patient_amka, file_id, hospital, clinic, doctor) VALUES ('35723453', '5875645345', '2345678901', 'ΜΕΘ', '29805303');
+INSERT INTO patient_file (patient_amka, file_id, hospital, clinic, doctor, diagnosis, treatment, lab_tests) VALUES ('35723453', '8943678443', '2345678901', 'ΜΕΘ', '29805303', 'Μπυροκοιλιά', 'Συνεργείο ο Μάκης και οι Παίδαροι', '99% Ολυμπιακός 1% Βάζελος');
+INSERT INTO patient_file (patient_amka, file_id, hospital, clinic, doctor) VALUES ('35723453', '0964352346', '2345678901', 'ΟΡΘΟΠΑΙΔΙΚΗ', '29805303');
+INSERT INTO patient_file (patient_amka, file_id, hospital, clinic, doctor) VALUES ('35723453', '2596543456', '2345678901', 'ΧΕΙΡΟΥΡΓΙΚΗ', '29805303');
 
 INSERT INTO chamber (id, clinic_name, clinic_hospital) VALUES ('7374', 'ΜΕΘ', '0123456789');
 INSERT INTO chamber (id, clinic_name, clinic_hospital) VALUES ('2733', 'ΜΕΘ', '0123456789');
