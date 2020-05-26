@@ -1,20 +1,43 @@
 package ui.doctor;
 
+import database.ICRUDImpl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Doctor;
+import model.PatientFile;
+import model.User;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class InitialDoctorScreen {
+public class InitialDoctorScreen implements Initializable {
     public Label titleLabelId;
     public Button logoutButton;
     public Button newPatientButton;
     public Button profileButton;
+    public AnchorPane patientFileTable;
+    public TableView<String> tableView;
+    public TableColumn patientAmka;
+    public TableColumn fileId;
+    public TableColumn hospital;
+    public TableColumn clinic;
+    public TableColumn diagnosis;
+    public TableColumn treatment;
+    public TableColumn lab_tests;
+
+    ICRUDImpl iCRUDImpl = new ICRUDImpl();
+    User user = new User();
+    Doctor doctor = new Doctor();
+    PatientFile patientFile = new PatientFile();
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Doctor log out");
@@ -45,6 +68,19 @@ public class InitialDoctorScreen {
     private void closeButtonAction(){
         Stage stage = (Stage) logoutButton.getScene().getWindow();
         stage.close();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        iCRUDImpl.getDoctor(user.getUsername()); // Populate Doctor.java in model package.
+        System.out.println(doctor.getClinic());
+        System.out.println(iCRUDImpl.getAllPatientFilesOfClinic(doctor.getClinic()));
+        ObservableList<String> observableListPatientAmka = FXCollections.observableArrayList(iCRUDImpl.getAllPatientFilesOfClinic(doctor.getClinic()).get(0));
+//        ObservableList<String> observableListFileId = FXCollections.observableArrayList(iCRUDImpl.getAllPatientFilesOfClinic(doctor.getClinic()).get(1));
+        System.out.println(observableListPatientAmka);
+//        patientAmka.setCellValueFactory(data -> data.toString());
+        tableView.setItems(observableListPatientAmka);
+//        tableView.setItems(observableListFileId);
     }
 }
 
