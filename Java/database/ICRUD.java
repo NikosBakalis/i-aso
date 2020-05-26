@@ -3,6 +3,7 @@ package database;
 import model.*;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public interface ICRUD {
     Hospital getHospital(String afm);
@@ -24,4 +25,6 @@ public interface ICRUD {
     LabAgent getLabAgent(String username);
     ClinicAgent getClinicAgent(String username);
     ClinicAgentPost getClinicAgentPost(String username);
+    ArrayList<ArrayList<String>> getAllPatientFilesOfClinic(String clinic);
+//    ObservableList<PatientFile> getAllPatientFilesOfClinic(String clinic);
 }

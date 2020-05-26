@@ -5,6 +5,7 @@ import model.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Properties;
 
 
@@ -154,6 +155,7 @@ public class ICRUDImpl implements ICRUD {
                     patientFile.setPatientAmka(resultSet.getString("patient_amka"));
                     patientFile.setFileId(resultSet.getString("file_id"));
                     patientFile.setHospital(resultSet.getString("hospital"));
+                    patientFile.setClinic(resultSet.getString("clinic"));
                     patientFile.setDiagnosis(resultSet.getString("diagnosis"));
                     patientFile.setTreatment(resultSet.getString("treatment"));
                     patientFile.setLabTests(resultSet.getString("lab_tests"));
@@ -524,6 +526,56 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    public ArrayList<ArrayList<String>> getAllPatientFilesOfClinic(String clinic){
+        try {
+            String query = "SELECT * FROM patient_file WHERE clinic = ?";
+
+            ResultSet resultSet;
+            PatientFile patientFile;
+            ArrayList<ArrayList<String>> allPatientFilesOfClinic;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, clinic);
+                resultSet = preparedStatement.executeQuery();
+                allPatientFilesOfClinic = new ArrayList<>();
+                ArrayList<String> patientAmkaList = new ArrayList<>();
+                ArrayList<String> fileIdList = new ArrayList<>();
+                ArrayList<String> hospitalList = new ArrayList<>();
+                ArrayList<String> clinicList = new ArrayList<>();
+                ArrayList<String> diagnosisList = new ArrayList<>();
+                ArrayList<String> treatmentList = new ArrayList<>();
+                ArrayList<String> labTestsList = new ArrayList<>();
+                while(resultSet.next()) {
+                    patientFile = new PatientFile();
+                    patientFile.setPatientAmka(resultSet.getString("patient_amka"));
+                    patientFile.setFileId(resultSet.getString("file_id"));
+                    patientFile.setHospital(resultSet.getString("hospital"));
+                    patientFile.setClinic(resultSet.getString("clinic"));
+                    patientFile.setDiagnosis(resultSet.getString("diagnosis"));
+                    patientFile.setTreatment(resultSet.getString("treatment"));
+                    patientFile.setLabTests(resultSet.getString("lab_tests"));
+
+                    patientAmkaList.add(patientFile.getPatientAmka());
+                    fileIdList.add(patientFile.getFileId());
+                    hospitalList.add(patientFile.getHospital());
+                    clinicList.add(patientFile.getClinic());
+                    diagnosisList.add(patientFile.getDiagnosis());
+                    treatmentList.add(patientFile.getTreatment());
+                    labTestsList.add(patientFile.getLabTests());
+                }
+                allPatientFilesOfClinic.add(patientAmkaList);
+                allPatientFilesOfClinic.add(fileIdList);
+                allPatientFilesOfClinic.add(hospitalList);
+                allPatientFilesOfClinic.add(clinicList);
+                allPatientFilesOfClinic.add(diagnosisList);
+                allPatientFilesOfClinic.add(treatmentList);
+                allPatientFilesOfClinic.add(labTestsList);
+            }
+            resultSet.close();
+            return allPatientFilesOfClinic;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
 
     public void openConnection() {
         try {
