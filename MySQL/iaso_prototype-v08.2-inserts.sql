@@ -19,7 +19,7 @@ INSERT INTO patient (amka, afm, first_name, last_name, birth_date, nationality, 
 INSERT INTO patient (amka, afm, first_name, last_name, birth_date, nationality, gender, insurance) VALUES ('23456763', '57348335', 'ΠΑΝΑΓΙΩΤΗΣ', 'ΤΣΑΚΑΣ', NOW(), 'GR', 1, 'ΕΟΠΥΥ');
 INSERT INTO patient (amka, afm, first_name, last_name, birth_date, nationality, gender, insurance) VALUES ('35723453', '75345634', 'ΜΑΚΗΣ', 'ΚΟΤΣΑΜΠΑΣΗΣ', NOW(), 'GR', 1, 'ΕΟΠΥΥ');
 INSERT INTO patient (amka, afm, first_name, last_name, birth_date, nationality, gender, insurance) VALUES ('38294679', '25236633', 'ΝΙΚΟΣ', 'ΜΠΑΚΑΛΗΣ', NOW(), 'GR', 1, 'ΤΕΒΕ');
-INSERT INTO patient (amka, afm, first_name, last_name, birth_date, nationality, gender, insurance) VALUES ('72364859', '94337923', 'ΑΝΝΑ', 'ΜΑΓΙΑΚΗ', NOW(), 'GR', 1, 'ΕΦΚΑ');
+INSERT INTO patient (amka, afm, first_name, last_name, birth_date, nationality, gender, insurance) VALUES ('72364859', '94337923', 'ΑΝΝΑ', 'ΜΑΓΙΑΚΗ', NOW(), 'GR', 3, 'ΕΦΚΑ');
 INSERT INTO patient (amka, afm, first_name, last_name, birth_date, nationality, gender, insurance) VALUES ('84563453', '23462484', 'ΔΙΟΝΥΣΗΣ', 'ΜΑΥΡΟΤΣΟΥΚΑΛΟΣ', NOW(), 'GR', 1, 'ΕΟΠΥΥ');
 INSERT INTO patient (amka, afm, first_name, last_name, birth_date, nationality, gender, insurance) VALUES ('67765234', '94415732', 'ΤΑΚΗΣ', 'ΤΣΟΥΚΑΛΑΣ', NOW(), 'GR', 1, 'ΕΟΠΥΥ');
 INSERT INTO patient (amka, afm, first_name, last_name, birth_date, nationality, gender, insurance) VALUES ('98734782', '13245983', 'ΣΤΕΦΑΝΟΣ', 'ΧΙΟΣ', NOW(), 'GR', 1, 'ΕΟΠΥΥ');
