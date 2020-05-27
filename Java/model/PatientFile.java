@@ -1,9 +1,7 @@
 package model;
 
-import javafx.beans.property.StringProperty;
-
 public class PatientFile {
-    private static String patientAmka, fileId, hospital, clinic, diagnosis, treatment, labTests;
+    private static String patientAmka, fileId, hospital, diagnosis, treatment, labTests;
 
     public String getPatientAmka() {
         return patientAmka;
@@ -27,14 +25,6 @@ public class PatientFile {
 
     public void setHospital(String hospital) {
         PatientFile.hospital = hospital;
-    }
-
-    public String getClinic() {
-        return clinic;
-    }
-
-    public void setClinic(String clinic) {
-        PatientFile.clinic = clinic;
     }
 
     public String getDiagnosis() {

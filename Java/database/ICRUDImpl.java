@@ -157,7 +157,6 @@ public class ICRUDImpl implements ICRUD {
                     patientFile.setPatientAmka(resultSet.getString("patient_amka"));
                     patientFile.setFileId(resultSet.getString("file_id"));
                     patientFile.setHospital(resultSet.getString("hospital"));
-                    patientFile.setClinic(resultSet.getString("clinic"));
                     patientFile.setDiagnosis(resultSet.getString("diagnosis"));
                     patientFile.setTreatment(resultSet.getString("treatment"));
                     patientFile.setLabTests(resultSet.getString("lab_tests"));

@@ -34,6 +34,7 @@ public class InitialDoctorScreen implements Initializable {
     ICRUDImpl iCRUDImpl = new ICRUDImpl();
     User user = new User();
     Doctor doctor = new Doctor();
+    InitialDoctorScreenListItem initialDoctorScreenListItem = new InitialDoctorScreenListItem();
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Doctor log out");
