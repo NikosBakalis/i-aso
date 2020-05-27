@@ -1,5 +1,6 @@
 package ui.doctor;
 
+import database.ICRUDImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Patient;
 
 import java.io.IOException;
 
@@ -38,6 +40,7 @@ public class PatientFileScreen {
     public TextArea dischargeText; //inside dischargeNotePane
     public ComboBox hostClinic;   //inside dischargeNotePane
     public Button dischargeNoteSaveButton;  //inside dischargeNotePane
+    public TextArea initialTextArea;
 
     // first pane is the pane that contains all the buttons etc.. This pain never goes.
     // we use initial pane as the pane that only takes data from db. in this pane doctor is not supposed to make any changes.
@@ -45,6 +48,9 @@ public class PatientFileScreen {
     // status and diagnosis pane only refers to status and diagnosis
     //treatment pne is the pane that refers to treatment
     // dischargeNotePane is a pane that refers to discharge note
+
+    ICRUDImpl iCRUDImpl = new ICRUDImpl();
+    Patient patient= new Patient();
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Return to initial doctor screen");
@@ -58,6 +64,27 @@ public class PatientFileScreen {
         statusAndDiagnosisPane.setVisible(false);
         treatmentPane.setVisible(false);
         dischargeNotePane.setVisible(false);
+        patient =  iCRUDImpl.getPatient("86727365");  //get the patient from double click
+        initialTextArea.setWrapText(true);  //texts never exceeds
+        initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
+        initialTextArea.appendText("\nΑΦΜ:"+patient.getAfm());
+        initialTextArea.appendText("\nΌνομα:"+patient.getFirstName());
+        initialTextArea.appendText("\nΕπώνημο:"+patient.getLastName());
+        initialTextArea.appendText("\nΗμ.Γέννησης:"+patient.getBirthDate());
+        initialTextArea.appendText("\nΕθνικότητα:"+patient.getNationality());
+        initialTextArea.appendText("\nθρησκεία:"+patient.getReligion());
+        initialTextArea.appendText("\nΦύλο:"+patient.getGender());
+        initialTextArea.appendText("\nΑσφάλεια:"+patient.getInsurance());
+        initialTextArea.appendText("\nΠατρώνημο:"+patient.getFatherFirstName());
+        initialTextArea.appendText("\nΕπώνημο Πατέρα:"+patient.getFatherLastName());
+        initialTextArea.appendText("\nΌνομα Μητέρας:"+patient.getMotherFirstName());
+        initialTextArea.appendText("\nΕπώνημο Μητέρας:"+patient.getMotherLastName());
+        initialTextArea.appendText("\nΔιεύθυνση 1ης Κατοικίας:"+patient.getFirstStreetName());
+        initialTextArea.appendText("\nΑριθμός 1ης Κατοικίας:"+patient.getFirstStreetNumber());
+        initialTextArea.appendText("\nΔιεύθυνση 2ης Κατοικίας:"+patient.getSecondStreetName());
+        initialTextArea.appendText("\nΤηλέφωνο Επικοινωνίας:"+patient.getPrimaryPhoneNumber());
+        initialTextArea.appendText("\nΤηλέφωνο Έκτατης Ανάγκης"+patient.getEmergencePhoneNumber());
+        initialTextArea.appendText("\nEmail:"+patient.getEmainAddress());
     }
 
     public void onBriefHistoryClick(ActionEvent actionEvent) {
