@@ -12,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Patient;
+import model.PatientFolder;
 
 import java.io.IOException;
 
@@ -51,6 +52,7 @@ public class PatientFileScreen {
 
     ICRUDImpl iCRUDImpl = new ICRUDImpl();
     Patient patient= new Patient();
+    PatientFolder patientFol = new PatientFolder();
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Return to initial doctor screen");
@@ -93,6 +95,17 @@ public class PatientFileScreen {
         treatmentPane.setVisible(false);
         dischargeNotePane.setVisible(false);
         System.out.println("Show brief history");
+        patientFol =  iCRUDImpl.getPatientFolder("86727365");  //get the patient from double click
+        initialTextArea.setWrapText(true);  //texts never exceeds
+        initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
+        initialTextArea.appendText("\nΌνομα:"+patient.getFirstName());
+        initialTextArea.appendText("\nΕπώνημο:"+patient.getLastName());
+        initialTextArea.appendText("\nΧρόνιες Παθήσεις:"+patientFol.getChronicDisease());
+        initialTextArea.appendText("\nΑλλεργίες:"+patientFol.getPatientAllergies());
+        initialTextArea.appendText("\nΧειρουργία:"+patientFol.getPatientSurgeries());
+        initialTextArea.appendText("\nΟμάδα Αίματος:"+patientFol.getBloodType());
+        initialTextArea.appendText("\nHBV:"+patientFol.getHBV());
+        initialTextArea.appendText("\nHBC:"+patientFol.getHBC());
     }
    // false because we are not supposed to do this.
     public void onDetailedHistoryClick(ActionEvent actionEvent) {
