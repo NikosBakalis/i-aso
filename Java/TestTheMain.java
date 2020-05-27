@@ -15,7 +15,7 @@ public class TestTheMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("ui/transfer_office/discharge_note_and_billing_screen.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("ui/doctor/patient_file_screen.fxml"));
         Scene scene = new Scene(parent);
         primaryStage.setTitle("I-aso");
         scene.getStylesheets().add(getClass().getResource("ui/application.css").toExternalForm());
