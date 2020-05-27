@@ -1,7 +1,6 @@
 package ui.doctor;
 
 import database.ICRUDImpl;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,11 +25,11 @@ public class InitialDoctorScreen implements Initializable {
     public Button profileButton;
     public AnchorPane patientFileTable;
     public TableView<InitialDoctorScreenListItem> tableView;
-    public TableColumn<InitialDoctorScreenListItem, SimpleStringProperty> colAmka;
-    public TableColumn<InitialDoctorScreenListItem, SimpleStringProperty> colFirstName;
-    public TableColumn<InitialDoctorScreenListItem, SimpleStringProperty> colLastName;
-    public TableColumn<InitialDoctorScreenListItem, SimpleStringProperty> colHostClinic;
-    public TableColumn<InitialDoctorScreenListItem, SimpleStringProperty> colChamber;
+    public TableColumn<InitialDoctorScreenListItem, String> colAmka;
+    public TableColumn<InitialDoctorScreenListItem, String> colFirstName;
+    public TableColumn<InitialDoctorScreenListItem, String> colLastName;
+    public TableColumn<InitialDoctorScreenListItem, String> colHostClinic;
+    public TableColumn<InitialDoctorScreenListItem, String> colChamber;
 
     ICRUDImpl iCRUDImpl = new ICRUDImpl();
     User user = new User();
@@ -69,31 +68,12 @@ public class InitialDoctorScreen implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        tableView = new TableView<>();
-//        colAmka = new TableColumn<>("ΑΜΚΑ");
-//        colFirstName = new TableColumn<>("ΟΝΟΜΑ");
-//        colLastName = new TableColumn<>("ΕΠΩΝΥΜΟ");
-//        colHostClinic = new TableColumn<>("ΚΛΙΝΙΚΗ ΦΙΛΟΞΕΝΙΑΣ");
-//        colChamber = new TableColumn<>("ΘΑΛΑΜΟΣ");
-
         colAmka.setCellValueFactory(new PropertyValueFactory<>("amka"));
-        colFirstName.setCellValueFactory(new PropertyValueFactory<>("first_name"));
-        colLastName.setCellValueFactory(new PropertyValueFactory<>("last_name"));
-        colHostClinic.setCellValueFactory(new PropertyValueFactory<>("host_clinic"));
-        colChamber.setCellValueFactory(new PropertyValueFactory<>("patient_chamber"));
-//        tableView.getColumns().addAll(colAmka, colFirstName, colLastName, colHostClinic, colChamber);
-
+        colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        colHostClinic.setCellValueFactory(new PropertyValueFactory<>("hostClinic"));
+        colChamber.setCellValueFactory(new PropertyValueFactory<>("patientChamber"));
         tableView.setItems(iCRUDImpl.getInitialDoctorScreenListItems(user.getHospital_afm(), doctor.getClinic()));
-
-//        iCRUDImpl.getDoctor(user.getUsername()); // Populate Doctor.java in model package.
-//        System.out.println(doctor.getClinic());
-//        System.out.println(iCRUDImpl.getAllPatientFilesOfClinic(doctor.getClinic()));
-//        ObservableList<String> observableListPatientAmka = FXCollections.observableArrayList(iCRUDImpl.getAllPatientFilesOfClinic(doctor.getClinic()).get(0));
-//        ObservableList<String> observableListFileId = FXCollections.observableArrayList(iCRUDImpl.getAllPatientFilesOfClinic(doctor.getClinic()).get(1));
-//        System.out.println(observableListPatientAmka);
-//        patientAmka.setCellValueFactory(data -> data.toString());
-//        tableView.setItems(observableListPatientAmka);
-//        tableView.setItems(observableListFileId);
     }
 }
 

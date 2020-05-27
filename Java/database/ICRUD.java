@@ -26,7 +26,5 @@ public interface ICRUD {
     LabAgent getLabAgent(String username);
     ClinicAgent getClinicAgent(String username);
     ClinicAgentPost getClinicAgentPost(String username);
-    ArrayList<ArrayList<String>> getAllPatientFilesOfClinic(String clinic);
-    ObservableList<InitialDoctorScreenListItem> getInitialDoctorScreenListItems(String hospital, String admissionClinic);
 //    ObservableList<PatientFile> getAllPatientFilesOfClinic(String clinic);
 }

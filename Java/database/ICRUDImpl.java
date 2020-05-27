@@ -552,68 +552,11 @@ public class ICRUDImpl implements ICRUD {
                     initialDoctorScreenListItem.setLastName(resultSet.getString("last_name"));
                     initialDoctorScreenListItem.setHostClinic(resultSet.getString("host_clinic"));
                     initialDoctorScreenListItem.setPatientChamber(resultSet.getString("patient_chamber"));
-                    System.out.println(initialDoctorScreenListItem.getAmka());
-                    System.out.println(initialDoctorScreenListItem.getFirstName());
-                    System.out.println(initialDoctorScreenListItem.getLastName());
-                    System.out.println(initialDoctorScreenListItem.getHostClinic());
-                    System.out.println(initialDoctorScreenListItem.getPatientChamber());
                     initialDoctorScreenListItems.add(initialDoctorScreenListItem);
                 }
             }
             resultSet.close();
             return initialDoctorScreenListItems;
-        } catch (SQLException e) {
-            return null;
-        }
-    }
-
-    public ArrayList<ArrayList<String>> getAllPatientFilesOfClinic(String clinic) {
-        try {
-            String query = "SELECT * FROM patient_file WHERE clinic = ?";
-
-            ResultSet resultSet;
-            PatientFile patientFile;
-            ArrayList<ArrayList<String>> allPatientFilesOfClinic;
-            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
-                preparedStatement.setString(1, clinic);
-                resultSet = preparedStatement.executeQuery();
-                allPatientFilesOfClinic = new ArrayList<>();
-
-                ArrayList<String> patientAmkaList = new ArrayList<>();
-                ArrayList<String> fileIdList = new ArrayList<>();
-                ArrayList<String> hospitalList = new ArrayList<>();
-                ArrayList<String> clinicList = new ArrayList<>();
-                ArrayList<String> diagnosisList = new ArrayList<>();
-                ArrayList<String> treatmentList = new ArrayList<>();
-                ArrayList<String> labTestsList = new ArrayList<>();
-                while (resultSet.next()) {
-                    patientFile = new PatientFile();
-                    patientFile.setPatientAmka(resultSet.getString("patient_amka"));
-                    patientFile.setFileId(resultSet.getString("file_id"));
-                    patientFile.setHospital(resultSet.getString("hospital"));
-                    patientFile.setClinic(resultSet.getString("clinic"));
-                    patientFile.setDiagnosis(resultSet.getString("diagnosis"));
-                    patientFile.setTreatment(resultSet.getString("treatment"));
-                    patientFile.setLabTests(resultSet.getString("lab_tests"));
-
-                    patientAmkaList.add(patientFile.getPatientAmka());
-                    fileIdList.add(patientFile.getFileId());
-                    hospitalList.add(patientFile.getHospital());
-                    clinicList.add(patientFile.getClinic());
-                    diagnosisList.add(patientFile.getDiagnosis());
-                    treatmentList.add(patientFile.getTreatment());
-                    labTestsList.add(patientFile.getLabTests());
-                }
-                allPatientFilesOfClinic.add(patientAmkaList);
-                allPatientFilesOfClinic.add(fileIdList);
-                allPatientFilesOfClinic.add(hospitalList);
-                allPatientFilesOfClinic.add(clinicList);
-                allPatientFilesOfClinic.add(diagnosisList);
-                allPatientFilesOfClinic.add(treatmentList);
-                allPatientFilesOfClinic.add(labTestsList);
-            }
-            resultSet.close();
-            return allPatientFilesOfClinic;
         } catch (SQLException e) {
             return null;
         }
