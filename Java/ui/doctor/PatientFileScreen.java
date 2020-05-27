@@ -11,10 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import model.AdmissionTicket;
-import model.Patient;
-import model.PatientFile;
-import model.PatientFolder;
+import model.*;
 
 import java.io.IOException;
 
@@ -35,15 +32,18 @@ public class PatientFileScreen {
     public ScrollPane infoDataPatient; // inside statusAndDiagnosisPane
     public TextArea doctorDiagnosisArea; // inside statusAndDiagnosisPane
     public Button saveStatusAndDiagnosisButton; // inside statusAndDiagnosisPane
+    public TextArea DiagnosisDataPatient;  // inside statusAndDiagnosisPane
     public Pane treatmentPane;
-    public ScrollPane treatmentDataPatient;  //inside treatmentPane
     public TextArea doctorTreatmentArea;  //inside treatmentPane
     public Button saveTreatmentButton;   //inside treatmentPane
+    public TextArea treatmentDataPatient;  //inside treatmentPane
     public Pane dischargeNotePane;
     public TextArea dischargeText; //inside dischargeNotePane
     public ComboBox hostClinic;   //inside dischargeNotePane
     public Button dischargeNoteSaveButton;  //inside dischargeNotePane
     public TextArea initialTextArea;
+
+
 
     // first pane is the pane that contains all the buttons etc.. This pain never goes.
     // we use initial pane as the pane that only takes data from db. in this pane doctor is not supposed to make any changes.
@@ -57,6 +57,8 @@ public class PatientFileScreen {
     PatientFolder patientFol = new PatientFolder();
     PatientFile patientFile = new PatientFile();
     AdmissionTicket admissionTicket = new AdmissionTicket();
+    DischargeNote dischargeNote = new DischargeNote();
+
 
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
@@ -141,7 +143,7 @@ public class PatientFileScreen {
         dischargeNotePane.setVisible(false);
         System.out.println("Show admission ticket");
 
-        admissionTicket =  iCRUDImpl.getAdmissionTicket("");  //get the patient from double click
+        admissionTicket =  iCRUDImpl.getAdmissionTicket("5627092159");  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
         initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
         initialTextArea.appendText("\nΌνομα:"+patient.getFirstName());
@@ -163,6 +165,7 @@ public class PatientFileScreen {
         treatmentPane.setVisible(false);
         dischargeNotePane.setVisible(false);
         System.out.println("Show status and diagnosis");
+        DiagnosisDataPatient.setText("Διάγνωση:"+patientFile.getDiagnosis());
     }
     // false because we are not supposed to do this.
     public void onTestsClick(ActionEvent actionEvent) {
@@ -187,6 +190,8 @@ public class PatientFileScreen {
         treatmentPane.setVisible(true);
         dischargeNotePane.setVisible(false);
         System.out.println("Show treatment");
+
+        treatmentDataPatient.appendText("Τωρινή Θεραπεία:"+patientFile.getTreatment());
     }
 
     public void onDischargeNoteClick(ActionEvent actionEvent) {
@@ -195,6 +200,11 @@ public class PatientFileScreen {
         treatmentPane.setVisible(false);
         dischargeNotePane.setVisible(true);
         System.out.println("Show discharge note");
+
+        dischargeNote =  iCRUDImpl.getDischargeNote("86727365");  //get the patient from double click
+        initialTextArea.setWrapText(true);  //texts never exceeds
+
+
     }
 
     private void openScene(String fxmlFile) throws IOException {

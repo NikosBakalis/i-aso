@@ -22,7 +22,9 @@
       <Button fx:id="dischargeNoteButton" layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#onDischargeNoteClick" prefHeight="30.0" prefWidth="163.0" text="Εξιτήριο" />
         <Pane fx:id="statusAndDiagnosisPane" layoutX="222.0" layoutY="13.0" prefHeight="455.0" prefWidth="491.0" visible="false">
             <ScrollPane fx:id="infoDataPatient" layoutX="13.0" prefHeight="193.0" prefWidth="466.0">
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+            <content>
+               <TextArea fx:id="DiagnosisDataPatient" prefHeight="188.0" prefWidth="461.0" />
+            </content>
             </ScrollPane>
             <TextArea fx:id="doctorDiagnosisArea" layoutX="14.0" layoutY="241.0" prefHeight="200.0" prefWidth="274.0" />
             <Line endX="-100.0" endY="238.0" layoutX="416.0" layoutY="218.0" startX="-100.0" startY="-10.0" />
@@ -30,9 +32,10 @@
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="219.0" prefHeight="17.0" prefWidth="145.0" text="Νέα διάγνωση" />
         </Pane>
         <Pane fx:id="treatmentPane" layoutX="222.0" layoutY="13.0" prefHeight="455.0" prefWidth="491.0" visible="false">
-            <ScrollPane fx:id="treatmentDataPatient" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="466.0">
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-            </ScrollPane>
+            <ScrollPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="466.0">
+            <content>
+               <TextArea fx:id="treatmentDataPatient" prefHeight="200.0" prefWidth="457.0" />
+            </content></ScrollPane>
          <TextArea fx:id="doctorTreatmentArea" layoutX="14.0" layoutY="255.0" prefHeight="200.0" prefWidth="262.0" />
          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="77.0" layoutY="228.0" prefHeight="17.0" prefWidth="111.0" text="Νεα αγωγή" />
          <Line endX="-71.0" endY="227.0" layoutX="376.0" layoutY="225.0" startX="-71.0" startY="3.0" />
