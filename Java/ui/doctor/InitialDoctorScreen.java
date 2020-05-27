@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Doctor;
@@ -74,6 +75,12 @@ public class InitialDoctorScreen implements Initializable {
         colHostClinic.setCellValueFactory(new PropertyValueFactory<>("hostClinic"));
         colChamber.setCellValueFactory(new PropertyValueFactory<>("patientChamber"));
         tableView.setItems(iCRUDImpl.getInitialDoctorScreenListItems(user.getHospital_afm(), doctor.getClinic()));
+    }
+
+    public void onRowClick(MouseEvent mouseEvent) {
+        if (mouseEvent.getClickCount() > 1) {
+            System.out.println(tableView.getSelectionModel().getSelectedItem().getAmka());
+        }
     }
 }
 

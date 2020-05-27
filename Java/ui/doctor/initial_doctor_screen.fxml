@@ -12,7 +12,7 @@
     <Button fx:id="logoutButton" layoutX="95.0" layoutY="32.0" mnemonicParsing="false" onAction="#onLogoutClick" text="Αποσύνδεση" />
     <Button fx:id="profileButton" layoutX="800.0" layoutY="32.0" mnemonicParsing="false" onAction="#onProfileClick" text="Επεξεργασία Προφίλ" />
     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color: rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
-   <TableView fx:id="tableView" layoutX="126.0" layoutY="156.0" prefHeight="352.0" prefWidth="752.0">
+   <TableView fx:id="tableView" layoutX="126.0" layoutY="156.0" onMouseClicked="#onRowClick" prefHeight="352.0" prefWidth="752.0">
      <columns>
          <TableColumn fx:id="colAmka" prefWidth="150.0" text="ΑΜΚΑ" />
          <TableColumn fx:id="colFirstName" prefWidth="150.0" text="ΟΝΟΜΑ" />
