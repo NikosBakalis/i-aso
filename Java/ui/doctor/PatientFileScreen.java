@@ -11,6 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.AdmissionTicket;
 import model.Patient;
 import model.PatientFile;
 import model.PatientFolder;
@@ -55,6 +56,8 @@ public class PatientFileScreen {
     Patient patient= new Patient();
     PatientFolder patientFol = new PatientFolder();
     PatientFile patientFile = new PatientFile();
+    AdmissionTicket admissionTicket = new AdmissionTicket();
+
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Return to initial doctor screen");
@@ -137,6 +140,21 @@ public class PatientFileScreen {
         treatmentPane.setVisible(false);
         dischargeNotePane.setVisible(false);
         System.out.println("Show admission ticket");
+
+        admissionTicket =  iCRUDImpl.getAdmissionTicket("");  //get the patient from double click
+        initialTextArea.setWrapText(true);  //texts never exceeds
+        initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
+        initialTextArea.appendText("\nΌνομα:"+patient.getFirstName());
+        initialTextArea.appendText("\nΕπώνημο:"+patient.getLastName());
+        initialTextArea.appendText("\nΗμερομηνία Εισαγωγής:"+admissionTicket.getCreatedAt());
+        initialTextArea.appendText("\nΚλινική Εισαγωγής:"+admissionTicket.getAdmissionClinic());
+        initialTextArea.appendText("\nΚλινική Υποδοχής:"+admissionTicket.getHostClinic());
+        initialTextArea.appendText("\nΘάλαμος Ασθενή:"+admissionTicket.getPatientChamber());
+        initialTextArea.appendText("\nΚρεβάτι Ασθενή:"+admissionTicket.getPatientChamber());
+        initialTextArea.appendText("\nΚείμενο Εισιτηρίου:"+admissionTicket.getAdmissionText());
+        initialTextArea.appendText("\nΣτάδιο:"+admissionTicket.getStage());
+
+
     }
 
     public void onStatusAndDiagnosisClick(ActionEvent actionEvent) {
