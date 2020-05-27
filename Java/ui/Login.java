@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Doctor;
 import model.User;
 
 import java.io.IOException;
@@ -36,6 +37,7 @@ public class Login {
                     switch (option){
                         case "Doctor":
                             System.out.println("Doctor");
+                            iCRUDImpl.getDoctor(user.getUsername());
                             openScene("doctor/initial_doctor_screen.fxml");
                             break;
                         case "Lab_Agent":

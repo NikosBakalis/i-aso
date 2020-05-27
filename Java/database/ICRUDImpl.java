@@ -1,5 +1,7 @@
 package database;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.*;
 
 import java.io.FileInputStream;
@@ -23,7 +25,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, afm);
                 resultSet = preparedStatement.executeQuery();
                 hospital = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     hospital = new Hospital();
                     hospital.setAfm(resultSet.getString("afm"));
                     hospital.setName(resultSet.getString("name"));
@@ -55,7 +57,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(2, hospital_afm);
                 resultSet = preparedStatement.executeQuery();
                 clinic = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     clinic = new Clinic();
                     clinic.setName(resultSet.getString("name"));
                     clinic.setHospitalAfm(resultSet.getString("hospital_afm"));
@@ -79,7 +81,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, amka);
                 resultSet = preparedStatement.executeQuery();
                 patient = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     patient = new Patient();
                     patient.setAmka(resultSet.getString("amka"));
                     patient.setAfm(resultSet.getString("afm"));
@@ -121,7 +123,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, patient_amka);
                 resultSet = preparedStatement.executeQuery();
                 patientFolder = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     patientFolder = new PatientFolder();
                     patientFolder.setPatientAmka(resultSet.getString("patient_amka"));
                     patientFolder.setChronicDisease(resultSet.getString("chronic_disease"));
@@ -150,7 +152,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, file_id);
                 resultSet = preparedStatement.executeQuery();
                 patientFile = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     patientFile = new PatientFile();
                     patientFile.setPatientAmka(resultSet.getString("patient_amka"));
                     patientFile.setFileId(resultSet.getString("file_id"));
@@ -179,7 +181,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, id);
                 resultSet = preparedStatement.executeQuery();
                 chamber = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     chamber = new Chamber();
                     chamber.setId(resultSet.getString("id"));
                     chamber.setClinicName(resultSet.getString("clinic_name"));
@@ -203,7 +205,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, number);
                 resultSet = preparedStatement.executeQuery();
                 bed = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     bed = new Bed();
                     bed.setNumber(resultSet.getString("number"));
                     bed.setChamberId(resultSet.getString("chamber_id"));
@@ -228,7 +230,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, ticket_id);
                 resultSet = preparedStatement.executeQuery();
                 admissionTicket = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     admissionTicket = new AdmissionTicket();
                     admissionTicket.setTicketId(resultSet.getString("ticket_id"));
                     admissionTicket.setCreatedAt(resultSet.getDate("created_at"));
@@ -258,7 +260,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, note_id);
                 resultSet = preparedStatement.executeQuery();
                 dischargeNote = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     dischargeNote = new DischargeNote();
                     dischargeNote.setNoteId(resultSet.getString("note_id"));
                     dischargeNote.setCreatedAt(resultSet.getDate("created_at"));
@@ -285,7 +287,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, billing_id);
                 resultSet = preparedStatement.executeQuery();
                 billing = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     billing = new Billing();
                     billing.setBillingId(resultSet.getString("billing_id"));
                     billing.setCreatedAt(resultSet.getDate("created_at"));
@@ -309,7 +311,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, username);
                 resultSet = preparedStatement.executeQuery();
                 user = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     user = new User();
                     user.setUsername(resultSet.getString("user_name"));
                     user.setHospital_afm(resultSet.getString("hospital_afm"));
@@ -337,7 +339,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, username);
                 resultSet = preparedStatement.executeQuery();
                 doctor = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     doctor = new Doctor();
                     doctor.setUsername(resultSet.getString("user_name"));
                     doctor.setSector(resultSet.getString("sector"));
@@ -363,7 +365,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(2, patient_amka);
                 resultSet = preparedStatement.executeQuery();
                 transfer = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     transfer = new Transfer();
                     transfer.setId(resultSet.getDate("id"));
                     transfer.setAuthorisedBy(resultSet.getString("authorised_by"));
@@ -391,7 +393,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, number);
                 resultSet = preparedStatement.executeQuery();
                 patientTransferOffice = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     patientTransferOffice = new PatientTransferOffice();
                     patientTransferOffice.setNumber(resultSet.getString("number"));
                     patientTransferOffice.setHospitalAfm(resultSet.getString("hospital_afm"));
@@ -415,7 +417,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, username);
                 resultSet = preparedStatement.executeQuery();
                 transferOfficeAgent = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     transferOfficeAgent = new TransferOfficeAgent();
                     transferOfficeAgent.setUsername(resultSet.getString("user_name"));
                     transferOfficeAgent.setOfficeNumber(resultSet.getString("office_number"));
@@ -440,7 +442,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(2, hospital_afm);
                 resultSet = preparedStatement.executeQuery();
                 lab = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     lab = new Lab();
                     lab.setName(resultSet.getString("name"));
                     lab.setHospital_afm(resultSet.getString("hospital_afm"));
@@ -464,7 +466,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, username);
                 resultSet = preparedStatement.executeQuery();
                 labAgent = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     labAgent = new LabAgent();
                     labAgent.setUsername(resultSet.getString("user_name"));
                     labAgent.setLabName(resultSet.getString("lab_name"));
@@ -488,7 +490,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, username);
                 resultSet = preparedStatement.executeQuery();
                 clinicAgent = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     clinicAgent = new ClinicAgent();
                     clinicAgent.setUsername(resultSet.getString("user_name"));
                     clinicAgent.setClinic(resultSet.getString("clinic_name"));
@@ -512,7 +514,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, username);
                 resultSet = preparedStatement.executeQuery();
                 clinicAgentPost = null;
-                if(resultSet.next()) {
+                if (resultSet.next()) {
                     clinicAgentPost = new ClinicAgentPost();
                     clinicAgentPost.setUsername(resultSet.getString("user_name"));
                     clinicAgentPost.setTitle(resultSet.getString("title"));
@@ -526,7 +528,46 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
-    public ArrayList<ArrayList<String>> getAllPatientFilesOfClinic(String clinic){
+    public ObservableList<InitialDoctorScreenListItem> getInitialDoctorScreenListItems(String hospital, String admissionClinic) {
+        try {
+            String query = "select patient.amka as amka, patient.first_name as first_name, patient.last_name as last_name, " +
+                    "admission_ticket.host_clinic as host_clinic, admission_ticket.patient_chamber as patient_chamber " +
+                    "from patient_file inner join admission_ticket on patient_file.file_id = admission_ticket.ticket_id " +
+                    "inner join patient on patient_file.patient_amka = patient.amka " +
+                    "where patient_file.hospital = ? and admission_ticket.admission_clinic = ?;";
+            ResultSet resultSet;
+            InitialDoctorScreenListItem initialDoctorScreenListItem;
+            ObservableList<InitialDoctorScreenListItem> initialDoctorScreenListItems;
+
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)){
+                preparedStatement.setString(1,hospital);
+                preparedStatement.setString(2,admissionClinic);
+                resultSet = preparedStatement.executeQuery();
+                initialDoctorScreenListItems = FXCollections.observableArrayList();
+
+                while (resultSet.next()) {
+                    initialDoctorScreenListItem = new InitialDoctorScreenListItem();
+                    initialDoctorScreenListItem.setAmka(resultSet.getString("amka"));
+                    initialDoctorScreenListItem.setFirstName(resultSet.getString("first_name"));
+                    initialDoctorScreenListItem.setLastName(resultSet.getString("last_name"));
+                    initialDoctorScreenListItem.setHostClinic(resultSet.getString("host_clinic"));
+                    initialDoctorScreenListItem.setPatientChamber(resultSet.getString("patient_chamber"));
+                    System.out.println(initialDoctorScreenListItem.getAmka());
+                    System.out.println(initialDoctorScreenListItem.getFirstName());
+                    System.out.println(initialDoctorScreenListItem.getLastName());
+                    System.out.println(initialDoctorScreenListItem.getHostClinic());
+                    System.out.println(initialDoctorScreenListItem.getPatientChamber());
+                    initialDoctorScreenListItems.add(initialDoctorScreenListItem);
+                }
+            }
+            resultSet.close();
+            return initialDoctorScreenListItems;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    public ArrayList<ArrayList<String>> getAllPatientFilesOfClinic(String clinic) {
         try {
             String query = "SELECT * FROM patient_file WHERE clinic = ?";
 
@@ -537,6 +578,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(1, clinic);
                 resultSet = preparedStatement.executeQuery();
                 allPatientFilesOfClinic = new ArrayList<>();
+
                 ArrayList<String> patientAmkaList = new ArrayList<>();
                 ArrayList<String> fileIdList = new ArrayList<>();
                 ArrayList<String> hospitalList = new ArrayList<>();
@@ -544,7 +586,7 @@ public class ICRUDImpl implements ICRUD {
                 ArrayList<String> diagnosisList = new ArrayList<>();
                 ArrayList<String> treatmentList = new ArrayList<>();
                 ArrayList<String> labTestsList = new ArrayList<>();
-                while(resultSet.next()) {
+                while (resultSet.next()) {
                     patientFile = new PatientFile();
                     patientFile.setPatientAmka(resultSet.getString("patient_amka"));
                     patientFile.setFileId(resultSet.getString("file_id"));

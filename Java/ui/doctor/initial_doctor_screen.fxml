@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -11,15 +12,16 @@
     <Button fx:id="logoutButton" layoutX="95.0" layoutY="32.0" mnemonicParsing="false" onAction="#onLogoutClick" text="Αποσύνδεση" />
     <Button fx:id="profileButton" layoutX="800.0" layoutY="32.0" mnemonicParsing="false" onAction="#onProfileClick" text="Επεξεργασία Προφίλ" />
     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color: rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
-   <TableView fx:id="tableView" layoutX="173.0" layoutY="156.0" prefHeight="352.0" prefWidth="655.0">
+   <TableView fx:id="tableView" layoutX="126.0" layoutY="156.0" prefHeight="352.0" prefWidth="752.0">
      <columns>
-       <TableColumn fx:id="patientAmka" prefWidth="75.0" text="patient AMKA" />
-       <TableColumn fx:id="fileId" prefWidth="75.0" text="file ID" />
-         <TableColumn fx:id="hospital" prefWidth="75.0" text="hospital" />
-         <TableColumn fx:id="clinic" prefWidth="75.0" text="clinic" />
-         <TableColumn fx:id="diagnosis" prefWidth="75.0" text="diagnosis" />
-         <TableColumn fx:id="treatment" prefWidth="75.0" text="treatment" />
-         <TableColumn fx:id="lab_tests" prefWidth="75.0" text="lab tests" />
+         <TableColumn fx:id="colAmka" prefWidth="150.0" text="ΑΜΚΑ" />
+         <TableColumn fx:id="colFirstName" prefWidth="150.0" text="ΟΝΟΜΑ" />
+         <TableColumn fx:id="colLastName" prefWidth="150.0" text="ΕΠΩΝΥΜΟ" />
+         <TableColumn fx:id="colHostClinic" prefWidth="150.0" text="ΚΛΙΝΙΚΗ ΦΙΛΟΞΕΝΙΑΣ" />
+         <TableColumn fx:id="colChamber" minWidth="0.0" prefWidth="150.0" text="ΘΑΛΑΜΟΣ" />
      </columns>
+      <padding>
+         <Insets left="1.0" right="1.0" />
+      </padding>
    </TableView>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package database;
 
+import javafx.collections.ObservableList;
 import model.*;
 
 import java.sql.Date;
@@ -26,5 +27,6 @@ public interface ICRUD {
     ClinicAgent getClinicAgent(String username);
     ClinicAgentPost getClinicAgentPost(String username);
     ArrayList<ArrayList<String>> getAllPatientFilesOfClinic(String clinic);
+    ObservableList<InitialDoctorScreenListItem> getInitialDoctorScreenListItems(String hospital, String admissionClinic);
 //    ObservableList<PatientFile> getAllPatientFilesOfClinic(String clinic);
 }
