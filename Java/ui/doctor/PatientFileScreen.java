@@ -12,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Patient;
+import model.PatientFile;
 import model.PatientFolder;
 
 import java.io.IOException;
@@ -53,6 +54,7 @@ public class PatientFileScreen {
     ICRUDImpl iCRUDImpl = new ICRUDImpl();
     Patient patient= new Patient();
     PatientFolder patientFol = new PatientFolder();
+    PatientFile patientFile = new PatientFile();
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Return to initial doctor screen");
@@ -66,6 +68,7 @@ public class PatientFileScreen {
         statusAndDiagnosisPane.setVisible(false);
         treatmentPane.setVisible(false);
         dischargeNotePane.setVisible(false);
+
         patient =  iCRUDImpl.getPatient("86727365");  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
         initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
@@ -95,6 +98,7 @@ public class PatientFileScreen {
         treatmentPane.setVisible(false);
         dischargeNotePane.setVisible(false);
         System.out.println("Show brief history");
+
         patientFol =  iCRUDImpl.getPatientFolder("86727365");  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
         initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
@@ -113,7 +117,18 @@ public class PatientFileScreen {
         statusAndDiagnosisPane.setVisible(false);
         treatmentPane.setVisible(false);
         dischargeNotePane.setVisible(false);
+        //initialPane.setVisible(true);
         System.out.println("Show detailed history");
+        patientFile =  iCRUDImpl.getPatientFile("86727365");  //get the patient from double click
+        initialTextArea.setWrapText(true);  //texts never exceeds
+        initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
+        initialTextArea.appendText("\nΌνομα:"+patient.getFirstName());
+        initialTextArea.appendText("\nΕπώνημο:"+patient.getLastName());
+        initialTextArea.appendText("\nΑριθμός Αρχείου:"+patientFile.getFileId());
+        initialTextArea.appendText("\nΝοσοκομείο:"+patientFile.getHospital());
+        initialTextArea.appendText("\nΔιάγνωση:"+patientFile.getDiagnosis());
+        initialTextArea.appendText("\nΘεραπεία:"+patientFile.getTreatment());
+        initialTextArea.appendText("\nΑποτελέσματα εξετάσεων:"+patientFile.getLabTests());
     }
 // in this phase doctor can only see the admission ticket. Not change it
     public void onAdmissionTicketClick(ActionEvent actionEvent) {
