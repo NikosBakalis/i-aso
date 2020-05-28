@@ -3,7 +3,7 @@ USE iaso_hospital_db_v08;
 INSERT INTO hospital (afm) VALUES ('0123456789');
 INSERT INTO hospital (afm, name) VALUES ('1234567890', 'Γ.Ν. ΑΘΗΝΩΝ ΓΕΝΝΗΜΑΤΑΣ');
 INSERT INTO hospital (afm, name, first_street_name, first_street_number, primary_phone_number, email_address) VALUES ('2345678901', 'Γ.Ν. ΠΑΤΡΩΝ', 'ΚΑΛΑΒΡΥΤΩΝ', 37, '2613601000', 'gryppoliti@agandreashosp.gr');
-	
+
 INSERT INTO clinic (name, hospital_afm, vacant_beds) VALUES ('ΜΕΘ', '0123456789', 1);
 INSERT INTO clinic (name, hospital_afm, vacant_beds) VALUES ('ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', '0123456789', 0);
 INSERT INTO clinic (name, hospital_afm, vacant_beds) VALUES ('ΜΕΘ', '1234567890', 1);
@@ -89,14 +89,15 @@ INSERT INTO clinic_agent (user_name, clinic_name) VALUES ('65273929', 'Α ΠΑΘ
 INSERT INTO clinic_agent (user_name, clinic_name) VALUES ('75403203', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ');
 INSERT INTO clinic_agent (user_name, clinic_name) VALUES ('47938047', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ');
 
-INSERT INTO clinic_agent_post (post_id, user_name, created_at, post_text) VALUES ('67896534565', '37464012', NOW(), 'Μη ξεχάσετε να κλείσετε το θερμοσίφωνα');
-INSERT INTO clinic_agent_post (post_id, user_name, created_at, title, post_text) VALUES ('65875657786', '65273929', NOW(), 'ΟΓΚΟΥΝΣΟΤΟ', 'ΠΩΣ ΓΚΕΝΕΝ ΑΤΟ;');
-INSERT INTO clinic_agent_post (post_id, user_name, created_at, title, post_text) VALUES ('89346787455', '75403203', NOW(), 'CEID', 'Τα βιβλία τα έχετε πάρει;');
-INSERT INTO clinic_agent_post (post_id, user_name, created_at, title, post_text) VALUES ('12356879867', '75403203', NOW(), 'CEID', 'Και δε μου λέτε για την εξεταστική είπαν κάτι;');
-INSERT INTO clinic_agent_post (post_id, user_name, created_at, title, post_text) VALUES ('90876534766', '75403203', NOW(), 'CEID', 'Πάντως θα μπορούσαν να κάνουν σε κάποια μαθήματα τις εργασίας τους απαλλακτικές');
-INSERT INTO clinic_agent_post (post_id, user_name, created_at, title, post_text) VALUES ('12398675535', '47938047', NOW(), 'CEID', 'Όχι');
-INSERT INTO clinic_agent_post (post_id, user_name, created_at, title, post_text) VALUES ('89765467787', '47938047', NOW(), 'CEID', 'Ούτε κι αυτοί ξέρουν τι είπαν');
-INSERT INTO clinic_agent_post (post_id, user_name, created_at, title, post_text) VALUES ('24354678987', '47938047', NOW(), 'CEID', 'Πόρε φίλε τι θες κι εσύ τώρα ... Πήγαινε για καφέ έξω και άστο το τμήμα στην τύχη του. Με αυτά και με αυτά, θα πάθεις καμιά κρίση άγχους και μετά θα πρέπει να έρθω να δουλέψω.');
+INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, post_text) VALUES ('67896534565', 'ΜΕΘ', '37464012', NOW(), 'Μη ξεχάσετε να κλείσετε το θερμοσίφωνα !');
+INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, post_text) VALUES ('67896534546', 'ΜΕΘ', '37464012', NOW(), 'Ναι γεια σας, μια παραγγελία θα ήθελα να κάνω ... ');
+INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, title, post_text) VALUES ('65875657786', 'Α ΠΑΘΟΛΟΓΙΚΗ', '65273929', NOW(), 'ΟΓΚΟΥΝΣΟΤΟ', 'ΠΩΣ ΓΚΕΝΕΝ ΑΤΟ;');
+INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, title, post_text) VALUES ('89346787455', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', '75403203', NOW(), 'CEID', 'Τα βιβλία τα έχετε πάρει;');
+INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, title, post_text) VALUES ('12356879867', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', '75403203', NOW(), 'CEID', 'Και δε μου λέτε για την εξεταστική είπαν κάτι;');
+INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, title, post_text) VALUES ('90876534766', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', '75403203', NOW(), 'CEID', 'Πάντως θα μπορούσαν να κάνουν σε κάποια μαθήματα τις εργασίας τους απαλλακτικές');
+INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, title, post_text) VALUES ('12398675535', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', '47938047', NOW(), 'CEID', 'Όχι');
+INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, title, post_text) VALUES ('89765467787', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', '47938047', NOW(), 'CEID', 'Ούτε κι αυτοί ξέρουν τι είπαν');
+INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, title, post_text) VALUES ('24354678987', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', '47938047', NOW(), 'CEID', 'Πόρε φίλε τι θες κι εσύ τώρα ... Πήγαινε για καφέ έξω και άστο το τμήμα στην τύχη του. Με αυτά και με αυτά, θα πάθεις καμιά κρίση άγχους και μετά θα πρέπει να έρθω να δουλέψω.');
 
 INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('88374920', '5627092159', '0123456789', '56798024');
 INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('86727365', '2354692304', '0123456789', '56798024');

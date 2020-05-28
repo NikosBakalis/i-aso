@@ -45,6 +45,7 @@ public class Login {
                             openScene(".fxml");
                             break;
                         case "Clinic_Agent":
+                            iCRUDImpl.getClinicAgent(user.getUsername());
                             System.out.println("Clinic Agent");
                             openScene("clinic/initial_clinic_screen.fxml");
                             break;

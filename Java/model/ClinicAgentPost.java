@@ -1,14 +1,41 @@
 package model;
 
-public class ClinicAgentPost {
-    private static String username, title, postText;
+import java.sql.Timestamp;
 
-    public String getUsername() {
-        return username;
+public class ClinicAgentPost {
+    private Timestamp createdAt;
+    private String id, clinicName, author, title, text;
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setUsername(String username) {
-        ClinicAgentPost.username = username;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getClinicName() {
+        return clinicName;
+    }
+
+    public void setClinicName(String clinicName) {
+        this.clinicName = clinicName;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getTitle() {
@@ -16,14 +43,14 @@ public class ClinicAgentPost {
     }
 
     public void setTitle(String title) {
-        ClinicAgentPost.title = title;
+        this.title = title;
     }
 
-    public String getPostText() {
-        return postText;
+    public String getText() {
+        return text;
     }
 
-    public void setPostText(String postText) {
-        ClinicAgentPost.postText = postText;
+    public void setText(String text) {
+        this.text = text;
     }
 }

@@ -27,9 +27,8 @@ CREATE TABLE IF NOT EXISTS patient (
 	afm VARCHAR(20),
     first_name VARCHAR(20),
     last_name VARCHAR(20),
-    birth_date DATETIME,
+    birth_date DATE,
     nationality VARCHAR(2),
-    religion VARCHAR(20),
     gender ENUM('Male', 'Female', 'Other'),
     insurance VARCHAR(20),
     father_first_name VARCHAR(20),
@@ -189,9 +188,10 @@ CREATE TABLE IF NOT EXISTS clinic_agent (
 
 CREATE TABLE IF NOT EXISTS clinic_agent_post (
 	post_id VARCHAR(20) PRIMARY KEY,
+    clinic_name VARCHAR(30) NOT NULL,
     user_name VARCHAR(20) NOT NULL,
-    created_at DATETIME DEFAULT NOW() NOT NULL,
+    created_at DATETIME DEFAULT NOW(),
     title VARCHAR(20),
     post_text TEXT NOT NULL,
-    CONSTRAINT post_author FOREIGN KEY (user_name) REFERENCES clinic_agent(user_name) ON UPDATE CASCADE ON DELETE CASCADE
+    CONSTRAINT clinic_name_post FOREIGN KEY (clinic_name) REFERENCES clinic(name) ON UPDATE CASCADE ON DELETE CASCADE
 )ENGINE=INNODB;
