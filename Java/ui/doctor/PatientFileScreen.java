@@ -167,7 +167,12 @@ public class PatientFileScreen {
         treatmentPane.setVisible(false);
         dischargeNotePane.setVisible(false);
         System.out.println("Show status and diagnosis");
-        DiagnosisDataPatient.setText("Διάγνωση:"+patientFile.getDiagnosis());
+        DiagnosisDataPatient.setEditable(false);  //none can change this area
+       if (patientFile.getDiagnosis()==null){
+           DiagnosisDataPatient.setText("Διάγνωση:"+" -"); }
+       else {
+           DiagnosisDataPatient.setText("Διάγνωση:" + patientFile.getDiagnosis());
+       }
     }
     // false because we are not supposed to do this.
     public void onTestsClick(ActionEvent actionEvent) {
@@ -192,9 +197,22 @@ public class PatientFileScreen {
         treatmentPane.setVisible(true);
         dischargeNotePane.setVisible(false);
         System.out.println("Show treatment");
+        treatmentDataPatient.setEditable(false);  //none can change this area
+        if( patientFile.getTreatment()==null) {
+            treatmentDataPatient.appendText("Τωρινή Θεραπεία:"+" -"); }
+        else {
+        treatmentDataPatient.appendText("Τωρινή Θεραπεία:"+patientFile.getTreatment());}
 
-        treatmentDataPatient.appendText("Τωρινή Θεραπεία:"+patientFile.getTreatment());
     }
+    //inside treatmentPane
+    public void onSaveTreatmentClick(ActionEvent actionEvent) {
+        //patientFile.setTreatment(doctorTreatmentArea.getText());
+        admissionTicket = iCRUDImpl.getAdmissionTicketByAmka("86727365");
+        System.out.println(admissionTicket.getTicketId());
+        System.out.println(doctorTreatmentArea.getText().getClass().getName());
+        iCRUDImpl.updateTreatment(doctorTreatmentArea.getText(),"86727365",admissionTicket.getTicketId());
+    }
+
 
     public void onDischargeNoteClick(ActionEvent actionEvent) {
         initialPane.setVisible(false);
@@ -227,9 +245,6 @@ public class PatientFileScreen {
 
     // inside statusAndDiagnosisPane
     public void onSaveStatusAndDignosisClick(ActionEvent actionEvent) {
-    }
-    //inside treatmentPane
-    public void onSaveTreatmentClick(ActionEvent actionEvent) {
     }
 
     public void onHostClinicClick(ActionEvent actionEvent) throws IOException {

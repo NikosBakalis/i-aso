@@ -1,22 +1,31 @@
 package ui.clinic;
 
+import database.ICRUDImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import model.Bed;
+import model.ClinicAgent;
+import model.Doctor;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AdmissionTicketDetailsScreen {
+public class AdmissionTicketDetailsScreen implements Initializable {
     public Label clinicNameLabel;
     public Button returnButton;
     public Button saveButton;
     public ComboBox chamberMenu;
     public ComboBox bedMenu;
+
+
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Show pending admission tickets");
@@ -51,5 +60,17 @@ public class AdmissionTicketDetailsScreen {
     private void closeButtonAction(){
         Stage stage = (Stage) returnButton.getScene().getWindow();
         stage.close();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        ICRUDImpl iCRUDImpl = new ICRUDImpl();
+        ClinicAgent clinicAgent = new ClinicAgent();
+       // iCRUDImpl.getClinicAgent("37464012");  //this is for testing. we get this from user that logs in
+      //  CRUDImpl.getFreeBeds(clinicAgent.getClinic());
+       // bedMenu.setItems(iCRUDImpl.getFreeBeds(clinicAgent.getClinic()));
+          iCRUDImpl.getFreeBeds("ΜΕΘ");
+          bedMenu.setItems(iCRUDImpl.getFreeBeds("ΜΕΘ"));
+
     }
 }

@@ -825,6 +825,60 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    public ObservableList<String> getFreeBeds(String clinic_name) {
+        try {
+            String query = "select bed.number" +
+                    "from chamber inner join bed" +
+                    "on chamber.id = bed.chamber_id" +
+                    "where bed.is_free='true' and chamber.clinic_name= ?;";
+            ResultSet resultSet;
+            Bed bed;
+            ObservableList<String> beds;
+
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)){
+                preparedStatement.setString(1, clinic_name);
+                resultSet = preparedStatement.executeQuery();
+                beds = FXCollections.observableArrayList();
+
+                while (resultSet.next()) {
+                    bed = new Bed();
+                    bed.setNumber(resultSet.getString("number"));
+                    beds.add(bed.getNumber());
+                    // i want to take both chamber id
+                }
+            }
+            resultSet.close();
+            return beds;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    //be advised that this function updates only the latest patient file.
+    // not all of them.
+    public void updateTreatment(String Text,String amka,String file_id) {
+        try {
+            String query = "update patient_file" +
+                    "set treatment = concat(coalesce(treatment, ---?))" +
+                    "where patient_amka = ? and file_id = ?;";
+
+
+            PatientFile patientFile;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1,Text);
+                preparedStatement.setString(2,amka);
+                preparedStatement.setString(3,file_id);
+                preparedStatement.executeUpdate();
+
+            }
+
+
+        } catch (SQLException e) {
+
+        }
+    }
+
+
     public void openConnection() {
         try {
             System.out.println("Setting up connection.");
