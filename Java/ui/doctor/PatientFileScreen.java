@@ -143,7 +143,9 @@ public class PatientFileScreen {
         dischargeNotePane.setVisible(false);
         System.out.println("Show admission ticket");
 
-        admissionTicket =  iCRUDImpl.getAdmissionTicket();  //get the patient from double click
+        iCRUDImpl.getAdmissionTicketByAmka("86727365");
+        iCRUDImpl.getPatient("86727365");
+        admissionTicket = iCRUDImpl.getAdmissionTicket(admissionTicket.getTicketId());  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
         initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
         initialTextArea.appendText("\nΌνομα:"+patient.getFirstName());
@@ -201,9 +203,10 @@ public class PatientFileScreen {
         dischargeNotePane.setVisible(true);
         System.out.println("Show discharge note");
 
-        dischargeNote =  iCRUDImpl.getDischargeNote("86727365");  //get the patient from double click
+        dischargeNote = iCRUDImpl.getDischargeNote("86727365");  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
-
+        iCRUDImpl.getAllClinicNamesOfDoctor("28488905");
+        hostClinic.setItems(iCRUDImpl.getAllClinicNamesOfDoctor("28488905"));
 
     }
 

@@ -530,10 +530,10 @@ public class ICRUDImpl implements ICRUD {
     public ObservableList<InitialDoctorScreenListItem> getInitialDoctorScreenListItems(String hospital, String admissionClinic) {
         try {
             String query = "select patient.amka as amka, patient.first_name as first_name, patient.last_name as last_name, " +
-                    "admission_ticket.host_clinic as host_clinic, admission_ticket.patient_chamber as patient_chamber " +
-                    "from patient_file inner join admission_ticket on patient_file.file_id = admission_ticket.ticket_id " +
-                    "inner join patient on patient_file.patient_amka = patient.amka " +
-                    "where patient_file.hospital = ? and admission_ticket.admission_clinic = ?;";
+                           "admission_ticket.host_clinic as host_clinic, admission_ticket.patient_chamber as patient_chamber " +
+                           "from patient_file inner join admission_ticket on patient_file.file_id = admission_ticket.ticket_id " +
+                           "inner join patient on patient_file.patient_amka = patient.amka " +
+                           "where patient_file.hospital = ? and admission_ticket.admission_clinic = ?;";
             ResultSet resultSet;
             InitialDoctorScreenListItem initialDoctorScreenListItem;
             ObservableList<InitialDoctorScreenListItem> initialDoctorScreenListItems;
@@ -561,33 +561,22 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
-
-    public ObservableList<AdmissionTicket> getAdmissionTicketbyAmka(String amka) {
+    public AdmissionTicket getAdmissionTicketByAmka(String amka) {
         try {
-            String query = "select admission_ticket. ticket_id\n" +
-                    "from admission_ticket inner join patient_file\n" +
-                    "on patient_file.file_id = admission_ticket. ticket_id\n" +
-                    "where patient_file.patient_amka = ?\n" +
-                    "order by admission_ticket.created_at DESC\n" +
-                    "limit 1;\n";
+            String query = "select admission_ticket.ticket_id from admission_ticket " +
+                           "inner join patient_file on patient_file.file_id = admission_ticket.ticket_id " +
+                           "where patient_file.patient_amka = ? order by admission_ticket.created_at DESC " +
+                           "limit 1;";
 
             ResultSet resultSet;
             AdmissionTicket admissionTicket;
-            ObservableList<AdmissionTicket> admissionTicket;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
                 preparedStatement.setString(1, amka);
                 resultSet = preparedStatement.executeQuery();
-                admissionTicket = FXCollections.observableArrayList();
-                while (resultSet.next()) {
+                admissionTicket = null;
+                if (resultSet.next()) {
                     admissionTicket = new AdmissionTicket();
                     admissionTicket.setTicketId(resultSet.getString("ticket_id"));
-                    admissionTicket.setCreatedAt(resultSet.getDate("created_at"));
-                    admissionTicket.setAdmissionClinic(resultSet.getString("admission_clinic"));
-                    admissionTicket.setHostClinic(resultSet.getString("host_clinic"));
-                    admissionTicket.setPatientChamber(resultSet.getString("patient_chamber"));
-                    admissionTicket.setPatientBed(resultSet.getString("patient_bed"));
-                    admissionTicket.setAdmissionText(resultSet.getString("admission_text"));
-                    admissionTicket.setStage(resultSet.getString("stage"));
                 }
             }
             resultSet.close();
@@ -597,7 +586,33 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    public ObservableList<String> getAllClinicNamesOfDoctor(String username) {
+        try {
+            String query = "select clinic.name from user " +
+                           "inner join clinic " +
+                           "on clinic.hospital_afm = user.hospital_afm " +
+                           "where user.user_name = ?;";
+            ResultSet resultSet;
+            Clinic clinic;
+            ObservableList<String> clinics;
 
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)){
+                preparedStatement.setString(1, username);
+                resultSet = preparedStatement.executeQuery();
+                clinics = FXCollections.observableArrayList();
+
+                while (resultSet.next()) {
+                    clinic = new Clinic();
+                    clinic.setName(resultSet.getString("name"));
+                    clinics.add(clinic.getName());
+                }
+            }
+            resultSet.close();
+            return clinics;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
 
     public void openConnection() {
         try {
