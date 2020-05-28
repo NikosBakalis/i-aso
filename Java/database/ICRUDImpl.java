@@ -7,13 +7,38 @@ import model.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
+import java.lang.*;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.Random;
+import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 
 
 public class ICRUDImpl implements ICRUD {
 
     private static Connection connection;
+
+    public static char[] alphanumericAlphabet() {
+        char[] my_list = IntStream.concat(
+                IntStream.concat(
+                        IntStream.rangeClosed('0', '9'),
+                        IntStream.rangeClosed('A', 'Z')
+                ),
+                IntStream.rangeClosed('a', 'z')
+        ).mapToObj(c -> (char) c+"").collect(Collectors.joining()).toCharArray();
+        return my_list;
+    }
+
+    public static String random(final int numChars) {
+        Random r = new Random();
+        String alpha = new String(alphanumericAlphabet());
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < numChars; i++) {
+            sb.append((char) (alpha.charAt(r.nextInt(alpha.length()))));
+        }
+        return sb.toString();
+    }
 
     public Hospital getHospital(String afm) {
         try {
@@ -43,6 +68,24 @@ public class ICRUDImpl implements ICRUD {
         } catch (SQLException e) {
             return null;
         }
+    }
+
+    public int savePost(String clinicName, String userName, String date, String title, String post) {
+        int resultSet = 1;
+        String constSep = "', '";
+        String closureParenthesis = "');";
+        StringBuilder query = new StringBuilder("INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, title, post_text) VALUES ('");
+        String postId = random(19);
+        query.append(postId).append(constSep).append(clinicName).append(constSep).append(
+                userName).append(constSep).append(date).append(constSep).append(title).append(
+                        constSep).append(post.replace("\n", " ").replace("\r", " ")).append(closureParenthesis);
+        String uploadPost = query.toString();
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(uploadPost)) {
+            resultSet = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
     }
 
     @Override
@@ -503,25 +546,63 @@ public class ICRUDImpl implements ICRUD {
     }
 
     @Override
-    public ClinicAgentPost getClinicAgentPost(String username) {
+    public ClinicAgentPost getClinicAgentPost(String postId) {
         try {
-            String query = "SELECT * FROM clinic_agent_post WHERE clinic_agent_post.user_name = ?";
+            String query = "SELECT * FROM clinic_agent_post WHERE clinic_agent_post.post_id = ?";
 
             ResultSet resultSet;
             ClinicAgentPost clinicAgentPost;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
-                preparedStatement.setString(1, username);
+                preparedStatement.setString(1, postId);
                 resultSet = preparedStatement.executeQuery();
                 clinicAgentPost = null;
                 if (resultSet.next()) {
                     clinicAgentPost = new ClinicAgentPost();
-                    clinicAgentPost.setUsername(resultSet.getString("user_name"));
+                    clinicAgentPost.setId(resultSet.getString("post_id"));
+                    clinicAgentPost.setClinicName(resultSet.getString("clinic_name"));
+                    clinicAgentPost.setAuthor(resultSet.getString("user_name"));
                     clinicAgentPost.setTitle(resultSet.getString("title"));
-                    clinicAgentPost.setPostText(resultSet.getString("post_text"));
+                    clinicAgentPost.setText(resultSet.getString("post_text"));
+                    clinicAgentPost.setCreatedAt(resultSet.getTimestamp("created_at"));
                 }
             }
             resultSet.close();
             return clinicAgentPost;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    public ObservableList<PostListScreenTableItem> getPostListScreenTableItems(String postClinic) {
+        try {
+            String query = "SELECT " +
+                    "clinic_agent_post.post_id AS postId, " +
+                    "clinic_agent_post.created_at AS creation, " +
+                    "clinic_agent_post.user_name AS author, " +
+                    "clinic_agent_post.title AS title " +
+                    "FROM clinic_agent_post " +
+                    "WHERE clinic_agent_post.clinic_name = ?;";
+
+            ResultSet resultSet;
+            PostListScreenTableItem postListScreenTableItem;
+            ObservableList<PostListScreenTableItem> postListScreenTableItems;
+
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, postClinic);
+                resultSet = preparedStatement.executeQuery();
+                postListScreenTableItems = FXCollections.observableArrayList();
+
+                while (resultSet.next()) {
+                    postListScreenTableItem = new PostListScreenTableItem();
+                    postListScreenTableItem.setPostDatetime(resultSet.getTimestamp("creation"));
+                    postListScreenTableItem.setPostAuthor(resultSet.getString("author"));
+                    postListScreenTableItem.setPostTitle(resultSet.getString("title"));
+                    postListScreenTableItem.setPostId(resultSet.getString("postId"));
+                    postListScreenTableItems.add(postListScreenTableItem);
+                }
+            }
+            resultSet.close();
+            return postListScreenTableItems;
         } catch (SQLException e) {
             return null;
         }
