@@ -695,6 +695,40 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    public ObservableList<AdmissionTicketConfirmationScreenListItem> getAdmissionTicketConfirmationScreenListItem(String hospitalAfm){
+        try {
+            String query = "select transfer.patient_amka as amka, patient.first_name as first_name, patient.last_name as last_name, " +
+                           "transfer.source_clinic as source_clinic, transfer.destination_clinic as destination_clinic, transfer.stage as stage, transfer.id as id " +
+                           "from transfer inner join patient on transfer.patient_amka = patient.amka " +
+                           "where transfer.hospital_afm = ? and transfer.stage = \"SENT\";";
+            ResultSet resultSet;
+            AdmissionTicketConfirmationScreenListItem admissionTicketConfirmationScreenListItem;
+            ObservableList<AdmissionTicketConfirmationScreenListItem> admissionTicketConfirmationScreenListItems;
+
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)){
+                preparedStatement.setString(1, hospitalAfm);
+                resultSet = preparedStatement.executeQuery();
+                admissionTicketConfirmationScreenListItems = FXCollections.observableArrayList();
+
+                while (resultSet.next()) {
+                    admissionTicketConfirmationScreenListItem = new AdmissionTicketConfirmationScreenListItem();
+                    admissionTicketConfirmationScreenListItem.setAmka(resultSet.getString("amka"));
+                    admissionTicketConfirmationScreenListItem.setFirstName(resultSet.getString("first_name"));
+                    admissionTicketConfirmationScreenListItem.setLastName(resultSet.getString("last_name"));
+                    admissionTicketConfirmationScreenListItem.setSourceClinic(resultSet.getString("source_clinic"));
+                    admissionTicketConfirmationScreenListItem.setDestinationClinic(resultSet.getString("destination_clinic"));
+                    admissionTicketConfirmationScreenListItem.setStage(resultSet.getString("stage"));
+                    admissionTicketConfirmationScreenListItem.setId(resultSet.getDate("id"));
+                    admissionTicketConfirmationScreenListItems.add(admissionTicketConfirmationScreenListItem);
+                }
+            }
+            resultSet.close();
+            return admissionTicketConfirmationScreenListItems;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
     public void openConnection() {
         try {
             System.out.println("Setting up connection.");
