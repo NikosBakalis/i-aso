@@ -729,6 +729,102 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    public ObservableList<PossibleMatchesScreenListItem> getPossibleMatchesScreenListItems(
+            String amka, String afm, String firstName, String lastName, String gender, String fatherFirstName, String fatherLastName,
+            String motherFirstName, String motherLastName, String birthDate) {
+
+        String query = "select amka, afm, first_name, last_name, gender, father_first_name, mother_first_name, birth_date from patient " +
+                "where (amka like ? or amka is null) " +
+                "and (afm like ? or afm is null) " +
+                "and (first_name like ? or first_name is null) " +
+                "and (last_name like ? or last_name is null) " +
+                "and (gender like ? or gender is null)" +
+                "and (father_first_name like ? or father_first_name is null) " +
+                "and (father_last_name like ? or father_last_name is null) " +
+                "and (mother_first_name like ? or mother_first_name is null) " +
+                "and (mother_last_name like ? or mother_last_name is null) " +
+                "and (birth_date like ? or birth_date is null);";
+        ResultSet resultSet;
+        PossibleMatchesScreenListItem possibleMatchesScreenListItem;
+        ObservableList<PossibleMatchesScreenListItem> possibleMatchesScreenListItems;
+
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+            if (!amka.equals("")) {
+                preparedStatement.setString(1, amka);
+            } else {
+                preparedStatement.setString(1, "%");
+            }
+            if (!afm.equals("")) {
+                preparedStatement.setString(2, afm);
+            } else {
+                preparedStatement.setString(2, "%");
+            }
+            if (!firstName.equals("")) {
+                preparedStatement.setString(3, firstName);
+            } else {
+                preparedStatement.setString(3, "%");
+            }
+            if (!lastName.equals("")) {
+                preparedStatement.setString(4, lastName);
+            } else {
+                preparedStatement.setString(4, "%");
+            }
+            if (!gender.equals("")) {
+                preparedStatement.setString(5, gender);
+            } else {
+                preparedStatement.setString(5, "%");
+            }
+            if (!fatherFirstName.equals("")) {
+                preparedStatement.setString(6, fatherFirstName);
+            } else {
+                preparedStatement.setString(6, "%");
+            }
+            if (!fatherLastName.equals("")) {
+                preparedStatement.setString(7, fatherLastName);
+            } else {
+                preparedStatement.setString(7, "%");
+            }
+            if (!motherFirstName.equals("")) {
+                preparedStatement.setString(8, motherFirstName);
+            } else {
+                preparedStatement.setString(8, "%");
+            }
+            if (!motherLastName.equals("")) {
+                preparedStatement.setString(9, motherLastName);
+            } else {
+                preparedStatement.setString(9, "%");
+            }
+            if (!birthDate.equals("")) {
+                preparedStatement.setString(10, birthDate);
+            } else {
+                preparedStatement.setString(10, "%");
+            }
+            System.out.println(preparedStatement);
+
+            resultSet = preparedStatement.executeQuery();
+            possibleMatchesScreenListItems = FXCollections.observableArrayList();
+
+            while (resultSet.next()) {
+                possibleMatchesScreenListItem = new PossibleMatchesScreenListItem();
+                possibleMatchesScreenListItem.setFirstName(resultSet.getString("first_name"));
+                possibleMatchesScreenListItem.setLastName(resultSet.getString("last_name"));
+                possibleMatchesScreenListItem.setAmka(resultSet.getString("amka"));
+                possibleMatchesScreenListItem.setAfm(resultSet.getString("afm"));
+                possibleMatchesScreenListItem.setBirthDate(resultSet.getString("birth_date"));
+                possibleMatchesScreenListItem.setGender(resultSet.getString("gender"));
+                possibleMatchesScreenListItem.setFatherFirstName(resultSet.getString("father_first_name"));
+                possibleMatchesScreenListItem.setMotherFirstName(resultSet.getString("mother_first_name"));
+                possibleMatchesScreenListItems.add(possibleMatchesScreenListItem);
+            }
+            resultSet.close();
+            return possibleMatchesScreenListItems;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void openConnection() {
         try {
             System.out.println("Setting up connection.");
@@ -752,4 +848,5 @@ public class ICRUDImpl implements ICRUD {
     public void setConnection(Connection connection) {
         ICRUDImpl.connection = connection;
     }
+
 }
