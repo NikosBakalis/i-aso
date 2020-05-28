@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS patient (
     last_name VARCHAR(20),
     birth_date DATE,
     nationality VARCHAR(2),
-    gender ENUM('Male', 'Female', 'Other'),
+    gender ENUM('ΑΝΔΡΑΣ', 'ΓΥΝΑΙΚΑ', 'ΑΛΛΟ'),
     insurance VARCHAR(20),
     father_first_name VARCHAR(20),
     father_last_name VARCHAR(20),
