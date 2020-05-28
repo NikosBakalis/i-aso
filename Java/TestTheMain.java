@@ -22,5 +22,7 @@ public class TestTheMain extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
+        ICRUDImpl iCRUDImpl = new ICRUDImpl();
+        iCRUDImpl.openConnection();
     }
 }
