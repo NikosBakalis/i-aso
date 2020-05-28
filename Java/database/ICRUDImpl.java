@@ -561,6 +561,44 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+
+    public ObservableList<AdmissionTicket> getAdmissionTicketbyAmka(String amka) {
+        try {
+            String query = "select admission_ticket. ticket_id\n" +
+                    "from admission_ticket inner join patient_file\n" +
+                    "on patient_file.file_id = admission_ticket. ticket_id\n" +
+                    "where patient_file.patient_amka = ?\n" +
+                    "order by admission_ticket.created_at DESC\n" +
+                    "limit 1;\n";
+
+            ResultSet resultSet;
+            AdmissionTicket admissionTicket;
+            ObservableList<AdmissionTicket> admissionTicket;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, amka);
+                resultSet = preparedStatement.executeQuery();
+                admissionTicket = FXCollections.observableArrayList();
+                while (resultSet.next()) {
+                    admissionTicket = new AdmissionTicket();
+                    admissionTicket.setTicketId(resultSet.getString("ticket_id"));
+                    admissionTicket.setCreatedAt(resultSet.getDate("created_at"));
+                    admissionTicket.setAdmissionClinic(resultSet.getString("admission_clinic"));
+                    admissionTicket.setHostClinic(resultSet.getString("host_clinic"));
+                    admissionTicket.setPatientChamber(resultSet.getString("patient_chamber"));
+                    admissionTicket.setPatientBed(resultSet.getString("patient_bed"));
+                    admissionTicket.setAdmissionText(resultSet.getString("admission_text"));
+                    admissionTicket.setStage(resultSet.getString("stage"));
+                }
+            }
+            resultSet.close();
+            return admissionTicket;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+
+
     public void openConnection() {
         try {
             System.out.println("Setting up connection.");

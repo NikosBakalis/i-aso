@@ -143,7 +143,7 @@ public class PatientFileScreen {
         dischargeNotePane.setVisible(false);
         System.out.println("Show admission ticket");
 
-        admissionTicket =  iCRUDImpl.getAdmissionTicket("5627092159");  //get the patient from double click
+        admissionTicket =  iCRUDImpl.getAdmissionTicket();  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
         initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
         initialTextArea.appendText("\nΌνομα:"+patient.getFirstName());
