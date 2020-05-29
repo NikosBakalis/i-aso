@@ -211,7 +211,17 @@ public class PatientFileScreen {
         admissionTicket = iCRUDImpl.getAdmissionTicketByAmka("86727365");
         System.out.println(admissionTicket.getTicketId());
         System.out.println(doctorTreatmentArea.getText().getClass().getName());
-        iCRUDImpl.updateTreatment(doctorTreatmentArea.getText(), "86727365", admissionTicket.getTicketId());
+        String Text;
+        if (patientFile.getTreatment() != null) {
+            Text = doctorTreatmentArea.getText() + patientFile.getTreatment();
+        }
+        else{
+            Text = doctorTreatmentArea.getText();
+        }
+        System.out.println(Text);
+        iCRUDImpl.updateTreatment(Text, "86727365", admissionTicket.getTicketId());
+        treatmentDataPatient.appendText(patientFile.getTreatment());
+
     }
 
     public void onDischargeNoteClick(ActionEvent actionEvent) {

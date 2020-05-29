@@ -1094,7 +1094,7 @@ public class ICRUDImpl implements ICRUD {
     public void updateTreatment(String Text, String amka, String file_id) {
         try {
             String query = "update patient_file" +
-                           "set patient_file.treatment = concat(coalesce(treatment, ?))" +
+                           "set patient_file.treatment = ?" +
                            "where patient_file.patient_amka = ? and patient_file.file_id = ?;";
 
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
