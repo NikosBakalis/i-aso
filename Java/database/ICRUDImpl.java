@@ -533,6 +533,145 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    public int setStageToFinal(String noteId) {
+        int queryStatus = 0;
+        String query = "UPDATE discharge_note SET discharge_note.stage = 2 WHERE discharge_note.note_id = ?;";
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+            preparedStatement.setString(1, noteId);
+            queryStatus = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error: MySQL UPDATE failure");
+        }
+        return queryStatus;
+    }
+
+    public String getPendingAdmissionTickets(String hospitalAfm) {
+        int pendingAdmissionTickets = 0;
+        String query = "SELECT COUNT(*) AS count FROM admission_ticket " +
+                "INNER JOIN clinic ON admission_ticket.admission_clinic = clinic.name " +
+                "OR admission_ticket.host_clinic = clinic.name " +
+                "WHERE clinic.hospital_afm = ? " +
+                "AND admission_ticket.stage = 1;";
+        ResultSet resultSet;
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+            preparedStatement.setString(1, hospitalAfm);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                pendingAdmissionTickets = resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: MySQL admission tickets fetching failed");
+        }
+        return String.valueOf(pendingAdmissionTickets);
+    }
+
+    public String getClinicPosts(String clinicId, String hospitalAfm) {
+        int clinicPosts = 0;
+        String query = "SELECT COUNT(*) as count " +
+                "FROM clinic_agent_post " +
+                "INNER JOIN clinic ON clinic_agent_post.clinic_name = clinic.name " +
+                "WHERE clinic_agent_post.clinic_name = ? " +
+                "AND clinic.hospital_afm = ?;";
+        ResultSet resultSet;
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+            preparedStatement.setString(1, clinicId);
+            preparedStatement.setString(2, hospitalAfm);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                clinicPosts = resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: MySQL clinic posts fetching failed");
+        }
+        return String.valueOf(clinicPosts);
+    }
+
+    public String getTransferPendingAdmissionTickets(String hospitalAfm) {
+        int transferPendingAdmissionTickets = 0;
+        String query = "SELECT count(*) AS count FROM admission_ticket INNER JOIN patient_file " +
+                "ON admission_ticket.ticket_id = patient_file.file_id " +
+                "WHERE patient_file.hospital = ? " +
+                "AND admission_ticket.stage = 2;";
+        ResultSet resultSet;
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+            preparedStatement.setString(1, hospitalAfm);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                transferPendingAdmissionTickets = resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: MySQL transfer admission tickets fetching failed");
+        }
+        return String.valueOf(transferPendingAdmissionTickets);
+    }
+
+    public String getTransferPendingDischargeNotes(String hospitalAfm) {
+        int transferPendingDischargeNotes = 0;
+        String query = "SELECT COUNT(*) as count FROM discharge_note " +
+                "INNER JOIN patient_file on discharge_note.note_id = patient_file.file_id " +
+                "WHERE patient_file.hospital = ? " +
+                "AND discharge_note.stage = 1;";
+        ResultSet resultSet;
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+            preparedStatement.setString(1, hospitalAfm);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                transferPendingDischargeNotes = resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: MySQL transfer discharge notes fetching failed");
+        }
+        return String.valueOf(transferPendingDischargeNotes);
+    }
+
+    public ObservableList<DischargeNoteConfirmationScreenTableItem> getDischargeNoteConfirmationScreenTableItems(String hospital) {
+        try {
+            String query = "SELECT " +
+                    "patient.amka AS amka, " +
+                    "discharge_note.note_id AS fileId, " +
+                    "patient.first_name AS firstName, " +
+                    "patient.last_name AS lastName, " +
+                    "patient_file.hospital AS hospital, " +
+                    "discharge_note.admission_clinic AS clinic, " +
+                    "admission_ticket.created_at AS admissionDate, " +
+                    "discharge_note.created_at AS dischargeDate, " +
+                    "discharge_note.stage AS stage " +
+                    "FROM discharge_note " +
+                    "INNER JOIN patient_file ON discharge_note.note_id = patient_file.file_id " +
+                    "INNER JOIN patient ON patient_file.patient_amka = patient.amka " +
+                    "INNER JOIN admission_ticket ON discharge_note.note_id = admission_ticket.ticket_id " +
+                    "WHERE patient_file.hospital = ? and discharge_note.stage = 1;";
+
+            ResultSet resultSet;
+            DischargeNoteConfirmationScreenTableItem dischargeNoteConfirmationScreenTableItem;
+            ObservableList<DischargeNoteConfirmationScreenTableItem> dischargeNoteConfirmationScreenTableItems;
+
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, hospital);
+                resultSet = preparedStatement.executeQuery();
+                dischargeNoteConfirmationScreenTableItems = FXCollections.observableArrayList();
+
+                while (resultSet.next()) {
+                    dischargeNoteConfirmationScreenTableItem = new DischargeNoteConfirmationScreenTableItem();
+                    dischargeNoteConfirmationScreenTableItem.setAmka(resultSet.getString("amka"));
+                    dischargeNoteConfirmationScreenTableItem.setFileId(resultSet.getString("fileId"));
+                    dischargeNoteConfirmationScreenTableItem.setFirstName(resultSet.getString("firstName"));
+                    dischargeNoteConfirmationScreenTableItem.setLastName(resultSet.getString("lastName"));
+                    dischargeNoteConfirmationScreenTableItem.setHospital(resultSet.getString("hospital"));
+                    dischargeNoteConfirmationScreenTableItem.setClinic(resultSet.getString("clinic"));
+                    dischargeNoteConfirmationScreenTableItem.setAdmissionDate(resultSet.getTimestamp("admissionDate"));
+                    dischargeNoteConfirmationScreenTableItem.setDischargeDate(resultSet.getTimestamp("dischargeDate"));
+                    dischargeNoteConfirmationScreenTableItem.setStage(resultSet.getString("stage"));
+                    dischargeNoteConfirmationScreenTableItems.add(dischargeNoteConfirmationScreenTableItem);
+                }
+            }
+            resultSet.close();
+            return dischargeNoteConfirmationScreenTableItems;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
     public ObservableList<PostListScreenTableItem> getPostListScreenTableItems(String postClinic) {
         try {
             String query = "SELECT " +

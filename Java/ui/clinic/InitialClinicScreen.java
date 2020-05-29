@@ -1,16 +1,23 @@
 package ui.clinic;
 
+import database.ICRUDImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import model.ClinicAgent;
+import model.User;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class InitialClinicScreen {
+public class InitialClinicScreen implements Initializable {
+
     public Button logoutButton;
     public Button pendingAdmissionTicketsButton;
     public Button postButton;
@@ -19,11 +26,11 @@ public class InitialClinicScreen {
     public Button clinicInfoButton;
     public Button clinicChangeButton;
     public Label iasoLabel;
-    ;
 
-// <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:
-//    rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
-//        style="-fx-background-color: rgba(255,255,255,0.75);" >
+    ICRUDImpl iCRUDImpl = new ICRUDImpl();
+    User user = new User();
+    ClinicAgent clinicAgent = new ClinicAgent();
+
     public void onPendingAdmissionTicketsClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Show pending admission tickets");
         openScene("pending_admission_ticket_screen.fxml");
@@ -63,5 +70,11 @@ public class InitialClinicScreen {
     private void closeButtonAction(){
         Stage stage = (Stage) logoutButton.getScene().getWindow();
         stage.close();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        numberOfPendingTicketLabel.setText(iCRUDImpl.getPendingAdmissionTickets(user.getHospital_afm()));
+        postNumLabel.setText(iCRUDImpl.getClinicPosts(clinicAgent.getClinic(), user.getHospital_afm()));
     }
 }

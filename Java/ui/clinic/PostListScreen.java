@@ -17,6 +17,7 @@ import model.User;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 public class PostListScreen implements Initializable  {
@@ -24,7 +25,7 @@ public class PostListScreen implements Initializable  {
     public Button createPostButton;
     public Label postLabel;
     public TableView<PostListScreenTableItem> postList;
-    public TableColumn<PostListScreenTableItem, java.sql.Timestamp> colDateTime;
+    public TableColumn<PostListScreenTableItem, Timestamp> colDateTime;
     public TableColumn<PostListScreenTableItem, String> colAuthor;
     public TableColumn<PostListScreenTableItem, String> colTitle;
 

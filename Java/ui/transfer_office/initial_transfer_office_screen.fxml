@@ -12,8 +12,16 @@
    <Button fx:id="dischargeNoteConfirmationButton" layoutX="265.0" layoutY="306.0" mnemonicParsing="false" onAction="#onDischargeNoteConfirmationClick" prefHeight="27.0" prefWidth="444.0" text="Επιβεβαίωση εξιτηρίου" />
    <Button fx:id="confirmTransfersButton" layoutX="265.0" layoutY="354.0" mnemonicParsing="false" onAction="#onConfirmTransfersClick" prefHeight="27.0" prefWidth="444.0" text="Επιβεβαίωση διακομιδής" />
    <Button fx:id="patientList" layoutX="265.0" layoutY="405.0" mnemonicParsing="false" onAction="#onPatientListClick" prefHeight="27.0" prefWidth="444.0" text="Λίστα ασθενών" />
-   <Label fx:id="acknowledgeNewPatientLabel" layoutX="727.0" layoutY="259.0" prefHeight="27.0" prefWidth="28.0" text="Label" />
-   <Label fx:id="DischargeNoteConfirmationLAbel" layoutX="727.0" layoutY="306.0" prefHeight="27.0" prefWidth="28.0" text="Label" />
+   <Pane layoutX="727.0" layoutY="259.0" style="-fx-background-color: rgba(255, 255, 255, 0.75);">
+      <children>
+         <Label fx:id="acknowledgeNewPatientLabel" alignment="CENTER" prefHeight="27.0" prefWidth="28.0" />
+      </children>
+   </Pane>
+   <Pane layoutX="727.0" layoutY="306.0" style="-fx-background-color: rgba(255, 255, 255, 0.75);">
+      <children>
+         <Label fx:id="dischargeNoteConfirmationLabel" alignment="CENTER" prefHeight="27.0" prefWidth="28.0" />
+      </children>
+   </Pane>
    <ImageView fx:id="logoView" fitHeight="150.0" fitWidth="200.0" layoutX="387.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" />
 
 </AnchorPane>

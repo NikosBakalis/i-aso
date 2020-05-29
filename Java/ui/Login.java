@@ -50,6 +50,7 @@ public class Login {
                             openScene("clinic/initial_clinic_screen.fxml");
                             break;
                         case "Transfer_Office_Agent":
+                            iCRUDImpl.getTransferOfficeAgent(user.getUsername());
                             System.out.println("Transfer Office Agent");
                             openScene("transfer_office/initial_transfer_office_screen.fxml");
                             break;

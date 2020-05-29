@@ -11,11 +11,11 @@
       <font>
          <Font size="14.0" />
       </font></Button>
-   <Button fx:id="postButton" layoutX="271.0" layoutY="290.0" mnemonicParsing="false" onAction="#onPostClick" prefHeight="27.0" prefWidth="444.0" text="Posts νοσυλευτών κλινικής">
+   <Button fx:id="postButton" layoutX="271.0" layoutY="290.0" mnemonicParsing="false" onAction="#onPostClick" prefHeight="27.0" prefWidth="444.0" text="Posts νοσηλευτών κλινικής">
       <font>
          <Font size="14.0" />
       </font></Button>
-   <Button fx:id="clinicInfoButton" layoutX="271.0" layoutY="346.0" mnemonicParsing="false" onAction="#onClinicInfoClick" prefHeight="27.0" prefWidth="444.0" text="Λεπτομέριες κλινικής">
+   <Button fx:id="clinicInfoButton" layoutX="271.0" layoutY="346.0" mnemonicParsing="false" onAction="#onClinicInfoClick" prefHeight="27.0" prefWidth="444.0" text="Λεπτομέρειες κλινικής">
       <font>
          <Font size="14.0" />
       </font></Button>
@@ -25,6 +25,14 @@
       </font></Button>
    <Label fx:id="iasoLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:    rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
    <ImageView fitHeight="84.0" fitWidth="93.0" layoutX="425.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" />
-   <Label fx:id="numberOfPendingTicketLabel" layoutX="725.0" layoutY="230.0" prefHeight="27.0" prefWidth="40.0" text="Label" />
-   <Label fx:id="postNumLabel" layoutX="725.0" layoutY="290.0" prefHeight="27.0" prefWidth="40.0" text="Label" />
+   <Pane layoutX="725.0" layoutY="230.0" style="-fx-background-color: rgba(255,255,255,0.75);">
+      <children>
+         <Label fx:id="numberOfPendingTicketLabel" alignment="CENTER" prefHeight="27.0" prefWidth="40.0" />
+      </children>
+   </Pane>
+   <Pane layoutX="725.0" layoutY="290.0" style="-fx-background-color: rgba(255,255,255,0.75);">
+      <children>
+         <Label fx:id="postNumLabel" alignment="CENTER" prefHeight="27.0" prefWidth="40.0" textAlignment="CENTER" />
+      </children>
+   </Pane>
 </AnchorPane>

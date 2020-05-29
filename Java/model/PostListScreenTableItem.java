@@ -6,6 +6,7 @@ public class PostListScreenTableItem {
     private Timestamp postDatetime;
     private String postAuthor;
     private String postTitle;
+    private String postId;
 
     public String getPostId() {
         return postId;
@@ -14,8 +15,6 @@ public class PostListScreenTableItem {
     public void setPostId(String postId) {
         this.postId = postId;
     }
-
-    private String postId;
 
     public Timestamp getPostDatetime() {
         return postDatetime;

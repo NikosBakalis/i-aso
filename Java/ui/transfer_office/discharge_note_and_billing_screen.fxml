@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -7,26 +8,135 @@
 <AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.transfer_office.DischargeNoteAndBillingScreen">
     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:     rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
     <Button fx:id="returnButton" layoutX="55.0" layoutY="53.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="112.0" text="Επιστροφή" />
-    <ScrollPane layoutX="77.0" layoutY="150.0" prefHeight="412.0" prefWidth="425.0"
-                style="-fx-background-color: rgba(255,255,255,0.75);">
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-            <TableView fx:id="patientInfoList" layoutX="14.0" layoutY="14.0" prefHeight="378.0" prefWidth="398.0">
-                <columns>
-                    <TableColumn prefWidth="75.0" text="C1"/>
-                    <TableColumn prefWidth="75.0" text="C2"/>
-                </columns>
-            </TableView>
-        </AnchorPane>
-    </ScrollPane>
-   <Pane layoutX="618.0" layoutY="195.0" prefHeight="200.0" prefWidth="231.0" style="-fx-background-color: rgba(255,255,255,0.75);">
+   <Button fx:id="confirmButton" layoutX="618.0" layoutY="459.0" mnemonicParsing="false" onAction="#onConfirmClick" prefHeight="25.0" prefWidth="200.0" text="Επιβεβαίωση" />
+   <Pane layoutX="54.0" layoutY="114.0" prefHeight="33.0" prefWidth="400.0" style="-fx-background-color: rgba(255,255,255,0.75);">
       <children>
-         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="40.0" prefHeight="41.0" prefWidth="176.0" text="Συνολικό ποσό">
-            <font>
-               <Font size="18.0" />
-            </font></Label>
-         <Label fx:id="costLabel" layoutX="43.0" layoutY="100.0" prefHeight="58.0" prefWidth="163.0" />
+         <Label alignment="CENTER" layoutX="3.0" prefHeight="33.0" prefWidth="398.0" text="Λεπτομέρειες Νοσηλείας" />
+         <Separator layoutY="32.0" prefHeight="3.0" prefWidth="398.0" />
       </children>
    </Pane>
-   <Button fx:id="confirmButton" layoutX="618.0" layoutY="469.0" mnemonicParsing="false" onAction="#onConfirmClick" prefHeight="25.0" prefWidth="231.0" text="Επιβεβαίωση" />
+   <Pane layoutX="537.0" layoutY="114.0" prefHeight="301.0" prefWidth="362.0" style="-fx-background-color: rgba(255,255,255,0.75);">
+      <children>
+         <Label alignment="CENTER" layoutX="83.0" layoutY="7.0" prefHeight="17.0" prefWidth="200.0" text="Κείμενο Εξιτηρίου" />
+         <Label fx:id="dischargeText" alignment="CENTER" layoutX="-3.0" layoutY="33.0" prefHeight="227.0" prefWidth="368.0" />
+         <Separator layoutX="-5.0" layoutY="30.0" prefHeight="3.0" prefWidth="368.0" />
+         <Label alignment="CENTER" layoutX="14.0" layoutY="273.0" prefHeight="17.0" prefWidth="153.0" text="Συνολικό Ποσό" />
+         <Label fx:id="billing" alignment="CENTER" layoutX="186.0" layoutY="273.0" prefHeight="17.0" prefWidth="163.0" />
+         <Separator layoutX="-1.0" layoutY="259.0" prefHeight="3.0" prefWidth="362.0" />
+      </children>
+   </Pane>
+   <VBox alignment="CENTER" layoutX="54.0" layoutY="148.0" prefHeight="260.0" prefWidth="200.0" style="-fx-background-color: rgba(255,255,255,0.40);">
+      <children>
+         <Label alignment="CENTER" prefHeight="17.0" prefWidth="102.0" text="ΑΜΚΑ" textAlignment="CENTER">
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Label alignment="CENTER" prefHeight="17.0" prefWidth="102.0" text="ΟΝΟΜΑ" textAlignment="CENTER">
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Label alignment="CENTER" prefHeight="17.0" prefWidth="102.0" text="ΕΠΩΝΥΜΟ" textAlignment="CENTER">
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Label alignment="CENTER" prefHeight="17.0" prefWidth="102.0" text="ΝΟΣΟΚΟΜΕΙΟ" textAlignment="CENTER">
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Label alignment="CENTER" prefHeight="17.0" prefWidth="102.0" text="ΚΛΙΝΙΚΗ" textAlignment="CENTER">
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Label alignment="CENTER" prefHeight="17.0" prefWidth="102.0" text="ΔΙΑΡΚΕΙΑ">
+            <padding>
+               <Insets bottom="20.0" />
+            </padding>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+      </children>
+      <padding>
+         <Insets top="20.0" />
+      </padding>
+   </VBox>
+   <VBox alignment="CENTER" layoutX="254.0" layoutY="148.0" prefHeight="260.0" prefWidth="200.0" style="-fx-background-color: rgba(255,255,255,0.75);">
+      <children>
+         <Label fx:id="amka" alignment="CENTER" prefHeight="20.0" prefWidth="195.0" wrapText="true">
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Label fx:id="firstName" alignment="CENTER" prefHeight="20.0" prefWidth="195.0" wrapText="true">
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Label fx:id="lastName" alignment="CENTER" prefHeight="20.0" prefWidth="193.0" wrapText="true">
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Label fx:id="hospital" alignment="CENTER" prefHeight="20.0" prefWidth="194.0" wrapText="true">
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Label fx:id="clinic" alignment="CENTER" prefHeight="20.0" prefWidth="194.0" wrapText="true">
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Label fx:id="duration" alignment="CENTER" prefHeight="20.0" prefWidth="195.0" wrapText="true">
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+      </children>
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+      <padding>
+         <Insets top="20.0" />
+      </padding>
+   </VBox>
 
 </AnchorPane>
