@@ -220,7 +220,7 @@ public class PatientFileScreen {
         }
         System.out.println(Text);
         iCRUDImpl.updateTreatment(Text, "86727365", admissionTicket.getTicketId());
-        treatmentDataPatient.appendText(patientFile.getTreatment());
+       // treatmentDataPatient.appendText(patientFile.getTreatment());
 
     }
 

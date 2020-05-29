@@ -2,6 +2,7 @@ package database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.text.Text;
 import model.*;
 
 import java.io.FileInputStream;
