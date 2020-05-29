@@ -53,9 +53,9 @@ public class PatientFileScreen {
     // dischargeNotePane is a pane that refers to discharge note
 
     ICRUDImpl iCRUDImpl = new ICRUDImpl();
-    Patient patient= new Patient();
-    PatientFolder patientFol = new PatientFolder();
+    Patient patient = new Patient();
     PatientFile patientFile = new PatientFile();
+    PatientFolder patientFolder = new PatientFolder();
     AdmissionTicket admissionTicket = new AdmissionTicket();
     DischargeNote dischargeNote = new DischargeNote();
 
@@ -74,7 +74,7 @@ public class PatientFileScreen {
         treatmentPane.setVisible(false);
         dischargeNotePane.setVisible(false);
 
-        patient =  iCRUDImpl.getPatient("86727365");  //get the patient from double click
+//        patient = iCRUDImpl.getPatient("86727365");  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
         initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
         initialTextArea.appendText("\nΑΦΜ:"+patient.getAfm());
@@ -104,17 +104,17 @@ public class PatientFileScreen {
         dischargeNotePane.setVisible(false);
         System.out.println("Show brief history");
 
-        patientFol =  iCRUDImpl.getPatientFolder("86727365");  //get the patient from double click
+//        patientFol =  iCRUDImpl.getPatientFolder("86727365");  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
         initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
         initialTextArea.appendText("\nΌνομα:"+patient.getFirstName());
         initialTextArea.appendText("\nΕπώνημο:"+patient.getLastName());
-        initialTextArea.appendText("\nΧρόνιες Παθήσεις:"+patientFol.getChronicDisease());
-        initialTextArea.appendText("\nΑλλεργίες:"+patientFol.getPatientAllergies());
-        initialTextArea.appendText("\nΧειρουργία:"+patientFol.getPatientSurgeries());
-        initialTextArea.appendText("\nΟμάδα Αίματος:"+patientFol.getBloodType());
-        initialTextArea.appendText("\nHBV:"+patientFol.getHBV());
-        initialTextArea.appendText("\nHBC:"+patientFol.getHBC());
+        initialTextArea.appendText("\nΧρόνιες Παθήσεις:"+patientFolder.getChronicDisease());
+        initialTextArea.appendText("\nΑλλεργίες:"+patientFolder.getPatientAllergies());
+        initialTextArea.appendText("\nΧειρουργία:"+patientFolder.getPatientSurgeries());
+        initialTextArea.appendText("\nΟμάδα Αίματος:"+patientFolder.getBloodType());
+        initialTextArea.appendText("\nHBV:"+patientFolder.getHBV());
+        initialTextArea.appendText("\nHBC:"+patientFolder.getHBC());
     }
    // false because we are not supposed to do this.
     public void onDetailedHistoryClick(ActionEvent actionEvent) {
@@ -124,7 +124,7 @@ public class PatientFileScreen {
         dischargeNotePane.setVisible(false);
         //initialPane.setVisible(true);
         System.out.println("Show detailed history");
-        patientFile =  iCRUDImpl.getPatientFile("86727365");  //get the patient from double click
+        patientFile = iCRUDImpl.getPatientFile("86727365");  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
         initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
         initialTextArea.appendText("\nΌνομα:"+patient.getFirstName());
@@ -143,8 +143,8 @@ public class PatientFileScreen {
         dischargeNotePane.setVisible(false);
         System.out.println("Show admission ticket");
 
-        iCRUDImpl.getAdmissionTicketByAmka("86727365");
-        iCRUDImpl.getPatient("86727365");
+        iCRUDImpl.getAdmissionTicketByAmka("86727365"); // This needs to be changed!
+//        iCRUDImpl.getPatient("86727365");
         admissionTicket = iCRUDImpl.getAdmissionTicket(admissionTicket.getTicketId());  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
         initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
@@ -204,15 +204,15 @@ public class PatientFileScreen {
         treatmentDataPatient.appendText("Τωρινή Θεραπεία:"+patientFile.getTreatment());}
 
     }
+
     //inside treatmentPane
     public void onSaveTreatmentClick(ActionEvent actionEvent) {
         //patientFile.setTreatment(doctorTreatmentArea.getText());
         admissionTicket = iCRUDImpl.getAdmissionTicketByAmka("86727365");
         System.out.println(admissionTicket.getTicketId());
         System.out.println(doctorTreatmentArea.getText().getClass().getName());
-        iCRUDImpl.updateTreatment(doctorTreatmentArea.getText(),"86727365",admissionTicket.getTicketId());
+        iCRUDImpl.updateTreatment(doctorTreatmentArea.getText(), "86727365", admissionTicket.getTicketId());
     }
-
 
     public void onDischargeNoteClick(ActionEvent actionEvent) {
         initialPane.setVisible(false);

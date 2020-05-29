@@ -11,9 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.Doctor;
-import model.InitialDoctorScreenListItem;
-import model.User;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,6 +33,8 @@ public class InitialDoctorScreen implements Initializable {
     ICRUDImpl iCRUDImpl = new ICRUDImpl();
     User user = new User();
     Doctor doctor = new Doctor();
+    PatientFolder patientFolder = new PatientFolder();
+    Patient patient = new Patient();
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Doctor log out");
@@ -77,9 +77,12 @@ public class InitialDoctorScreen implements Initializable {
         tableView.setItems(iCRUDImpl.getInitialDoctorScreenListItems(user.getHospital_afm(), doctor.getClinic()));
     }
 
-    public void onRowClick(MouseEvent mouseEvent) {
+    public void onRowClick(MouseEvent mouseEvent) throws IOException {
         if (mouseEvent.getClickCount() > 1) {
-            System.out.println(tableView.getSelectionModel().getSelectedItem().getAmka());
+            iCRUDImpl.getPatient(tableView.getSelectionModel().getSelectedItem().getAmka());
+            iCRUDImpl.getPatientFolder(tableView.getSelectionModel().getSelectedItem().getAmka());
+            openScene("patient_file_screen.fxml");
+            closeButtonAction();
         }
     }
 }

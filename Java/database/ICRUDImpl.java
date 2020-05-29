@@ -18,45 +18,6 @@ public class ICRUDImpl implements ICRUD {
 
     private static Connection connection;
 
-    public static char[] alphanumericAlphabet() {
-        char[] my_list = IntStream.concat(
-                IntStream.concat(
-                        IntStream.rangeClosed('0', '9'),
-                        IntStream.rangeClosed('A', 'Z')
-                ),
-                IntStream.rangeClosed('a', 'z')
-        ).mapToObj(c -> (char) c+"").collect(Collectors.joining()).toCharArray();
-        return my_list;
-    }
-
-    public static String random(final int numChars) {
-        Random r = new Random();
-        String alpha = new String(alphanumericAlphabet());
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < numChars; i++) {
-            sb.append((char) (alpha.charAt(r.nextInt(alpha.length()))));
-        }
-        return sb.toString();
-    }
-
-    public int savePost(String clinicName, String userName, String date, String title, String post) {
-        int resultSet = 1;
-        String constSep = "', '";
-        String closureParenthesis = "');";
-        StringBuilder query = new StringBuilder("INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, title, post_text) VALUES ('");
-        String postId = random(19);
-        query.append(postId).append(constSep).append(clinicName).append(constSep).append(
-                userName).append(constSep).append(date).append(constSep).append(title).append(
-                constSep).append(post.replace("\n", " ").replace("\r", " ")).append(closureParenthesis);
-        String uploadPost = query.toString();
-        try (PreparedStatement preparedStatement = getConnection().prepareStatement(uploadPost)) {
-            resultSet = preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return resultSet;
-    }
-
     public Hospital getHospital(String afm) {
         try {
             String query = "SELECT * FROM hospital WHERE hospital.hospital_afm = ?";
@@ -575,12 +536,12 @@ public class ICRUDImpl implements ICRUD {
     public ObservableList<PostListScreenTableItem> getPostListScreenTableItems(String postClinic) {
         try {
             String query = "SELECT " +
-                    "clinic_agent_post.post_id AS postId, " +
-                    "clinic_agent_post.created_at AS creation, " +
-                    "clinic_agent_post.user_name AS author, " +
-                    "clinic_agent_post.title AS title " +
-                    "FROM clinic_agent_post " +
-                    "WHERE clinic_agent_post.clinic_name = ?;";
+                           "clinic_agent_post.post_id AS postId, " +
+                           "clinic_agent_post.created_at AS creation, " +
+                           "clinic_agent_post.user_name AS author, " +
+                           "clinic_agent_post.title AS title " +
+                           "FROM clinic_agent_post " +
+                           "WHERE clinic_agent_post.clinic_name = ?;";
 
             ResultSet resultSet;
             PostListScreenTableItem postListScreenTableItem;
@@ -733,16 +694,16 @@ public class ICRUDImpl implements ICRUD {
             String motherFirstName, String motherLastName, String birthDate) {
 
         String query = "select amka, afm, first_name, last_name, gender, father_first_name, mother_first_name, birth_date from patient " +
-                "where (amka like ? or amka is null) " +
-                "and (afm like ? or afm is null) " +
-                "and (first_name like ? or first_name is null) " +
-                "and (last_name like ? or last_name is null) " +
-                "and (gender like ? or gender is null)" +
-                "and (father_first_name like ? or father_first_name is null) " +
-                "and (father_last_name like ? or father_last_name is null) " +
-                "and (mother_first_name like ? or mother_first_name is null) " +
-                "and (mother_last_name like ? or mother_last_name is null) " +
-                "and (birth_date like ? or birth_date is null);";
+                       "where (amka like ? or amka is null) " +
+                       "and (afm like ? or afm is null) " +
+                       "and (first_name like ? or first_name is null) " +
+                       "and (last_name like ? or last_name is null) " +
+                       "and (gender like ? or gender is null)" +
+                       "and (father_first_name like ? or father_first_name is null) " +
+                       "and (father_last_name like ? or father_last_name is null) " +
+                       "and (mother_first_name like ? or mother_first_name is null) " +
+                       "and (mother_last_name like ? or mother_last_name is null) " +
+                       "and (birth_date like ? or birth_date is null);";
         ResultSet resultSet;
         PossibleMatchesScreenListItem possibleMatchesScreenListItem;
         ObservableList<PossibleMatchesScreenListItem> possibleMatchesScreenListItems;
@@ -827,9 +788,9 @@ public class ICRUDImpl implements ICRUD {
     public ObservableList<String> getFreeBeds(String clinic_name) {
         try {
             String query = "select bed.number" +
-                    "from chamber inner join bed" +
-                    "on chamber.id = bed.chamber_id" +
-                    "where bed.is_free='true' and chamber.clinic_name= ?;";
+                           "from chamber inner join bed" +
+                           "on chamber.id = bed.chamber_id" +
+                           "where bed.is_free='true' and chamber.clinic_name= ?;";
             ResultSet resultSet;
             Bed bed;
             ObservableList<String> beds;
@@ -855,11 +816,11 @@ public class ICRUDImpl implements ICRUD {
 
     //be advised that this function updates only the latest patient file.
     // not all of them.
-    public void updateTreatment(String Text,String amka,String file_id) {
+    public void updateTreatment(String Text, String amka, String file_id) {
         try {
             String query = "update patient_file" +
-                    "set treatment = concat(coalesce(treatment, ---?))" +
-                    "where patient_amka = ? and file_id = ?;";
+                           "set patient_file.treatment = concat(coalesce(treatment, ?))" +
+                           "where patient_file.patient_amka = ? and patient_file.file_id = ?;";
 
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
                 preparedStatement.setString(1,Text);
@@ -873,7 +834,6 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
-
     public void finalConfirmationOfTemporaryAdmissionTicket(Timestamp id, String amka){
         try {
             String query = "UPDATE transfer SET transfer.stage = \"APPROVED\" WHERE transfer.id = ? AND transfer.patient_amka = ?;";
@@ -886,6 +846,45 @@ public class ICRUDImpl implements ICRUD {
         } catch (SQLException e) {
             System.err.println(e);
         }
+    }
+
+    public int savePost(String clinicName, String userName, String date, String title, String post) {
+        int resultSet = 1;
+        String constSep = "', '";
+        String closureParenthesis = "');";
+        StringBuilder query = new StringBuilder("INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, title, post_text) VALUES ('");
+        String postId = random(19);
+        query.append(postId).append(constSep).append(clinicName).append(constSep).append(
+                userName).append(constSep).append(date).append(constSep).append(title).append(
+                constSep).append(post.replace("\n", " ").replace("\r", " ")).append(closureParenthesis);
+        String uploadPost = query.toString();
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(uploadPost)) {
+            resultSet = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
+    public static char[] alphanumericAlphabet() {
+        char[] my_list = IntStream.concat(
+                IntStream.concat(
+                        IntStream.rangeClosed('0', '9'),
+                        IntStream.rangeClosed('A', 'Z')
+                ),
+                IntStream.rangeClosed('a', 'z')
+        ).mapToObj(c -> (char) c+"").collect(Collectors.joining()).toCharArray();
+        return my_list;
+    }
+
+    public static String random(final int numChars) {
+        Random r = new Random();
+        String alpha = new String(alphanumericAlphabet());
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < numChars; i++) {
+            sb.append((char) (alpha.charAt(r.nextInt(alpha.length()))));
+        }
+        return sb.toString();
     }
 
     public void openConnection() {
