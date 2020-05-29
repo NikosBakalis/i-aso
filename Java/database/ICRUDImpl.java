@@ -828,6 +828,81 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    public ObservableList<AdmissionTicketDetailsScreenListItem> getAdmissionTicketDetailsScreenListItems(String amka, String ticketId) {
+        String query = "select patient.first_name as first_name, patient.last_name as last_name, " +
+                "patient.birth_date as birth_date, patient.gender as gender, admission_ticket.admission_text as admission_text " +
+                "from patient_file " +
+                "inner join patient on patient.amka = patient_file.patient_amka " +
+                "inner join admission_ticket on patient_file.file_id = admission_ticket.ticket_id " +
+                "where patient.amka = ? " +
+                "and admission_ticket.ticket_id = ?;";
+        ResultSet resultSet;
+        AdmissionTicketDetailsScreenListItem admissionTicketDetailsScreenListItem;
+        ObservableList<AdmissionTicketDetailsScreenListItem> admissionTicketDetailsScreenListItems;
+
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+
+            preparedStatement.setString(1, amka);
+            preparedStatement.setString(2, ticketId);
+
+            resultSet = preparedStatement.executeQuery();
+            admissionTicketDetailsScreenListItems = FXCollections.observableArrayList();
+
+            while (resultSet.next()) {
+                admissionTicketDetailsScreenListItem = new AdmissionTicketDetailsScreenListItem();
+                admissionTicketDetailsScreenListItem.setFirstName(resultSet.getString("first_name"));
+                admissionTicketDetailsScreenListItem.setLastName(resultSet.getString("last_name"));
+                admissionTicketDetailsScreenListItem.setBirthDate(resultSet.getDate("birth_date"));
+                admissionTicketDetailsScreenListItem.setGender(resultSet.getString("gender"));
+                admissionTicketDetailsScreenListItem.setAdmissionText(resultSet.getString("admission_text"));
+                admissionTicketDetailsScreenListItems.add(admissionTicketDetailsScreenListItem);
+            }
+            resultSet.close();
+            return admissionTicketDetailsScreenListItems;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ObservableList<PendingAdmissionTicketsScreenListItem> getPendingAdmissionTicketsScreenListItems(String hospitalAfm, String clinicName) {
+        String query = "select patient.amka as amka, patient.first_name as first_name, patient.last_name as last_name, admission_ticket.created_at as created_at, admission_ticket.ticket_id as ticket_id " +
+                "from patient_file " +
+                "inner join patient on patient_file.patient_amka = patient.amka " +
+                "inner join admission_ticket on patient_file.file_id = admission_ticket.ticket_id " +
+                "where patient_file.hospital = ? and " +
+                "(admission_ticket.host_clinic like ? or admission_ticket.admission_clinic like ?) " +
+                "and admission_ticket.stage = 'CREATED';";
+        ResultSet resultSet;
+        PendingAdmissionTicketsScreenListItem pendingAdmissionTicketsScreenListItem;
+        ObservableList<PendingAdmissionTicketsScreenListItem> pendingAdmissionTicketsScreenListItems;
+
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+
+            preparedStatement.setString(1, hospitalAfm);
+            preparedStatement.setString(2, clinicName);
+            preparedStatement.setString(3, clinicName);
+
+            resultSet = preparedStatement.executeQuery();
+            pendingAdmissionTicketsScreenListItems = FXCollections.observableArrayList();
+
+            while (resultSet.next()) {
+                pendingAdmissionTicketsScreenListItem = new PendingAdmissionTicketsScreenListItem();
+                pendingAdmissionTicketsScreenListItem.setAmka(resultSet.getString("amka"));
+                pendingAdmissionTicketsScreenListItem.setFirstName(resultSet.getString("first_name"));
+                pendingAdmissionTicketsScreenListItem.setLastName(resultSet.getString("last_name"));
+                pendingAdmissionTicketsScreenListItem.setCreatedAt(resultSet.getTimestamp("created_at"));
+                pendingAdmissionTicketsScreenListItem.setTicketId(resultSet.getString("ticket_id"));
+                pendingAdmissionTicketsScreenListItems.add(pendingAdmissionTicketsScreenListItem);
+            }
+            resultSet.close();
+            return pendingAdmissionTicketsScreenListItems;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public ObservableList<PossibleMatchesScreenListItem> getPossibleMatchesScreenListItems(
             String amka, String afm, String firstName, String lastName, String gender, String fatherFirstName, String fatherLastName,
             String motherFirstName, String motherLastName, String birthDate) {
@@ -924,33 +999,94 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
-    public ObservableList<String> getFreeBeds(String clinic_name) {
+    public ObservableList<String> getChambersWithFreeBeds(String clinic, String hospital) {
+        String query = "select chamber.id as id " +
+                "from bed " +
+                "inner join chamber " +
+                "on bed.chamber_id = chamber.id " +
+                "where chamber.clinic_name = ? " +
+                "and chamber.clinic_hospital = ? " +
+                "and bed.is_free = '0' " +
+                "group by chamber.id;";
+        ResultSet resultSet;
+        ObservableList<String> chambersWithFreeBeds;
+
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+
+            preparedStatement.setString(1, clinic);
+            preparedStatement.setString(2, hospital);
+
+            resultSet = preparedStatement.executeQuery();
+            chambersWithFreeBeds = FXCollections.observableArrayList();
+
+            while (resultSet.next()) {
+                chambersWithFreeBeds.add(resultSet.getString("id"));
+            }
+            resultSet.close();
+            return chambersWithFreeBeds;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ObservableList<String> getFreeBedsOfChamber(String clinic, String hospital, String chamber) {
         try {
-            String query = "select bed.number" +
-                           "from chamber inner join bed" +
-                           "on chamber.id = bed.chamber_id" +
-                           "where bed.is_free='true' and chamber.clinic_name= ?;";
+            String query = "select bed.number as number " +
+                    "from bed " +
+                    "inner join chamber " +
+                    "on bed.chamber_id = chamber.id " +
+                    "where chamber.id = ? " +
+                    "and chamber.clinic_name = ? " +
+                    "and chamber.clinic_hospital = ? " +
+                    "and bed.is_free = '0';";
             ResultSet resultSet;
-            Bed bed;
-            ObservableList<String> beds;
+            ObservableList<String> freeBeds;
 
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)){
-                preparedStatement.setString(1, clinic_name);
+
+                preparedStatement.setString(1, chamber);
+                preparedStatement.setString(2, clinic);
+                preparedStatement.setString(3, hospital);
+
                 resultSet = preparedStatement.executeQuery();
-                beds = FXCollections.observableArrayList();
+                freeBeds = FXCollections.observableArrayList();
 
                 while (resultSet.next()) {
-                    bed = new Bed();
-                    bed.setNumber(resultSet.getString("number"));
-                    beds.add(bed.getNumber());
-                    // i want to take both chamber id
+                    freeBeds.add(resultSet.getString("number"));
                 }
             }
             resultSet.close();
-            return beds;
+            return freeBeds;
         } catch (SQLException e) {
             return null;
         }
+    }
+
+    public int allocateBed(String number) {
+        int queryStatus = 0;
+        String query = "update bed set is_free = 1 where bed.number = ?";
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+            preparedStatement.setString(1, number);
+            queryStatus = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return queryStatus;
+    }
+
+    public int updateTicket(String ticketId, String chamber, String bed) {
+        int queryStatus = 0;
+        String query = "update admission_ticket set patient_chamber = ?, patient_bed = ?, stage = 2 where ticket_id = ?";
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+            preparedStatement.setString(1, chamber);
+            preparedStatement.setString(2, bed);
+            preparedStatement.setString(3, ticketId);
+            queryStatus = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return queryStatus;
     }
 
     //be advised that this function updates only the latest patient file.
@@ -1049,5 +1185,4 @@ public class ICRUDImpl implements ICRUD {
     public void setConnection(Connection connection) {
         ICRUDImpl.connection = connection;
     }
-
 }

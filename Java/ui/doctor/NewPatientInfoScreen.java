@@ -98,17 +98,6 @@ public class NewPatientInfoScreen implements Initializable {
             birthDate = birthDateField.getValue().toString();
             atLeastOneIsNotEmpty = true;
         }
-        System.out.println(amka);
-        System.out.println(afm);
-        System.out.println(firstName);
-        System.out.println(lastName);
-        System.out.println(gender);
-        System.out.println(fatherFirstName);
-        System.out.println(fatherLastName);
-        System.out.println(motherFirstName);
-        System.out.println(motherLastName);
-        System.out.println(birthDate);
-        System.out.println(atLeastOneIsNotEmpty);
 
         if (atLeastOneIsNotEmpty) {
             ObservableList<PossibleMatchesScreenListItem> possibleMatchesScreenListItems =

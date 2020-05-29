@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
@@ -12,17 +13,19 @@
          <Font size="14.0" />
       </font></Label>
     <Button fx:id="returnButton" layoutX="38.0" layoutY="64.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="112.0" text="Επιστροφή" />
-    <ScrollPane layoutX="103.0" layoutY="189.0" prefHeight="211.0" prefWidth="780.0" style="-fx-background-color: rgba(255,255,255,0.75);;">
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="195.0" prefWidth="193.0">
-            <TableView layoutX="18.0" layoutY="19.0" prefHeight="175.0" prefWidth="715.0">
-                <columns>
-                    <TableColumn prefWidth="75.0" text="C1" />
-                    <TableColumn prefWidth="75.0" text="C2" />
-                </columns>
-            </TableView>
-        </AnchorPane>
-    </ScrollPane>
-    <Pane layoutX="103.0" layoutY="400.0" prefHeight="131.0" prefWidth="780.0" style="-fx-background-color: rgba(255,255,255,0.75);;">
+      <TableView fx:id="tableView" layoutX="99.0" layoutY="215.0" prefHeight="60.0" prefWidth="802.0">
+          <columns>
+              <TableColumn fx:id="colFirstName" prefWidth="150.0" text="ΟΝΟΜΑ" />
+              <TableColumn fx:id="colLastName" prefWidth="150.0" text="ΕΠΩΝΥΜΟ" />
+         <TableColumn fx:id="colBirthDate" prefWidth="150.0" text="ΗΜ. ΓΕΝΝΗΣΗΣ" />
+         <TableColumn fx:id="colGender" prefWidth="100.0" text="ΦΥΛΟ" />
+         <TableColumn fx:id="colAdmissionText" prefWidth="250.0" text="ΚΕΙΜΕΝΟ ΕΙΣΙΤΗΡΙΟΥ" />
+          </columns>
+      <padding>
+         <Insets left="1.0" right="1.0" />
+      </padding>
+      </TableView>
+    <Pane layoutX="100.0" layoutY="341.0" prefHeight="131.0" prefWidth="802.0" style="-fx-background-color: rgba(255,255,255,0.75);;">
         <Label layoutX="57.0" layoutY="33.0" prefHeight="17.0" prefWidth="112.0" text="Θάλμος">
            <font>
                <Font size="14.0" />
@@ -39,7 +42,7 @@
            </font>
         </Button>
         <ComboBox fx:id="chamberMenu" layoutX="145.0" layoutY="31.0" onAction="#onChamberSelect" prefWidth="150.0" />
-        <ComboBox fx:id="bedMenu" layoutX="145.0" layoutY="71.0" onAction="#onBedSelect" prefWidth="150.0" />
+      <ChoiceBox fx:id="bedMenu" layoutX="145.0" layoutY="71.0" prefWidth="150.0" />
         <Line endX="18.0" endY="109.0" layoutX="385.0" layoutY="22.0" startX="18.0" startY="-22.0" />
     </Pane>
 </AnchorPane>

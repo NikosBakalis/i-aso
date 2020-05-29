@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -8,20 +9,19 @@
     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:     rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
     <Button fx:id="logoutButton" layoutX="55.0" layoutY="52.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="25.0" prefWidth="112.0" text="Αποσύνδεση" />
     <Button fx:id="returnButton" layoutX="789.0" layoutY="52.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="112.0" text="Επιστροφή" />
-    <Label fx:id="clinicNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="465.0" layoutY="135.0" prefHeight="17.0" prefWidth="112.0" style="-fx-background-color: rgba(255,255,255,0.75);" text="Όνομα κλινικής">
+    <Label fx:id="clinicNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="444.0" layoutY="124.0" prefHeight="17.0" prefWidth="112.0" style="-fx-background-color: rgba(255,255,255,0.75);" text="Όνομα κλινικής">
       <font>
          <Font size="14.0" />
       </font></Label>
-    <ScrollPane layoutX="66.0" layoutY="184.0" prefHeight="393.0" prefWidth="835.0"
-                style="-fx-background-color: rgba(255,255,255,0.75);">
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-            <TableView fx:id="pendingAdmissionTicketList" layoutX="34.0" layoutY="38.0" prefHeight="332.0"
-                       prefWidth="772.0">
-                <columns>
-                    <TableColumn prefWidth="75.0" text="C1"/>
-                    <TableColumn prefWidth="75.0" text="C2"/>
-                </columns>
-            </TableView>
-        </AnchorPane>
-    </ScrollPane>
+      <TableView fx:id="tableView" layoutX="200.0" layoutY="166.0" prefHeight="332.0" prefWidth="602.0">
+          <columns>
+              <TableColumn fx:id="colAmka" prefWidth="150.0" text="ΑΜΚΑ" />
+              <TableColumn fx:id="colFirstName" prefWidth="150.0" text="ΟΝΟΜΑ" />
+         <TableColumn fx:id="colLastName" prefWidth="150.0" text="ΕΠΩΝΥΜΟ" />
+         <TableColumn fx:id="colCreatedAt" prefWidth="150.0" text="ΗΜ. ΔΗΜΙΟΥΡΓΙΑΣ" />
+          </columns>
+      <padding>
+         <Insets left="1.0" right="1.0" />
+      </padding>
+      </TableView>
 </AnchorPane>
