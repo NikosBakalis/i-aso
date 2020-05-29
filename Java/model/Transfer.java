@@ -1,16 +1,16 @@
 package model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Transfer {
-    private static Date id;
+    private static Timestamp id;
     private static String authorisedBy, patientAmka, sourceClinic, destinationClinic, stage;
 
-    public Date getId() {
+    public Timestamp getId() {
         return id;
     }
 
-    public void setId(Date id) {
+    public void setId(Timestamp id) {
         Transfer.id = id;
     }
 

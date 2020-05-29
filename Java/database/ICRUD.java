@@ -3,8 +3,7 @@ package database;
 import javafx.collections.ObservableList;
 import model.*;
 
-import java.sql.Date;
-import java.util.ArrayList;
+import java.sql.Timestamp;
 
 public interface ICRUD {
     Hospital getHospital(String afm);
@@ -19,7 +18,7 @@ public interface ICRUD {
     Billing getBilling(String billing_id);
     User getUser(String username);
     Doctor getDoctor(String username);
-    Transfer getTransfer(Date id, String patient_amka);
+    Transfer getTransfer(Timestamp id, String patient_amka);
     PatientTransferOffice getPatientTransferOffice(String number);
     TransferOfficeAgent getTransferOfficeAgent(String username);
     Lab getLab(String hospital_afm, String name);

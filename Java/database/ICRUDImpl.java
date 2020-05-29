@@ -8,7 +8,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.lang.*;
-import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -40,6 +39,24 @@ public class ICRUDImpl implements ICRUD {
         return sb.toString();
     }
 
+    public int savePost(String clinicName, String userName, String date, String title, String post) {
+        int resultSet = 1;
+        String constSep = "', '";
+        String closureParenthesis = "');";
+        StringBuilder query = new StringBuilder("INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, title, post_text) VALUES ('");
+        String postId = random(19);
+        query.append(postId).append(constSep).append(clinicName).append(constSep).append(
+                userName).append(constSep).append(date).append(constSep).append(title).append(
+                constSep).append(post.replace("\n", " ").replace("\r", " ")).append(closureParenthesis);
+        String uploadPost = query.toString();
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(uploadPost)) {
+            resultSet = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
     public Hospital getHospital(String afm) {
         try {
             String query = "SELECT * FROM hospital WHERE hospital.hospital_afm = ?";
@@ -68,24 +85,6 @@ public class ICRUDImpl implements ICRUD {
         } catch (SQLException e) {
             return null;
         }
-    }
-
-    public int savePost(String clinicName, String userName, String date, String title, String post) {
-        int resultSet = 1;
-        String constSep = "', '";
-        String closureParenthesis = "');";
-        StringBuilder query = new StringBuilder("INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, title, post_text) VALUES ('");
-        String postId = random(19);
-        query.append(postId).append(constSep).append(clinicName).append(constSep).append(
-                userName).append(constSep).append(date).append(constSep).append(title).append(
-                        constSep).append(post.replace("\n", " ").replace("\r", " ")).append(closureParenthesis);
-        String uploadPost = query.toString();
-        try (PreparedStatement preparedStatement = getConnection().prepareStatement(uploadPost)) {
-            resultSet = preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return resultSet;
     }
 
     @Override
@@ -396,20 +395,20 @@ public class ICRUDImpl implements ICRUD {
     }
 
     @Override
-    public Transfer getTransfer(Date id, String patient_amka) {
+    public Transfer getTransfer(Timestamp id, String patient_amka) {
         try {
             String query = "SELECT * FROM transfer WHERE transfer.id = ? AND transfer.patient_amka = ?";
 
             ResultSet resultSet;
             Transfer transfer;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
-                preparedStatement.setDate(1, id);
+                preparedStatement.setTimestamp(1, id);
                 preparedStatement.setString(2, patient_amka);
                 resultSet = preparedStatement.executeQuery();
                 transfer = null;
                 if (resultSet.next()) {
                     transfer = new Transfer();
-                    transfer.setId(resultSet.getDate("id"));
+                    transfer.setId(resultSet.getTimestamp("id"));
                     transfer.setAuthorisedBy(resultSet.getString("authorised_by"));
                     transfer.setPatientAmka(resultSet.getString("patient_amka"));
                     transfer.setSourceClinic(resultSet.getString("source_clinic"));
@@ -704,7 +703,6 @@ public class ICRUDImpl implements ICRUD {
             ResultSet resultSet;
             AdmissionTicketConfirmationScreenListItem admissionTicketConfirmationScreenListItem;
             ObservableList<AdmissionTicketConfirmationScreenListItem> admissionTicketConfirmationScreenListItems;
-
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)){
                 preparedStatement.setString(1, hospitalAfm);
                 resultSet = preparedStatement.executeQuery();
@@ -718,11 +716,12 @@ public class ICRUDImpl implements ICRUD {
                     admissionTicketConfirmationScreenListItem.setSourceClinic(resultSet.getString("source_clinic"));
                     admissionTicketConfirmationScreenListItem.setDestinationClinic(resultSet.getString("destination_clinic"));
                     admissionTicketConfirmationScreenListItem.setStage(resultSet.getString("stage"));
-                    admissionTicketConfirmationScreenListItem.setId(resultSet.getDate("id"));
+                    admissionTicketConfirmationScreenListItem.setId(resultSet.getTimestamp("id"));
                     admissionTicketConfirmationScreenListItems.add(admissionTicketConfirmationScreenListItem);
                 }
             }
             resultSet.close();
+
             return admissionTicketConfirmationScreenListItems;
         } catch (SQLException e) {
             return null;
@@ -862,8 +861,6 @@ public class ICRUDImpl implements ICRUD {
                     "set treatment = concat(coalesce(treatment, ---?))" +
                     "where patient_amka = ? and file_id = ?;";
 
-
-            PatientFile patientFile;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
                 preparedStatement.setString(1,Text);
                 preparedStatement.setString(2,amka);
@@ -871,13 +868,25 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.executeUpdate();
 
             }
-
-
         } catch (SQLException e) {
-
+            System.err.println(e);
         }
     }
 
+
+    public void finalConfirmationOfTemporaryAdmissionTicket(Timestamp id, String amka){
+        try {
+            String query = "UPDATE transfer SET transfer.stage = \"APPROVED\" WHERE transfer.id = ? AND transfer.patient_amka = ?;";
+
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setTimestamp(1, id);
+                preparedStatement.setString(2, amka);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+    }
 
     public void openConnection() {
         try {

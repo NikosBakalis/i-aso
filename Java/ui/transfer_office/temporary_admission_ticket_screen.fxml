@@ -5,23 +5,29 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.transfer_office.TemporaryAdmissionTicketScreen">
-    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:     rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="428.0" layoutY="617.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:     rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
     <Button fx:id="returnButton" layoutX="40.0" layoutY="47.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="112.0" text="Επιστροφή" />
-    <ScrollPane layoutX="67.0" layoutY="136.0" prefHeight="393.0" prefWidth="835.0" style="-fx-background-color: rgba(255,255,255,0.75);">
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-            <TableView layoutX="34.0" layoutY="38.0" prefHeight="332.0" prefWidth="772.0">
-                <columns>
-                    <TableColumn prefWidth="75.0" text="C1" />
-                    <TableColumn prefWidth="75.0" text="C2" />
-                </columns>
-            </TableView>
-        </AnchorPane>
-    </ScrollPane>
-   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="413.0" layoutY="103.0" prefHeight="17.0" prefWidth="175.0" style="-fx-background-color: rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="Στοιχεία εισιτηρίου">
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="413.0" layoutY="101.0" prefHeight="17.0" prefWidth="175.0" style="-fx-background-color: rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="Στοιχεία εισιτηρίου">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
    <Button fx:id="confirmButton" alignment="CENTER" contentDisplay="CENTER" layoutX="405.0" layoutY="549.0" mnemonicParsing="false" onAction="#onConfirmClick" prefHeight="25.0" prefWidth="208.0" text="Επιβεβαίωση" />
+   <Label fx:id="labelAmka" layoutX="138.0" layoutY="191.0" text="ΑΜΚΑ" />
+   <TextField fx:id="textFieldAmka" editable="false" layoutX="256.0" layoutY="187.0" />
+   <Label fx:id="labelFirstName" layoutX="138.0" layoutY="279.0" text="ΟΝΟΜΑ" />
+   <TextField fx:id="textFieldFirstName" editable="false" layoutX="256.0" layoutY="275.0" />
+   <TextField fx:id="textFieldLastName" editable="false" layoutX="256.0" layoutY="349.0" />
+   <Label fx:id="labelLastName" layoutX="138.0" layoutY="353.0" text="ΕΠΩΝΥΜΟ" />
+   <Label fx:id="labelId" layoutX="138.0" layoutY="435.0" text="ΗΜΕΡΟΜΗΝΙΑ" />
+   <TextField fx:id="textFieldId" editable="false" layoutX="256.0" layoutY="431.0" />
+   <Label fx:id="labelStage" layoutX="603.0" layoutY="353.0" text="ΣΤΑΔΙΟ" />
+   <TextField fx:id="textFieldStage" editable="false" layoutX="721.0" layoutY="349.0" />
+   <Label fx:id="labelSourceClinic" layoutX="602.0" layoutY="191.0" text="ΚΛΙΝΙΚΗ ΝΟΣΗΛΕΙΑΣ" />
+   <TextField fx:id="textFieldSourceClinic" editable="false" layoutX="720.0" layoutY="187.0" />
+   <TextField fx:id="textFieldDestinationClinic" editable="false" layoutX="720.0" layoutY="274.0" />
+   <Label fx:id="labelDestinationClinic" layoutX="603.0" layoutY="278.0" text="ΚΛΙΝΙΚΗ ΥΠΟΔΟΧΗΣ" />
+   <Label fx:id="labelAuthorizedBy" layoutX="602.0" layoutY="435.0" text="ΙΑΤΡΟΣ" />
+   <TextField fx:id="textFieldAuthorizedBy" editable="false" layoutX="720.0" layoutY="431.0" />
 
 </AnchorPane>

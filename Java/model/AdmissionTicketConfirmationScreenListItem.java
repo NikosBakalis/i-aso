@@ -1,10 +1,10 @@
 package model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class AdmissionTicketConfirmationScreenListItem {
     private String amka, firstName, lastName, sourceClinic, destinationClinic, stage;
-    private Date id;
+    private Timestamp id;
 
     public String getAmka() {
         return amka;
@@ -54,11 +54,11 @@ public class AdmissionTicketConfirmationScreenListItem {
         this.stage = stage;
     }
 
-    public Date getId() {
+    public Timestamp getId() {
         return id;
     }
 
-    public void setId(Date id) {
+    public void setId(Timestamp id) {
         this.id = id;
     }
 }

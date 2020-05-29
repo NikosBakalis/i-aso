@@ -7,7 +7,7 @@
     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:     rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
     <Button fx:id="logoutButton" layoutX="40.0" layoutY="52.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="25.0" prefWidth="112.0" text="Αποσύνδεση" />
     <Button fx:id="returnButton" layoutX="849.0" layoutY="52.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="112.0" text="Επιστροφή" />
-      <TableView fx:id="admissionTicketList" layoutX="96.0" layoutY="138.0" prefHeight="389.0" prefWidth="809.0">
+      <TableView fx:id="admissionTicketList" layoutX="96.0" layoutY="138.0" onMouseClicked="#onRowClick" prefHeight="389.0" prefWidth="809.0">
           <columns>
               <TableColumn fx:id="colAmka" prefWidth="75.0" text="ΑΜΚΑ" />
               <TableColumn fx:id="colFirstName" prefWidth="75.0" text="ΟΝΟΜΑ" />

@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.AdmissionTicketConfirmationScreenListItem;
 import model.User;
@@ -71,5 +72,16 @@ public class AdmissionTicketConfirmationScreen implements Initializable {
     private void closeButtonAction(){
         Stage stage = (Stage) logoutButton.getScene().getWindow();
         stage.close();
+    }
+
+    public void onRowClick(MouseEvent mouseEvent) throws IOException {
+        if (mouseEvent.getClickCount() > 1) {
+            System.out.println(admissionTicketList.getSelectionModel().getSelectedItem().getAmka());
+            System.out.println(admissionTicketList.getSelectionModel().getSelectedItem().getId());
+            iCRUDImpl.getTransfer(admissionTicketList.getSelectionModel().getSelectedItem().getId(), admissionTicketList.getSelectionModel().getSelectedItem().getAmka());
+            iCRUDImpl.getPatient(admissionTicketList.getSelectionModel().getSelectedItem().getAmka());
+            openScene("temporary_admission_ticket_screen.fxml");
+            closeButtonAction();
+        }
     }
 }
