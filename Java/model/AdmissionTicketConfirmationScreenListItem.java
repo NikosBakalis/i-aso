@@ -3,7 +3,7 @@ package model;
 import java.sql.Timestamp;
 
 public class AdmissionTicketConfirmationScreenListItem {
-    private String amka, firstName, lastName, sourceClinic, destinationClinic, stage;
+    private String amka, firstName, lastName, sourceClinic, destinationClinic, stage, id;
     private Timestamp createdAt;
 
     public String getAmka() {
@@ -60,5 +60,13 @@ public class AdmissionTicketConfirmationScreenListItem {
 
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

@@ -11,12 +11,13 @@
       <TableView fx:id="admissionTicketList" layoutX="96.0" layoutY="138.0" onMouseClicked="#onRowClick" prefHeight="389.0" prefWidth="809.0">
           <columns>
               <TableColumn fx:id="colAmka" prefWidth="76.0" text="ΑΜΚΑ" />
-              <TableColumn fx:id="colFirstName" prefWidth="86.0" text="ΟΝΟΜΑ" />
-              <TableColumn fx:id="colLastName" prefWidth="101.0" text="ΕΠΩΝΥΜΟ" />
-              <TableColumn fx:id="colSourceClinic" prefWidth="163.0" text="ΚΛΙΝΙΚΗ ΝΟΣΗΛΕΙΑΣ" />
-              <TableColumn fx:id="colDestinationClinic" prefWidth="151.0" text="ΚΛΙΝΙΚΗ ΥΠΟΔΟΧΗΣ" />
-              <TableColumn fx:id="colStage" prefWidth="85.0" text="ΣΤΑΔΙΟ" />
-              <TableColumn fx:id="colId" prefWidth="146.0" text="ΗΜΕΡΟΜΗΝΙΑ" />
+              <TableColumn fx:id="colFirstName" prefWidth="102.0" text="ΟΝΟΜΑ" />
+              <TableColumn fx:id="colLastName" prefWidth="113.0" text="ΕΠΩΝΥΜΟ" />
+              <TableColumn fx:id="colSourceClinic" prefWidth="168.0" text="ΚΛΙΝΙΚΗ ΥΠΟΔΟΧΗΣ" />
+              <TableColumn fx:id="colDestinationClinic" prefWidth="139.0" text="ΚΛΙΝΙΚΗ ΦΙΛΟΞΕΝΙΑΣ" />
+              <TableColumn fx:id="colStage" prefWidth="76.0" text="ΣΤΑΔΙΟ" />
+              <TableColumn fx:id="colId" prefWidth="134.0" text="ΗΜΕΡΟΜΗΝΙΑ" />
+              <TableColumn fx:id="colTicketId" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" resizable="false" text="ΑΡΙΘΜΟΣ" visible="false" />
           </columns>
       <padding>
          <Insets left="1.0" right="1.0" />

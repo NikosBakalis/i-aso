@@ -41,7 +41,7 @@ public class PatientFileScreen {
     public TextArea treatmentDataPatient;  //inside treatmentPane
     public Pane dischargeNotePane;
     public TextArea dischargeText; //inside dischargeNotePane
-    public ComboBox hostClinic;   //inside dischargeNotePane
+    public ComboBox<String> hostClinic;   //inside dischargeNotePane
     public Button dischargeNoteSaveButton;  //inside dischargeNotePane
     public TextArea initialTextArea;
 
@@ -86,7 +86,6 @@ public class PatientFileScreen {
         initialTextArea.appendText("\nΕπώνημο:"+patient.getLastName());
         initialTextArea.appendText("\nΗμ.Γέννησης:"+patient.getBirthDate());
         initialTextArea.appendText("\nΕθνικότητα:"+patient.getNationality());
-        initialTextArea.appendText("\nθρησκεία:"+patient.getReligion());
         initialTextArea.appendText("\nΦύλο:"+patient.getGender());
         initialTextArea.appendText("\nΑσφάλεια:"+patient.getInsurance());
         initialTextArea.appendText("\nΠατρώνημο:"+patient.getFatherFirstName());
@@ -97,7 +96,6 @@ public class PatientFileScreen {
         initialTextArea.appendText("\nΑριθμός 1ης Κατοικίας:"+patient.getFirstStreetNumber());
         initialTextArea.appendText("\nΔιεύθυνση 2ης Κατοικίας:"+patient.getSecondStreetName());
         initialTextArea.appendText("\nΤηλέφωνο Επικοινωνίας:"+patient.getPrimaryPhoneNumber());
-        initialTextArea.appendText("\nΤηλέφωνο Έκτατης Ανάγκης"+patient.getEmergencePhoneNumber());
         initialTextArea.appendText("\nEmail:"+patient.getEmainAddress());
     }
 

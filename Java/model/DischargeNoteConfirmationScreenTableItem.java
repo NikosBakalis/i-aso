@@ -3,7 +3,7 @@ package model;
 import java.sql.Timestamp;
 
 public class DischargeNoteConfirmationScreenTableItem {
-    private String amka, fileId, firstName, lastName, hospital, clinic, stage;
+    private String amka, fileId, firstName, lastName, hospital, clinic, stage, noteId;
     private Timestamp admissionDate, dischargeDate;
 
     public String getAmka() {
@@ -78,4 +78,11 @@ public class DischargeNoteConfirmationScreenTableItem {
         this.stage = stage;
     }
 
+    public String getNoteId() {
+        return noteId;
+    }
+
+    public void setNoteId(String noteId) {
+        this.noteId = noteId;
+    }
 }

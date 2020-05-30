@@ -10,10 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.AdmissionTicketConfirmationScreenListItem;
-import model.Patient;
-import model.Transfer;
-import model.User;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,6 +39,7 @@ public class TemporaryAdmissionTicketScreen implements Initializable {
     ICRUDImpl iCRUDImpl = new ICRUDImpl();
     Transfer transfer = new Transfer();
     Patient patient = new Patient();
+    AdmissionTicket admissionTicket = new AdmissionTicket();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,8 +48,8 @@ public class TemporaryAdmissionTicketScreen implements Initializable {
         textFieldLastName.setText(patient.getLastName());
         textFieldId.setText(transfer.getId().toString());
         textFieldStage.setText(transfer.getStage());
-        textFieldSourceClinic.setText(transfer.getSourceClinic());
-        textFieldDestinationClinic.setText(transfer.getDestinationClinic());
+        textFieldSourceClinic.setText(admissionTicket.getHostClinic());
+        textFieldDestinationClinic.setText(admissionTicket.getAdmissionClinic());
         textFieldAuthorizedBy.setText(transfer.getAuthorisedBy());
     }
 
@@ -81,5 +79,9 @@ public class TemporaryAdmissionTicketScreen implements Initializable {
     private void closeButtonAction(){
         Stage stage = (Stage) returnButton.getScene().getWindow();
         stage.close();
+    }
+
+    public void inspectAdmissionTicket(String fileId){
+
     }
 }

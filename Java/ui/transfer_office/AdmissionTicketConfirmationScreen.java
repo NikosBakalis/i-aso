@@ -8,11 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.AdmissionTicketConfirmationScreenListItem;
+import model.DischargeNoteConfirmationScreenTableItem;
 import model.User;
 
 import java.io.IOException;
@@ -30,6 +32,7 @@ public class AdmissionTicketConfirmationScreen implements Initializable {
     public TableColumn<AdmissionTicketConfirmationScreenListItem, String> colDestinationClinic;
     public TableColumn<AdmissionTicketConfirmationScreenListItem, String> colStage;
     public TableColumn<AdmissionTicketConfirmationScreenListItem, String> colId;
+    public TableColumn<AdmissionTicketConfirmationScreenListItem, String> colTicketId;
 
     ICRUDImpl iCRUDImpl = new ICRUDImpl();
     User user = new User();
@@ -43,6 +46,7 @@ public class AdmissionTicketConfirmationScreen implements Initializable {
         colDestinationClinic.setCellValueFactory(new PropertyValueFactory<>("destinationClinic"));
         colStage.setCellValueFactory(new PropertyValueFactory<>("stage"));
         colId.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
+        colTicketId.setCellValueFactory(new PropertyValueFactory<>("id"));
         admissionTicketList.setItems(iCRUDImpl.getAdmissionTicketConfirmationScreenListItem(user.getHospital_afm()));
     }
 
@@ -78,9 +82,12 @@ public class AdmissionTicketConfirmationScreen implements Initializable {
         if (mouseEvent.getClickCount() > 1) {
             System.out.println(admissionTicketList.getSelectionModel().getSelectedItem().getAmka());
             System.out.println(admissionTicketList.getSelectionModel().getSelectedItem().getCreatedAt());
+            iCRUDImpl.getAdmissionTicket(admissionTicketList.getSelectionModel().getSelectedItem().getId());
             iCRUDImpl.getTransfer(admissionTicketList.getSelectionModel().getSelectedItem().getCreatedAt(), admissionTicketList.getSelectionModel().getSelectedItem().getAmka());
             iCRUDImpl.getPatient(admissionTicketList.getSelectionModel().getSelectedItem().getAmka());
-//            iCRUDImpl.getAdmissionTicket()
+//            iCRUDImpl.getTransfer(admissionTicketList.getSelectionModel().getSelectedItem().getId(), admissionTicketList.getSelectionModel().getSelectedItem().getAmka());
+//            iCRUDImpl.getPatientFile();
+//            iCRUDImpl.getAdmissionTicket();
             openScene("temporary_admission_ticket_screen.fxml");
             closeButtonAction();
         }

@@ -799,7 +799,8 @@ public class ICRUDImpl implements ICRUD {
                            "admission_ticket.admission_clinic AS source_clinic, " +
                            "admission_ticket.host_clinic AS destination_clinic, " +
                            "admission_ticket.stage AS stage, " +
-                           "admission_ticket.created_at AS created_at " +
+                           "admission_ticket.created_at AS created_at, " +
+                           "admission_ticket.ticket_id AS ticket_id " +
                            "FROM admission_ticket " +
                            "INNER JOIN patient_file ON admission_ticket.ticket_id = patient_file.file_id " +
                            "INNER JOIN patient ON patient_file.patient_amka = patient.amka " +
@@ -815,13 +816,13 @@ public class ICRUDImpl implements ICRUD {
                 while (resultSet.next()) {
                     admissionTicketConfirmationScreenListItem = new AdmissionTicketConfirmationScreenListItem();
                     admissionTicketConfirmationScreenListItem.setAmka(resultSet.getString("amka"));
-                    System.out.println(resultSet.getString("amka"));
                     admissionTicketConfirmationScreenListItem.setFirstName(resultSet.getString("first_name"));
                     admissionTicketConfirmationScreenListItem.setLastName(resultSet.getString("last_name"));
                     admissionTicketConfirmationScreenListItem.setSourceClinic(resultSet.getString("source_clinic"));
                     admissionTicketConfirmationScreenListItem.setDestinationClinic(resultSet.getString("destination_clinic"));
                     admissionTicketConfirmationScreenListItem.setStage(resultSet.getString("stage"));
                     admissionTicketConfirmationScreenListItem.setCreatedAt(resultSet.getTimestamp("created_at"));
+                    admissionTicketConfirmationScreenListItem.setId(resultSet.getString("ticket_id"));
                     admissionTicketConfirmationScreenListItems.add(admissionTicketConfirmationScreenListItem);
                 }
             }
