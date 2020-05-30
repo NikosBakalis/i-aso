@@ -32,6 +32,12 @@ public class InitialTransferOfficeScreen implements Initializable {
     User user = new User();
     TransferOfficeAgent transferOfficeAgent = new TransferOfficeAgent();
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        acknowledgeNewPatientLabel.setText(iCRUDImpl.getTransferPendingAdmissionTickets(user.getHospital_afm()));
+        dischargeNoteConfirmationLabel.setText(iCRUDImpl.getTransferPendingDischargeNotes(user.getHospital_afm()));
+    }
+
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Transfer office agent logout");
         openScene("../login.fxml");
@@ -71,11 +77,5 @@ public class InitialTransferOfficeScreen implements Initializable {
     private void closeButtonAction(){
         Stage stage = (Stage) logoutButton.getScene().getWindow();
         stage.close();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        acknowledgeNewPatientLabel.setText(iCRUDImpl.getTransferPendingAdmissionTickets(user.getHospital_afm()));
-        dischargeNoteConfirmationLabel.setText(iCRUDImpl.getTransferPendingDischargeNotes(user.getHospital_afm()));
     }
 }

@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.*;
@@ -36,6 +37,7 @@ public class DischargeNoteConfirmationScreen implements Initializable {
     ICRUDImpl iCRUDImpl = new ICRUDImpl();
     User user = new User();
     TransferOfficeAgent transferOfficeAgent = new TransferOfficeAgent();
+    DischargeNote dischargeNote = new DischargeNote();
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Transfer office agent logout");
@@ -76,7 +78,7 @@ public class DischargeNoteConfirmationScreen implements Initializable {
         tableDischargeNotes.setRowFactory(tv -> {
             TableRow<DischargeNoteConfirmationScreenTableItem> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                if (event.getClickCount() == 2 && (!row.isEmpty()) ) {
                     DischargeNoteConfirmationScreenTableItem rowData = row.getItem();
                     System.out.println("Inspect selected discharge note");
                     try {
