@@ -797,19 +797,17 @@ public class ICRUDImpl implements ICRUD {
 
     public ObservableList<AdmissionTicketConfirmationScreenListItem> getAdmissionTicketConfirmationScreenListItem(String hospitalAfm){
         try {
-            String query = "SELECT " +
-                    "patient.amka AS amka, " +
-                    "patient.first_name AS first_name, " +
-                    "patient.last_name AS last_name, " +
-                    "admission_ticket.admission_clinic AS source_clinic, " +
-                    "admission_ticket.host_clinic AS destination_clinic, " +
-                    "admission_ticket.stage AS stage, " +
-                    "admission_ticket.ticket_id AS id " +
-                    "FROM admission_ticket INNER JOIN patient_file " +
-                    "ON admission_ticket.ticket_id = patient_file.file_id " +
-                    "INNER JOIN patient ON patient_file.patient_amka = patient.amka " +
-                    "WHERE patient_file.hospital = ? " +
-                    "AND admission_ticket.stage = 2;";
+            String query = "SELECT patient.amka AS amka, " +
+                           "patient.first_name AS first_name, " +
+                           "patient.last_name AS last_name, " +
+                           "admission_ticket.admission_clinic AS source_clinic, " +
+                           "admission_ticket.host_clinic AS destination_clinic, " +
+                           "admission_ticket.stage AS stage, " +
+                           "admission_ticket.created_at AS created_at " +
+                           "FROM admission_ticket " +
+                           "INNER JOIN patient_file ON admission_ticket.ticket_id = patient_file.file_id " +
+                           "INNER JOIN patient ON patient_file.patient_amka = patient.amka " +
+                           "WHERE patient_file.hospital = ? AND admission_ticket.stage = \"SENT\";";
             ResultSet resultSet;
             AdmissionTicketConfirmationScreenListItem admissionTicketConfirmationScreenListItem;
             ObservableList<AdmissionTicketConfirmationScreenListItem> admissionTicketConfirmationScreenListItems;
@@ -821,12 +819,13 @@ public class ICRUDImpl implements ICRUD {
                 while (resultSet.next()) {
                     admissionTicketConfirmationScreenListItem = new AdmissionTicketConfirmationScreenListItem();
                     admissionTicketConfirmationScreenListItem.setAmka(resultSet.getString("amka"));
+                    System.out.println(resultSet.getString("amka"));
                     admissionTicketConfirmationScreenListItem.setFirstName(resultSet.getString("first_name"));
                     admissionTicketConfirmationScreenListItem.setLastName(resultSet.getString("last_name"));
                     admissionTicketConfirmationScreenListItem.setSourceClinic(resultSet.getString("source_clinic"));
                     admissionTicketConfirmationScreenListItem.setDestinationClinic(resultSet.getString("destination_clinic"));
                     admissionTicketConfirmationScreenListItem.setStage(resultSet.getString("stage"));
-                    admissionTicketConfirmationScreenListItem.setId(resultSet.getTimestamp("id"));
+                    admissionTicketConfirmationScreenListItem.setCreatedAt(resultSet.getTimestamp("created_at"));
                     admissionTicketConfirmationScreenListItems.add(admissionTicketConfirmationScreenListItem);
                 }
             }

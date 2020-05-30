@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class AdmissionTicketConfirmationScreenListItem {
     private String amka, firstName, lastName, sourceClinic, destinationClinic, stage;
-    private Timestamp id;
+    private Timestamp createdAt;
 
     public String getAmka() {
         return amka;
@@ -54,11 +54,11 @@ public class AdmissionTicketConfirmationScreenListItem {
         this.stage = stage;
     }
 
-    public Timestamp getId() {
-        return id;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setId(Timestamp id) {
-        this.id = id;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 }
