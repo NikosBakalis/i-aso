@@ -590,9 +590,9 @@ public class ICRUDImpl implements ICRUD {
     public String getTransferPendingAdmissionTickets(String hospitalAfm) {
         int transferPendingAdmissionTickets = 0;
         String query = "SELECT count(*) AS count FROM admission_ticket INNER JOIN patient_file " +
-                "ON admission_ticket.ticket_id = patient_file.file_id " +
-                "WHERE patient_file.hospital = ? " +
-                "AND admission_ticket.stage = 2;";
+                       "ON admission_ticket.ticket_id = patient_file.file_id " +
+                       "WHERE patient_file.hospital = ? " +
+                       "AND admission_ticket.stage = 2;";
         ResultSet resultSet;
         try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, hospitalAfm);
@@ -609,9 +609,9 @@ public class ICRUDImpl implements ICRUD {
     public String getTransferPendingDischargeNotes(String hospitalAfm) {
         int transferPendingDischargeNotes = 0;
         String query = "SELECT COUNT(*) as count FROM discharge_note " +
-                "INNER JOIN patient_file on discharge_note.note_id = patient_file.file_id " +
-                "WHERE patient_file.hospital = ? " +
-                "AND discharge_note.stage = 1;";
+                       "INNER JOIN patient_file on discharge_note.note_id = patient_file.file_id " +
+                       "WHERE patient_file.hospital = ? " +
+                       "AND discharge_note.stage = 1;";
         ResultSet resultSet;
         try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, hospitalAfm);
@@ -628,20 +628,20 @@ public class ICRUDImpl implements ICRUD {
     public ObservableList<DischargeNoteConfirmationScreenTableItem> getDischargeNoteConfirmationScreenTableItems(String hospital) {
         try {
             String query = "SELECT " +
-                    "patient.amka AS amka, " +
-                    "discharge_note.note_id AS fileId, " +
-                    "patient.first_name AS firstName, " +
-                    "patient.last_name AS lastName, " +
-                    "patient_file.hospital AS hospital, " +
-                    "discharge_note.admission_clinic AS clinic, " +
-                    "admission_ticket.created_at AS admissionDate, " +
-                    "discharge_note.created_at AS dischargeDate, " +
-                    "discharge_note.stage AS stage " +
-                    "FROM discharge_note " +
-                    "INNER JOIN patient_file ON discharge_note.note_id = patient_file.file_id " +
-                    "INNER JOIN patient ON patient_file.patient_amka = patient.amka " +
-                    "INNER JOIN admission_ticket ON discharge_note.note_id = admission_ticket.ticket_id " +
-                    "WHERE patient_file.hospital = ? and discharge_note.stage = 1;";
+                           "patient.amka AS amka, " +
+                           "discharge_note.note_id AS fileId, " +
+                           "patient.first_name AS firstName, " +
+                           "patient.last_name AS lastName, " +
+                           "patient_file.hospital AS hospital, " +
+                           "discharge_note.admission_clinic AS clinic, " +
+                           "admission_ticket.created_at AS admissionDate, " +
+                           "discharge_note.created_at AS dischargeDate, " +
+                           "discharge_note.stage AS stage " +
+                           "FROM discharge_note " +
+                           "INNER JOIN patient_file ON discharge_note.note_id = patient_file.file_id " +
+                           "INNER JOIN patient ON patient_file.patient_amka = patient.amka " +
+                           "INNER JOIN admission_ticket ON discharge_note.note_id = admission_ticket.ticket_id " +
+                           "WHERE patient_file.hospital = ? and discharge_note.stage = 1;";
 
             ResultSet resultSet;
             DischargeNoteConfirmationScreenTableItem dischargeNoteConfirmationScreenTableItem;
@@ -831,12 +831,12 @@ public class ICRUDImpl implements ICRUD {
 
     public ObservableList<AdmissionTicketDetailsScreenListItem> getAdmissionTicketDetailsScreenListItems(String amka, String ticketId) {
         String query = "select patient.first_name as first_name, patient.last_name as last_name, " +
-                "patient.birth_date as birth_date, patient.gender as gender, admission_ticket.admission_text as admission_text " +
-                "from patient_file " +
-                "inner join patient on patient.amka = patient_file.patient_amka " +
-                "inner join admission_ticket on patient_file.file_id = admission_ticket.ticket_id " +
-                "where patient.amka = ? " +
-                "and admission_ticket.ticket_id = ?;";
+                       "patient.birth_date as birth_date, patient.gender as gender, admission_ticket.admission_text as admission_text " +
+                       "from patient_file " +
+                       "inner join patient on patient.amka = patient_file.patient_amka " +
+                       "inner join admission_ticket on patient_file.file_id = admission_ticket.ticket_id " +
+                       "where patient.amka = ? " +
+                       "and admission_ticket.ticket_id = ?;";
         ResultSet resultSet;
         AdmissionTicketDetailsScreenListItem admissionTicketDetailsScreenListItem;
         ObservableList<AdmissionTicketDetailsScreenListItem> admissionTicketDetailsScreenListItems;
@@ -868,12 +868,12 @@ public class ICRUDImpl implements ICRUD {
 
     public ObservableList<PendingAdmissionTicketsScreenListItem> getPendingAdmissionTicketsScreenListItems(String hospitalAfm, String clinicName) {
         String query = "select patient.amka as amka, patient.first_name as first_name, patient.last_name as last_name, admission_ticket.created_at as created_at, admission_ticket.ticket_id as ticket_id " +
-                "from patient_file " +
-                "inner join patient on patient_file.patient_amka = patient.amka " +
-                "inner join admission_ticket on patient_file.file_id = admission_ticket.ticket_id " +
-                "where patient_file.hospital = ? and " +
-                "(admission_ticket.host_clinic like ? or admission_ticket.admission_clinic like ?) " +
-                "and admission_ticket.stage = 'CREATED';";
+                       "from patient_file " +
+                       "inner join patient on patient_file.patient_amka = patient.amka " +
+                       "inner join admission_ticket on patient_file.file_id = admission_ticket.ticket_id " +
+                       "where patient_file.hospital = ? and " +
+                       "(admission_ticket.host_clinic like ? or admission_ticket.admission_clinic like ?) " +
+                       "and admission_ticket.stage = 'CREATED';";
         ResultSet resultSet;
         PendingAdmissionTicketsScreenListItem pendingAdmissionTicketsScreenListItem;
         ObservableList<PendingAdmissionTicketsScreenListItem> pendingAdmissionTicketsScreenListItems;
@@ -1002,13 +1002,13 @@ public class ICRUDImpl implements ICRUD {
 
     public ObservableList<String> getChambersWithFreeBeds(String clinic, String hospital) {
         String query = "select chamber.id as id " +
-                "from bed " +
-                "inner join chamber " +
-                "on bed.chamber_id = chamber.id " +
-                "where chamber.clinic_name = ? " +
-                "and chamber.clinic_hospital = ? " +
-                "and bed.is_free = '0' " +
-                "group by chamber.id;";
+                       "from bed " +
+                       "inner join chamber " +
+                       "on bed.chamber_id = chamber.id " +
+                       "where chamber.clinic_name = ? " +
+                       "and chamber.clinic_hospital = ? " +
+                       "and bed.is_free = '0' " +
+                       "group by chamber.id;";
         ResultSet resultSet;
         ObservableList<String> chambersWithFreeBeds;
 
@@ -1034,13 +1034,13 @@ public class ICRUDImpl implements ICRUD {
     public ObservableList<String> getFreeBedsOfChamber(String clinic, String hospital, String chamber) {
         try {
             String query = "select bed.number as number " +
-                    "from bed " +
-                    "inner join chamber " +
-                    "on bed.chamber_id = chamber.id " +
-                    "where chamber.id = ? " +
-                    "and chamber.clinic_name = ? " +
-                    "and chamber.clinic_hospital = ? " +
-                    "and bed.is_free = '0';";
+                           "from bed " +
+                           "inner join chamber " +
+                           "on bed.chamber_id = chamber.id " +
+                           "where chamber.id = ? " +
+                           "and chamber.clinic_name = ? " +
+                           "and chamber.clinic_hospital = ? " +
+                           "and bed.is_free = '0';";
             ResultSet resultSet;
             ObservableList<String> freeBeds;
 
