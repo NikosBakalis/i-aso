@@ -2,7 +2,6 @@ package database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.text.Text;
 import model.*;
 
 import java.io.FileInputStream;
@@ -1071,30 +1070,26 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
-    public int allocateBed(String number) {
-        int queryStatus = 0;
+    public void allocateBed(String number) {
         String query = "update bed set is_free = 1 where bed.number = ?";
         try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, number);
-            queryStatus = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return queryStatus;
     }
 
-    public int updateTicket(String ticketId, String chamber, String bed) {
-        int queryStatus = 0;
+    public void updateTicket(String ticketId, String chamber, String bed) {
         String query = "update admission_ticket set patient_chamber = ?, patient_bed = ?, stage = 2 where ticket_id = ?";
         try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, chamber);
             preparedStatement.setString(2, bed);
             preparedStatement.setString(3, ticketId);
-            queryStatus = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return queryStatus;
     }
 
     //be advised that this function updates only the latest patient file.
@@ -1185,7 +1180,7 @@ public class ICRUDImpl implements ICRUD {
     public  PatientFile getFileIdFromAmka(String amka) {
         try {
             String query = "select file_id from patient_file " +
-                    "where patient_amka =? ";
+                           "where patient_amka =? ";
 
             ResultSet resultSet;
             PatientFile patientFile;
