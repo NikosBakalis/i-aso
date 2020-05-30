@@ -1171,6 +1171,46 @@ public class ICRUDImpl implements ICRUD {
         return sb.toString();
     }
 
+    public void insertDischargeNote(String note_id, String date , String discharge_text,String clinic) {
+        try {
+            String query = "insert into discharge_note (note_id,created_at,discharge_text,admission_clinic,stage)" +
+                    " values (?,?,?,?,\"SENT\")";
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1,note_id);
+                preparedStatement.setString(2,date);
+                preparedStatement.setString(3,discharge_text);
+                preparedStatement.setString(4,clinic);
+                preparedStatement.executeUpdate();
+
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+    }
+
+    public  PatientFile getFileIdFromAmka(String amka) {
+        try {
+            String query = "select file_id from patient_file " +
+                    "where patient_amka =? ";
+
+            ResultSet resultSet;
+            PatientFile patientFile;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, amka);
+                resultSet = preparedStatement.executeQuery();
+                patientFile = null;
+                if (resultSet.next()) {
+                    patientFile = new PatientFile();
+                    patientFile.setFileId(resultSet.getString("file_id"));
+                }
+            }
+            resultSet.close();
+            return patientFile;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
     public void openConnection() {
         try {
             System.out.println("Setting up connection.");
