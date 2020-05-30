@@ -16,7 +16,7 @@
       <font>
          <Font size="14.0" />
       </font></Label>
-   <TextArea fx:id="postText" layoutX="453.0" layoutY="174.0" prefHeight="344.0" prefWidth="469.0" />
+   <TextArea fx:id="postText" layoutX="453.0" layoutY="174.0" prefHeight="344.0" prefWidth="469.0" wrapText="true" />
    <Button fx:id="uploadButton" layoutX="57.0" layoutY="471.0" mnemonicParsing="false" onAction="#onUploadClick" prefHeight="25.0" prefWidth="237.0" text="Ανάρτηση">
       <font>
          <Font size="14.0" />

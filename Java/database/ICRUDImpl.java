@@ -546,16 +546,18 @@ public class ICRUDImpl implements ICRUD {
         return queryStatus;
     }
 
-    public String getPendingAdmissionTickets(String hospitalAfm) {
+    public String getPendingAdmissionTickets(String clinicName, String hospitalAfm) {
         int pendingAdmissionTickets = 0;
-        String query = "SELECT COUNT(*) AS count FROM admission_ticket " +
-                "INNER JOIN clinic ON admission_ticket.admission_clinic = clinic.name " +
-                "OR admission_ticket.host_clinic = clinic.name " +
-                "WHERE clinic.hospital_afm = ? " +
-                "AND admission_ticket.stage = 1;";
+        String query = "SELECT COUNT(*) as count FROM admission_ticket " +
+                       "INNER JOIN clinic ON clinic.name = admission_ticket.admission_clinic " +
+                       "OR clinic.name = admission_ticket.host_clinic " +
+                       "WHERE (admission_ticket.admission_clinic = ? OR admission_ticket.host_clinic = ?) " +
+                       "AND clinic.hospital_afm = ? AND admission_ticket.stage = \"CREATED\";";
         ResultSet resultSet;
         try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
-            preparedStatement.setString(1, hospitalAfm);
+            preparedStatement.setString(1, clinicName);
+            preparedStatement.setString(2, clinicName);
+            preparedStatement.setString(3, hospitalAfm);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 pendingAdmissionTickets = resultSet.getInt("count");
@@ -566,16 +568,14 @@ public class ICRUDImpl implements ICRUD {
         return String.valueOf(pendingAdmissionTickets);
     }
 
-    public String getClinicPosts(String clinicId, String hospitalAfm) {
+    public String getClinicPosts(String clinicName, String hospitalAfm) {
         int clinicPosts = 0;
-        String query = "SELECT COUNT(*) as count " +
-                "FROM clinic_agent_post " +
+        String query = "SELECT COUNT(*) as count FROM clinic_agent_post " +
                 "INNER JOIN clinic ON clinic_agent_post.clinic_name = clinic.name " +
-                "WHERE clinic_agent_post.clinic_name = ? " +
-                "AND clinic.hospital_afm = ?;";
+                "WHERE clinic_agent_post.clinic_name = ? AND clinic.hospital_afm = ?;";
         ResultSet resultSet;
         try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
-            preparedStatement.setString(1, clinicId);
+            preparedStatement.setString(1, clinicName);
             preparedStatement.setString(2, hospitalAfm);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -875,13 +875,12 @@ public class ICRUDImpl implements ICRUD {
     }
 
     public ObservableList<PendingAdmissionTicketsScreenListItem> getPendingAdmissionTicketsScreenListItems(String hospitalAfm, String clinicName) {
-        String query = "select patient.amka as amka, patient.first_name as first_name, patient.last_name as last_name, admission_ticket.created_at as created_at, admission_ticket.ticket_id as ticket_id " +
-                       "from patient_file " +
-                       "inner join patient on patient_file.patient_amka = patient.amka " +
-                       "inner join admission_ticket on patient_file.file_id = admission_ticket.ticket_id " +
-                       "where patient_file.hospital = ? and " +
-                       "(admission_ticket.host_clinic like ? or admission_ticket.admission_clinic like ?) " +
-                       "and admission_ticket.stage = 'CREATED';";
+        String query = "SELECT patient.amka AS amka, patient.first_name AS first_name, patient.last_name AS last_name, " +
+                       "admission_ticket.created_at AS created_at, admission_ticket.ticket_id AS ticket_id FROM patient_file " +
+                       "INNER JOIN patient ON patient_file.patient_amka = patient.amka " +
+                       "INNER JOIN admission_ticket ON patient_file.file_id = admission_ticket.ticket_id " +
+                       "WHERE patient_file.hospital = ? AND (admission_ticket.host_clinic = ? " +
+                       "OR admission_ticket.admission_clinic = ?) AND admission_ticket.stage = \"CREATED\";";
         ResultSet resultSet;
         PendingAdmissionTicketsScreenListItem pendingAdmissionTicketsScreenListItem;
         ObservableList<PendingAdmissionTicketsScreenListItem> pendingAdmissionTicketsScreenListItems;
@@ -1112,8 +1111,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.executeUpdate();
 
             }
-        } catch (SQLException e) {
-            System.err.println(e);
+        } catch (SQLException ignore) {
         }
     }
 
@@ -1126,8 +1124,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.setString(2, amka);
                 preparedStatement.executeUpdate();
             }
-        } catch (SQLException e) {
-            System.err.println(e);
+        } catch (SQLException ignore) {
         }
     }
 
@@ -1150,14 +1147,13 @@ public class ICRUDImpl implements ICRUD {
     }
 
     public static char[] alphanumericAlphabet() {
-        char[] my_list = IntStream.concat(
+        return IntStream.concat(
                 IntStream.concat(
                         IntStream.rangeClosed('0', '9'),
                         IntStream.rangeClosed('A', 'Z')
                 ),
                 IntStream.rangeClosed('a', 'z')
         ).mapToObj(c -> (char) c+"").collect(Collectors.joining()).toCharArray();
-        return my_list;
     }
 
     public static String random(final int numChars) {
@@ -1165,7 +1161,7 @@ public class ICRUDImpl implements ICRUD {
         String alpha = new String(alphanumericAlphabet());
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < numChars; i++) {
-            sb.append((char) (alpha.charAt(r.nextInt(alpha.length()))));
+            sb.append(alpha.charAt(r.nextInt(alpha.length())));
         }
         return sb.toString();
     }
@@ -1182,8 +1178,7 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.executeUpdate();
 
             }
-        } catch (SQLException e) {
-            System.err.println(e);
+        } catch (SQLException ignore) {
         }
     }
 

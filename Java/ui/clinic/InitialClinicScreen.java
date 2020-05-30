@@ -43,11 +43,11 @@ public class InitialClinicScreen implements Initializable {
         closeButtonAction();
     }
 
-    public void onClinicInfoClick(ActionEvent actionEvent) throws IOException {
+    public void onClinicInfoClick(ActionEvent actionEvent) {
         System.out.println("Show clinic info");
     }
 
-    public void onClinicChangeClick(ActionEvent actionEvent) throws IOException {
+    public void onClinicChangeClick(ActionEvent actionEvent) {
         System.out.println("Change clinic");
     }
 
@@ -74,7 +74,7 @@ public class InitialClinicScreen implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        numberOfPendingTicketLabel.setText(iCRUDImpl.getPendingAdmissionTickets(user.getHospital_afm()));
+        numberOfPendingTicketLabel.setText(iCRUDImpl.getPendingAdmissionTickets(clinicAgent.getClinic(), user.getHospital_afm()));
         postNumLabel.setText(iCRUDImpl.getClinicPosts(clinicAgent.getClinic(), user.getHospital_afm()));
     }
 }

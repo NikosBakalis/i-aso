@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.ClinicAgent;
 import model.User;
@@ -29,9 +26,21 @@ public class NewPostScreen implements Initializable {
     public TextField titleField;
     public TextField authorField;
 
+    Alert warning = new Alert(Alert.AlertType.WARNING);
+
     ICRUDImpl iCRUDImpl = new ICRUDImpl();
-    User user = new User();
+//    User user = new User();
     ClinicAgent clinicAgent = new ClinicAgent();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Date dt = new java.util.Date();
+        SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = sdf.format(dt);
+        dateLabel.setText(currentTime);
+        clinicNameLabel.setText(clinicAgent.getClinic());
+        postText.setWrapText(true);
+    }
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Return to posts list screen");
@@ -47,15 +56,23 @@ public class NewPostScreen implements Initializable {
         Date dt = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = sdf.format(dt);
-        int uploadComplete = iCRUDImpl.savePost(clinicName, author, date, title, post);
-        if (uploadComplete > 0) {
-            System.out.println("Post uploaded");
+        if (!author.isEmpty() && !post.isEmpty()){
+            int uploadComplete = iCRUDImpl.savePost(clinicName, author, date, title, post);
+            if (uploadComplete > 0) {
+                System.out.println("Post uploaded");
+            }
+            else {
+                System.out.println("Error: Upload failed");
+            }
+            openScene("post_list_screen.fxml");
+            closeButtonAction();
+        } else {
+            System.err.println("There are empty fields!");
+            warning.setTitle("Warning");
+            warning.setHeaderText("Empty fields");
+            warning.setContentText("Please fill in all fields before uploading!");
+            warning.showAndWait();
         }
-        else {
-            System.out.println("Error: Upload failed");
-        }
-        openScene("post_list_screen.fxml");
-        closeButtonAction();
     }
 
     private void closeButtonAction(){
@@ -71,15 +88,5 @@ public class NewPostScreen implements Initializable {
         scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        Date dt = new java.util.Date();
-        SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(dt);
-        dateLabel.setText(currentTime);
-        clinicNameLabel.setText(clinicAgent.getClinic());
-        postText.setWrapText(true);
     }
 }
