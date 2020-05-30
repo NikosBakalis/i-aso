@@ -1108,13 +1108,12 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
-    public void finalConfirmationOfTemporaryAdmissionTicket(Timestamp id, String amka){
+    public void finalConfirmationOfTemporaryAdmissionTicket(String id){
         try {
-            String query = "UPDATE transfer SET transfer.stage = \"APPROVED\" WHERE transfer.id = ? AND transfer.patient_amka = ?;";
+            String query = "UPDATE admission_ticket SET admission_ticket.stage = \"APPROVED\" WHERE admission_ticket.ticket_id = ?;";
 
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
-                preparedStatement.setTimestamp(1, id);
-                preparedStatement.setString(2, amka);
+                preparedStatement.setString(1, id);
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException ignore) {

@@ -61,7 +61,7 @@ public class TemporaryAdmissionTicketScreen implements Initializable {
 
     public void onConfirmClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Admission ticket confirmed");
-        iCRUDImpl.finalConfirmationOfTemporaryAdmissionTicket(transfer.getId(), transfer.getPatientAmka());
+        iCRUDImpl.finalConfirmationOfTemporaryAdmissionTicket(admissionTicket.getTicketId());
         openScene("admission_ticket_confirmation_screen.fxml");
         closeButtonAction();
     }
