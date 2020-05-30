@@ -92,7 +92,6 @@ public class ICRUDImpl implements ICRUD {
                     patient.setLastName(resultSet.getString("last_name"));
                     patient.setBirthDate(resultSet.getDate("birth_date"));
                     patient.setNationality(resultSet.getString("nationality"));
-                    patient.setReligion(resultSet.getString("religion"));
                     patient.setGender(resultSet.getString("gender"));
                     patient.setInsurance(resultSet.getString("insurance"));
                     patient.setFatherFirstName(resultSet.getString("father_first_name"));
@@ -102,7 +101,6 @@ public class ICRUDImpl implements ICRUD {
                     patient.setFirstStreetName(resultSet.getString("first_street_name"));
                     patient.setFirstStreetNumber(resultSet.getString("first_street_number"));
                     patient.setPrimaryPhoneNumber(resultSet.getString("primary_phone_number"));
-                    patient.setEmergencePhoneNumber(resultSet.getString("emergency_phone_number"));
                     patient.setEmainAddress(resultSet.getString("email_address"));
                     patient.setSecondStreetName(resultSet.getString("second_street_name"));
                     patient.setSecondStreetNumber(resultSet.getString("second_street_number"));
@@ -588,10 +586,9 @@ public class ICRUDImpl implements ICRUD {
 
     public String getTransferPendingAdmissionTickets(String hospitalAfm) {
         int transferPendingAdmissionTickets = 0;
-        String query = "SELECT count(*) AS count FROM admission_ticket INNER JOIN patient_file " +
-                       "ON admission_ticket.ticket_id = patient_file.file_id " +
-                       "WHERE patient_file.hospital = ? " +
-                       "AND admission_ticket.stage = 2;";
+        String query = "SELECT count(*) AS count FROM admission_ticket " +
+                       "INNER JOIN patient_file ON admission_ticket.ticket_id = patient_file.file_id " +
+                       "WHERE patient_file.hospital = ? AND admission_ticket.stage = \"SENT\";";
         ResultSet resultSet;
         try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, hospitalAfm);
@@ -607,8 +604,8 @@ public class ICRUDImpl implements ICRUD {
 
     public String getTransferPendingDischargeNotes(String hospitalAfm) {
         int transferPendingDischargeNotes = 0;
-        String query = "SELECT COUNT(*) as count FROM discharge_note " +
-                       "INNER JOIN patient_file on discharge_note.note_id = patient_file.file_id " +
+        String query = "SELECT COUNT(*) AS count FROM discharge_note " +
+                       "INNER JOIN patient_file ON discharge_note.note_id = patient_file.file_id " +
                        "WHERE patient_file.hospital = ? " +
                        "AND discharge_note.stage = 1;";
         ResultSet resultSet;

@@ -3,7 +3,7 @@ package model;
 import java.sql.Date;
 
 public class Patient {
-    private static String amka, afm, firstName, lastName, nationality, religion, gender, insurance, fatherFirstName, fatherLastName, motherFirstName, motherLastName, firstStreetName, firstStreetNumber, primaryPhoneNumber, emergencePhoneNumber, emainAddress, secondStreetName, secondStreetNumber;
+    private static String amka, afm, firstName, lastName, nationality, gender, insurance, fatherFirstName, fatherLastName, motherFirstName, motherLastName, firstStreetName, firstStreetNumber, primaryPhoneNumber, emainAddress, secondStreetName, secondStreetNumber;
     private static Date birthDate;
 
     public String getAmka() {
@@ -52,14 +52,6 @@ public class Patient {
 
     public void setNationality(String nationality) {
         Patient.nationality = nationality;
-    }
-
-    public String getReligion() {
-        return religion;
-    }
-
-    public void setReligion(String religion) {
-        Patient.religion = religion;
     }
 
     public String getGender() {
@@ -132,14 +124,6 @@ public class Patient {
 
     public void setPrimaryPhoneNumber(String primaryPhoneNumber) {
         Patient.primaryPhoneNumber = primaryPhoneNumber;
-    }
-
-    public String getEmergencePhoneNumber() {
-        return emergencePhoneNumber;
-    }
-
-    public void setEmergencePhoneNumber(String emergencePhoneNumber) {
-        Patient.emergencePhoneNumber = emergencePhoneNumber;
     }
 
     public String getEmainAddress() {

@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS hospital (
 	first_street_name VARCHAR(30),
     first_street_number VARCHAR(4),
     primary_phone_number VARCHAR(10),
-    emergency_phone_number VARCHAR(10),
     email_address VARCHAR(30),
     second_street_name VARCHAR(30),
     second_street_number VARCHAR(4)

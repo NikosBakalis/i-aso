@@ -100,14 +100,8 @@ INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, titl
 INSERT INTO clinic_agent_post (post_id, clinic_name, user_name, created_at, title, post_text) VALUES ('24354678987', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', '47938047', NOW(), 'CEID', 'Πόρε φίλε τι θες κι εσύ τώρα ... Πήγαινε για καφέ έξω και άστο το τμήμα στην τύχη του. Με αυτά και με αυτά, θα πάθεις καμιά κρίση άγχους και μετά θα πρέπει να έρθω να δουλέψω.');
 
 INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('88374920', '5627092159', '0123456789', '56798024');
-INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('86727365', '2354692304', '0123456789', '56798024');
 INSERT INTO patient_file (patient_amka, file_id, hospital, doctor, diagnosis, treatment, lab_tests) VALUES ('86727365', '2346234633', '0123456789', '56798024', 'COVID-1', 'ΘΑ ΠΕΘΑΝΕΤΕ', 'ΚΛΑΨΤΕ ΤΟΝ');
-INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('86727365', '6787655458', '0123456789', '56798024');
-INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('86727365', '4360564468', '0123456789', '56798024');
-INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('35723453', '5875645345', '2345678901', '29805303');
 INSERT INTO patient_file (patient_amka, file_id, hospital, doctor, diagnosis, treatment, lab_tests) VALUES ('35723453', '8943678443', '2345678901', '29805303', 'Μπυροκοιλιά', 'Συνεργείο ο Μάκης και οι Παίδαροι', '99% Ολυμπιακός 1% Βάζελος');
-INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('35723453', '0964352346', '2345678901', '29805303');
-INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) VALUES ('35723453', '2596543456', '2345678901', '29805303');
 
 INSERT INTO chamber (id, clinic_name, clinic_hospital) VALUES ('7374', 'ΜΕΘ', '0123456789');
 INSERT INTO chamber (id, clinic_name, clinic_hospital) VALUES ('2733', 'ΜΕΘ', '0123456789');
@@ -157,29 +151,15 @@ INSERT INTO bed (number, chamber_id, is_free) VALUES ('4564', '7234', FALSE);
 INSERT INTO bed (number, chamber_id, is_free) VALUES ('1256', '7234', TRUE);
 
 INSERT INTO admission_ticket (ticket_id, created_at, admission_clinic, host_clinic, patient_chamber, patient_bed, admission_text, stage) VALUES ('5627092159', NOW(), 'ΜΕΘ', 'ΜΕΘ', '7374', '3423', 'Καλησπέρα σας', 2);
-INSERT INTO admission_ticket (ticket_id, created_at, admission_clinic, host_clinic, patient_chamber, patient_bed, admission_text, stage) VALUES ('2354692304', NOW(), 'ΜΕΘ', 'ΜΕΘ', '1732', '7652', 'Καλώς ήρθατε', 1);
 INSERT INTO admission_ticket (ticket_id, created_at, admission_clinic, host_clinic, patient_chamber, patient_bed, admission_text, stage) VALUES ('2346234633', NOW(), 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', '4356', '5263', 'Χρόνια πολλά', 3);
-INSERT INTO admission_ticket (ticket_id, created_at, admission_clinic, host_clinic, patient_chamber, patient_bed, admission_text, stage) VALUES ('6787655458', NOW(), 'ΧΕΙΡΟΥΡΓΙΚΗ', 'ΧΕΙΡΟΥΡΓΙΚΗ', '7234', '4564', 'Να ευχαριστήσω', 3);
-INSERT INTO admission_ticket (ticket_id, created_at, admission_clinic, host_clinic, patient_chamber, patient_bed, admission_text, stage) VALUES ('4360564468', NOW(), 'ΧΕΙΡΟΥΡΓΙΚΗ', 'ΧΕΙΡΟΥΡΓΙΚΗ', '7234', '4564', 'Τον πρόεδρο του συλλόγου', 3);
-INSERT INTO admission_ticket (ticket_id, created_at, admission_clinic, host_clinic, patient_chamber, patient_bed, admission_text, stage) VALUES ('5875645345', NOW(), 'ΧΕΙΡΟΥΡΓΙΚΗ', 'ΧΕΙΡΟΥΡΓΙΚΗ', '7234', '4564', 'Τον πρόεδρο του συλλόγου', 3);
 INSERT INTO admission_ticket (ticket_id, created_at, admission_clinic, host_clinic, patient_chamber, patient_bed, admission_text, stage) VALUES ('8943678443', NOW(), 'ΧΕΙΡΟΥΡΓΙΚΗ', 'ΧΕΙΡΟΥΡΓΙΚΗ', '7234', '4564', 'Με χμι χμι χμι', 3);
-INSERT INTO admission_ticket (ticket_id, created_at, admission_clinic, host_clinic, patient_chamber, patient_bed, admission_text, stage) VALUES ('0964352346', NOW(), 'ΧΕΙΡΟΥΡΓΙΚΗ', 'ΧΕΙΡΟΥΡΓΙΚΗ', '7234', '4564', 'Σ αγαπώ πολύ πολύ', 2);
 
 INSERT INTO discharge_note (note_id, created_at, discharge_text, admission_clinic, stage) VALUES ('5627092159', NOW(), 'Και δεν σου κάνω', 'ΜΕΘ', 1);
-INSERT INTO discharge_note (note_id, created_at, discharge_text, admission_clinic, stage) VALUES ('2354692304', NOW(), 'τον άγιο', 'Α ΠΑΘΟΛΟΓΙΚΗ', 1);
 INSERT INTO discharge_note (note_id, created_at, discharge_text, admission_clinic, stage) VALUES ('2346234633', NOW(), 'αχ αμάρτησα', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ', 1);
-INSERT INTO discharge_note (note_id, created_at, discharge_text, admission_clinic, stage) VALUES ('6787655458', NOW(), 'για μια νύχτα', 'ΧΕΙΡΟΥΡΓΙΚΗ', 1);
-INSERT INTO discharge_note (note_id, created_at, discharge_text, admission_clinic, stage) VALUES ('4360564468', NOW(), 'παράνομα', 'ΧΕΙΡΟΥΡΓΙΚΗ', 1);
-INSERT INTO discharge_note (note_id, created_at, discharge_text, admission_clinic, stage) VALUES ('5875645345', NOW(), 'αχ ξεστράτησα', 'ΧΕΙΡΟΥΡΓΙΚΗ', 1);
 INSERT INTO discharge_note (note_id, created_at, discharge_text, admission_clinic, stage) VALUES ('8943678443', NOW(), 'Γιώργος', 'ΧΕΙΡΟΥΡΓΙΚΗ', 1);
-INSERT INTO discharge_note (note_id, created_at, discharge_text, admission_clinic, stage) VALUES ('0964352346', NOW(), 'Τσαλίκης', 'ΧΕΙΡΟΥΡΓΙΚΗ', 2);
 
 INSERT INTO billing (billing_id, created_at, price) VALUES ('5627092159', NOW(), 123.21);
-INSERT INTO billing (billing_id, created_at, price) VALUES ('2354692304', NOW(), 6521.23);
 INSERT INTO billing (billing_id, created_at, price) VALUES ('2346234633', NOW(), 874.28);
-INSERT INTO billing (billing_id, created_at, price) VALUES ('6787655458', NOW(), 9865.34);
-INSERT INTO billing (billing_id, created_at, price) VALUES ('4360564468', NOW(), 145.34);
-INSERT INTO billing (billing_id, created_at, price) VALUES ('5875645345', NOW(), 876.34);
 INSERT INTO billing (billing_id, created_at, price) VALUES ('8943678443', NOW(), 147.98);
 
 INSERT INTO transfer (id, authorised_by, patient_amka, stage) VALUES (NOW(), '56798024', '88374920', 1);
