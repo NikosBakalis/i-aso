@@ -81,6 +81,7 @@ public class InitialDoctorScreen implements Initializable {
         if (mouseEvent.getClickCount() > 1) {
             iCRUDImpl.getPatient(tableView.getSelectionModel().getSelectedItem().getAmka());
             iCRUDImpl.getPatientFolder(tableView.getSelectionModel().getSelectedItem().getAmka());
+//            iCRUDImpl.getAdmissionTicket()
             openScene("patient_file_screen.fxml");
             closeButtonAction();
         }

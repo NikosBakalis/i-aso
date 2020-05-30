@@ -1094,9 +1094,8 @@ public class ICRUDImpl implements ICRUD {
     // not all of them.
     public void updateTreatment(String Text, String amka, String file_id) {
         try {
-            String query = "update patient_file" +
-                           "set patient_file.treatment = ?" +
-                           "where patient_file.patient_amka = ? and patient_file.file_id = ?;";
+            System.out.println(amka + " " + file_id);
+            String query = "update patient_file set patient_file.treatment = ? where patient_file.patient_amka = ? and patient_file.file_id = ?;";
 
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
                 preparedStatement.setString(1,Text);

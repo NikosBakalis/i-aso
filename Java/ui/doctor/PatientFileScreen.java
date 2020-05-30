@@ -124,7 +124,7 @@ public class PatientFileScreen {
         dischargeNotePane.setVisible(false);
         //initialPane.setVisible(true);
         System.out.println("Show detailed history");
-        patientFile = iCRUDImpl.getPatientFile("86727365");  //get the patient from double click
+        patientFile = iCRUDImpl.getPatientFile("5627092159");  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
         initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
         initialTextArea.appendText("\nΌνομα:"+patient.getFirstName());
@@ -143,7 +143,7 @@ public class PatientFileScreen {
         dischargeNotePane.setVisible(false);
         System.out.println("Show admission ticket");
 
-        iCRUDImpl.getAdmissionTicketByAmka("86727365"); // This needs to be changed!
+        iCRUDImpl.getAdmissionTicketByAmka(patient.getAmka()); // This needs to be changed!
 //        iCRUDImpl.getPatient("86727365");
         admissionTicket = iCRUDImpl.getAdmissionTicket(admissionTicket.getTicketId());  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
@@ -168,7 +168,7 @@ public class PatientFileScreen {
         dischargeNotePane.setVisible(false);
         System.out.println("Show status and diagnosis");
         DiagnosisDataPatient.setEditable(false);  //none can change this area
-       if (patientFile.getDiagnosis()==null){
+       if (patientFile.getDiagnosis() == null){
            DiagnosisDataPatient.setText("Διάγνωση:"+" -"); }
        else {
            DiagnosisDataPatient.setText("Διάγνωση:" + patientFile.getDiagnosis());
@@ -198,29 +198,34 @@ public class PatientFileScreen {
         dischargeNotePane.setVisible(false);
         System.out.println("Show treatment");
         treatmentDataPatient.setEditable(false);  //none can change this area
-        if( patientFile.getTreatment()==null) {
-            treatmentDataPatient.appendText("Τωρινή Θεραπεία:"+" -"); }
+        if( patientFile.getTreatment() == null) {
+            treatmentDataPatient.appendText("Τωρινή Θεραπεία:" + " - "); }
         else {
-        treatmentDataPatient.appendText("Τωρινή Θεραπεία:"+patientFile.getTreatment());}
+            treatmentDataPatient.appendText("Τωρινή Θεραπεία: " + patientFile.getTreatment());
+        }
 
     }
 
     //inside treatmentPane
     public void onSaveTreatmentClick(ActionEvent actionEvent) {
         //patientFile.setTreatment(doctorTreatmentArea.getText());
-        admissionTicket = iCRUDImpl.getAdmissionTicketByAmka("86727365");
+        iCRUDImpl.getPatientFile("5627092159"); // THIS NEEDS TO GET CHANGED!!!
+        admissionTicket = iCRUDImpl.getAdmissionTicketByAmka(patient.getAmka());
         System.out.println(admissionTicket.getTicketId());
         System.out.println(doctorTreatmentArea.getText().getClass().getName());
         String Text;
+//        treatmentDataPatient.setText(patientFile.getTreatment());
         if (patientFile.getTreatment() != null) {
-            Text = doctorTreatmentArea.getText() + patientFile.getTreatment();
+            Text = patientFile.getTreatment() + "---" + doctorTreatmentArea.getText();
+            System.out.println("1 " + Text);
         }
         else{
             Text = doctorTreatmentArea.getText();
+            System.out.println("2 " + Text);
         }
         System.out.println(Text);
-        iCRUDImpl.updateTreatment(Text, "86727365", admissionTicket.getTicketId());
-       // treatmentDataPatient.appendText(patientFile.getTreatment());
+        iCRUDImpl.updateTreatment(Text, patient.getAmka(), admissionTicket.getTicketId());
+//        treatmentDataPatient.appendText(patientFile.getTreatment());
 
     }
 
