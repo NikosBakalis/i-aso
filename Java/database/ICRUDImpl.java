@@ -797,10 +797,19 @@ public class ICRUDImpl implements ICRUD {
 
     public ObservableList<AdmissionTicketConfirmationScreenListItem> getAdmissionTicketConfirmationScreenListItem(String hospitalAfm){
         try {
-            String query = "select transfer.patient_amka as amka, patient.first_name as first_name, patient.last_name as last_name, " +
-                           "transfer.source_clinic as source_clinic, transfer.destination_clinic as destination_clinic, transfer.stage as stage, transfer.id as id " +
-                           "from transfer inner join patient on transfer.patient_amka = patient.amka " +
-                           "where transfer.hospital_afm = ? and transfer.stage = \"SENT\";";
+            String query = "SELECT " +
+                    "patient.amka AS amka, " +
+                    "patient.first_name AS first_name, " +
+                    "patient.last_name AS last_name, " +
+                    "admission_ticket.admission_clinic AS source_clinic, " +
+                    "admission_ticket.host_clinic AS destination_clinic, " +
+                    "admission_ticket.stage AS stage, " +
+                    "admission_ticket.ticket_id AS id " +
+                    "FROM admission_ticket INNER JOIN patient_file " +
+                    "ON admission_ticket.ticket_id = patient_file.file_id " +
+                    "INNER JOIN patient ON patient_file.patient_amka = patient.amka " +
+                    "WHERE patient_file.hospital = ? " +
+                    "AND admission_ticket.stage = 2;";
             ResultSet resultSet;
             AdmissionTicketConfirmationScreenListItem admissionTicketConfirmationScreenListItem;
             ObservableList<AdmissionTicketConfirmationScreenListItem> admissionTicketConfirmationScreenListItems;
