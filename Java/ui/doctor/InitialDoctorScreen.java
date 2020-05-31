@@ -29,12 +29,22 @@ public class InitialDoctorScreen implements Initializable {
     public TableColumn<InitialDoctorScreenListItem, String> colLastName;
     public TableColumn<InitialDoctorScreenListItem, String> colHostClinic;
     public TableColumn<InitialDoctorScreenListItem, String> colChamber;
+    public TableColumn<InitialDoctorScreenListItem, String> colFileId;
 
     ICRUDImpl iCRUDImpl = new ICRUDImpl();
     User user = new User();
     Doctor doctor = new Doctor();
-    PatientFolder patientFolder = new PatientFolder();
-    Patient patient = new Patient();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        colAmka.setCellValueFactory(new PropertyValueFactory<>("amka"));
+        colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        colHostClinic.setCellValueFactory(new PropertyValueFactory<>("hostClinic"));
+        colChamber.setCellValueFactory(new PropertyValueFactory<>("patientChamber"));
+        colFileId.setCellValueFactory(new PropertyValueFactory<>("fileId"));
+        tableView.setItems(iCRUDImpl.getInitialDoctorScreenListItems(user.getHospital_afm(), doctor.getClinic()));
+    }
 
     public void onLogoutClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Doctor log out");
@@ -67,21 +77,11 @@ public class InitialDoctorScreen implements Initializable {
         stage.close();
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        colAmka.setCellValueFactory(new PropertyValueFactory<>("amka"));
-        colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        colHostClinic.setCellValueFactory(new PropertyValueFactory<>("hostClinic"));
-        colChamber.setCellValueFactory(new PropertyValueFactory<>("patientChamber"));
-        tableView.setItems(iCRUDImpl.getInitialDoctorScreenListItems(user.getHospital_afm(), doctor.getClinic()));
-    }
-
     public void onRowClick(MouseEvent mouseEvent) throws IOException {
         if (mouseEvent.getClickCount() > 1) {
             iCRUDImpl.getPatient(tableView.getSelectionModel().getSelectedItem().getAmka());
+            iCRUDImpl.getPatientFile(tableView.getSelectionModel().getSelectedItem().getFileId());
             iCRUDImpl.getPatientFolder(tableView.getSelectionModel().getSelectedItem().getAmka());
-//            iCRUDImpl.getAdmissionTicket()
             openScene("patient_file_screen.fxml");
             closeButtonAction();
         }

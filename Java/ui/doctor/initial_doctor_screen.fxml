@@ -19,6 +19,7 @@
          <TableColumn fx:id="colLastName" prefWidth="150.0" text="ΕΠΩΝΥΜΟ" />
          <TableColumn fx:id="colHostClinic" prefWidth="150.0" text="ΚΛΙΝΙΚΗ ΦΙΛΟΞΕΝΙΑΣ" />
          <TableColumn fx:id="colChamber" minWidth="0.0" prefWidth="150.0" text="ΘΑΛΑΜΟΣ" />
+         <TableColumn fx:id="colFileId" minWidth="0.0" prefWidth="150.0" text="ΑΡΙΘΜΟΣ" visible="false" />
      </columns>
       <padding>
          <Insets left="1.0" right="1.0" />

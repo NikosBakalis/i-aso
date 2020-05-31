@@ -1,7 +1,7 @@
 package model;
 
 public class InitialDoctorScreenListItem {
-    private String amka, firstName, lastName, hostClinic, patientChamber;
+    private String amka, firstName, lastName, hostClinic, patientChamber, fileId;
 
     public String getAmka() {
         return amka;
@@ -41,5 +41,13 @@ public class InitialDoctorScreenListItem {
 
     public void setPatientChamber(String chamber) {
         this.patientChamber = chamber;
+    }
+
+    public String getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(String fileId) {
+        this.fileId = fileId;
     }
 }

@@ -5,10 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.*;
@@ -34,7 +31,7 @@ public class PatientFileScreen {
     public ScrollPane infoDataPatient; // inside statusAndDiagnosisPane
     public TextArea doctorDiagnosisArea; // inside statusAndDiagnosisPane
     public Button saveStatusAndDiagnosisButton; // inside statusAndDiagnosisPane
-    public TextArea DiagnosisDataPatient;  // inside statusAndDiagnosisPane
+    public TextArea diagnosisDataPatient;  // inside statusAndDiagnosisPane
     public Pane treatmentPane;
     public TextArea doctorTreatmentArea;  //inside treatmentPane
     public Button saveTreatmentButton;   //inside treatmentPane
@@ -45,13 +42,13 @@ public class PatientFileScreen {
     public Button dischargeNoteSaveButton;  //inside dischargeNotePane
     public TextArea initialTextArea;
 
-
+    Alert warning = new Alert(Alert.AlertType.WARNING);
 
     // first pane is the pane that contains all the buttons etc.. This pain never goes.
     // we use initial pane as the pane that only takes data from db. in this pane doctor is not supposed to make any changes.
     // so in order not to have many panes in "PatientInfo" , "BriefHistory", we use initial pane.
     // status and diagnosis pane only refers to status and diagnosis
-    //treatment pne is the pane that refers to treatment
+    // treatment pne is the pane that refers to treatment
     // dischargeNotePane is a pane that refers to discharge note
 
     ICRUDImpl iCRUDImpl = new ICRUDImpl();
@@ -59,7 +56,6 @@ public class PatientFileScreen {
     PatientFile patientFile = new PatientFile();
     PatientFolder patientFolder = new PatientFolder();
     AdmissionTicket admissionTicket = new AdmissionTicket();
-    DischargeNote dischargeNote = new DischargeNote();
     User user = new User();
     Doctor doctor = new Doctor();
 
@@ -78,25 +74,25 @@ public class PatientFileScreen {
         treatmentPane.setVisible(false);
         dischargeNotePane.setVisible(false);
 
-//        patient = iCRUDImpl.getPatient("86727365");  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
-        initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
-        initialTextArea.appendText("\nΑΦΜ:"+patient.getAfm());
-        initialTextArea.appendText("\nΌνομα:"+patient.getFirstName());
-        initialTextArea.appendText("\nΕπώνημο:"+patient.getLastName());
-        initialTextArea.appendText("\nΗμ.Γέννησης:"+patient.getBirthDate());
-        initialTextArea.appendText("\nΕθνικότητα:"+patient.getNationality());
-        initialTextArea.appendText("\nΦύλο:"+patient.getGender());
-        initialTextArea.appendText("\nΑσφάλεια:"+patient.getInsurance());
-        initialTextArea.appendText("\nΠατρώνημο:"+patient.getFatherFirstName());
-        initialTextArea.appendText("\nΕπώνημο Πατέρα:"+patient.getFatherLastName());
-        initialTextArea.appendText("\nΌνομα Μητέρας:"+patient.getMotherFirstName());
-        initialTextArea.appendText("\nΕπώνημο Μητέρας:"+patient.getMotherLastName());
-        initialTextArea.appendText("\nΔιεύθυνση 1ης Κατοικίας:"+patient.getFirstStreetName());
-        initialTextArea.appendText("\nΑριθμός 1ης Κατοικίας:"+patient.getFirstStreetNumber());
-        initialTextArea.appendText("\nΔιεύθυνση 2ης Κατοικίας:"+patient.getSecondStreetName());
-        initialTextArea.appendText("\nΤηλέφωνο Επικοινωνίας:"+patient.getPrimaryPhoneNumber());
-        initialTextArea.appendText("\nEmail:"+patient.getEmainAddress());
+        initialTextArea.setText("ΑΜΚΑ: \t\t\t\t\t\t" + patient.getAmka());
+        initialTextArea.appendText("\nΑΦΜ: \t\t\t\t\t\t" + patient.getAfm());
+        initialTextArea.appendText("\nΌνομα: \t\t\t\t\t\t" + patient.getFirstName());
+        initialTextArea.appendText("\nΕπώνυμο: \t\t\t\t\t" + patient.getLastName());
+        initialTextArea.appendText("\nΗμ. Γέννησης: \t\t\t\t\t" + patient.getBirthDate());
+        initialTextArea.appendText("\nΕθνικότητα: \t\t\t\t\t" + patient.getNationality());
+        initialTextArea.appendText("\nΦύλο: \t\t\t\t\t\t" + patient.getGender());
+        initialTextArea.appendText("\nΑσφάλεια: \t\t\t\t\t" + patient.getInsurance());
+        initialTextArea.appendText("\nΠατρώνυμο: \t\t\t\t\t" + patient.getFatherFirstName());
+        initialTextArea.appendText("\nΕπώνυμο Πατέρα: \t\t\t\t" + patient.getFatherLastName());
+        initialTextArea.appendText("\nΌνομα Μητέρας: \t\t\t\t" + patient.getMotherFirstName());
+        initialTextArea.appendText("\nΕπώνυμο Μητέρας: \t\t\t" + patient.getMotherLastName());
+        initialTextArea.appendText("\nΌνομα Διεύθυνσης: \t\t\t" + patient.getFirstStreetName());
+        initialTextArea.appendText("\nΑριθμός Διεύθυνσης: \t\t\t" + patient.getFirstStreetNumber());
+        initialTextArea.appendText("\nΌνομα Διεύθυνσης (γραμμή 2): \t" + patient.getSecondStreetName());
+        initialTextArea.appendText("\nΑριθμός Διεύθυνσης (γραμμή 2): \t" + patient.getSecondStreetNumber());
+        initialTextArea.appendText("\nΤηλέφωνο Επικοινωνίας: \t\t" + patient.getPrimaryPhoneNumber());
+        initialTextArea.appendText("\nEmail: \t\t\t\t\t\t" + patient.getEmainAddress());
     }
 
     public void onBriefHistoryClick(ActionEvent actionEvent) {
@@ -106,17 +102,16 @@ public class PatientFileScreen {
         dischargeNotePane.setVisible(false);
         System.out.println("Show brief history");
 
-//        patientFol =  iCRUDImpl.getPatientFolder("86727365");  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
-        initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
-        initialTextArea.appendText("\nΌνομα:"+patient.getFirstName());
-        initialTextArea.appendText("\nΕπώνημο:"+patient.getLastName());
-        initialTextArea.appendText("\nΧρόνιες Παθήσεις:"+patientFolder.getChronicDisease());
-        initialTextArea.appendText("\nΑλλεργίες:"+patientFolder.getPatientAllergies());
-        initialTextArea.appendText("\nΧειρουργία:"+patientFolder.getPatientSurgeries());
-        initialTextArea.appendText("\nΟμάδα Αίματος:"+patientFolder.getBloodType());
-        initialTextArea.appendText("\nHBV:"+patientFolder.getHBV());
-        initialTextArea.appendText("\nHBC:"+patientFolder.getHBC());
+        initialTextArea.setText("ΑΜΚΑ: \t\t\t\t" + patient.getAmka());
+        initialTextArea.appendText("\nΌνομα: \t\t\t\t" + patient.getFirstName());
+        initialTextArea.appendText("\nΕπώνυμο: \t\t\t" + patient.getLastName());
+        initialTextArea.appendText("\nΧρόνιες Παθήσεις: \t\t" + patientFolder.getChronicDisease());
+        initialTextArea.appendText("\nΑλλεργίες: \t\t\t" + patientFolder.getPatientAllergies());
+        initialTextArea.appendText("\nΧειρουργία: \t\t\t" + patientFolder.getPatientSurgeries());
+        initialTextArea.appendText("\nΟμάδα Αίματος: \t\t" + patientFolder.getBloodType());
+        initialTextArea.appendText("\nHBV: \t\t\t\t" + patientFolder.getHBV());
+        initialTextArea.appendText("\nHBC: \t\t\t\t" + patientFolder.getHBC());
     }
    // false because we are not supposed to do this.
    /* public void onDetailedHistoryClick(ActionEvent actionEvent) {
@@ -152,16 +147,16 @@ public class PatientFileScreen {
         admissionTicket = iCRUDImpl.getAdmissionTicket(admissionTicket.getTicketId());
         admissionTicket = iCRUDImpl.getAdmissionTicket(admissionTicket.getTicketId());  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
-        initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
-        initialTextArea.appendText("\nΌνομα:"+patient.getFirstName());
-        initialTextArea.appendText("\nΕπώνημο:"+patient.getLastName());
-        initialTextArea.appendText("\nΗμερομηνία Εισαγωγής:"+admissionTicket.getCreatedAt());
-        initialTextArea.appendText("\nΚλινική Εισαγωγής:"+admissionTicket.getAdmissionClinic());
-        initialTextArea.appendText("\nΚλινική Υποδοχής:"+admissionTicket.getHostClinic());
-        initialTextArea.appendText("\nΘάλαμος Ασθενή:"+admissionTicket.getPatientChamber());
-        initialTextArea.appendText("\nΚρεβάτι Ασθενή:"+admissionTicket.getPatientChamber());
-        initialTextArea.appendText("\nΚείμενο Εισιτηρίου:"+admissionTicket.getAdmissionText());
-        initialTextArea.appendText("\nΣτάδιο:"+admissionTicket.getStage());
+        initialTextArea.setText("ΑΜΚΑ: \t\t\t\t\t" + patient.getAmka());
+        initialTextArea.appendText("\nΌνομα: \t\t\t\t\t" + patient.getFirstName());
+        initialTextArea.appendText("\nΕπώνυμο: \t\t\t\t" + patient.getLastName());
+        initialTextArea.appendText("\nΗμερομηνία Εισαγωγής: \t" + admissionTicket.getCreatedAt());
+        initialTextArea.appendText("\nΚλινική Εισαγωγής: \t\t" + admissionTicket.getAdmissionClinic());
+        initialTextArea.appendText("\nΚλινική Υποδοχής: \t\t\t" + admissionTicket.getHostClinic());
+        initialTextArea.appendText("\nΘάλαμος Ασθενή: \t\t\t" + admissionTicket.getPatientChamber());
+        initialTextArea.appendText("\nΚρεβάτι Ασθενή: \t\t\t" + admissionTicket.getPatientChamber());
+        initialTextArea.appendText("\nΚείμενο Εισιτηρίου: \t\t" + admissionTicket.getAdmissionText());
+        initialTextArea.appendText("\nΣτάδιο: \t\t\t\t\t" + admissionTicket.getStage());
 
 
     }
@@ -172,11 +167,11 @@ public class PatientFileScreen {
         treatmentPane.setVisible(false);
         dischargeNotePane.setVisible(false);
         System.out.println("Show status and diagnosis");
-        DiagnosisDataPatient.setEditable(false);  //none can change this area
+        diagnosisDataPatient.setEditable(false);  //none can change this area
        if (patientFile.getDiagnosis() == null){
-           DiagnosisDataPatient.setText("Διάγνωση:"+" -"); }
+           diagnosisDataPatient.setText("Διάγνωση: " + " -"); }
        else {
-           DiagnosisDataPatient.setText("Διάγνωση:" + patientFile.getDiagnosis());
+           diagnosisDataPatient.setText("Διάγνωση: " + patientFile.getDiagnosis());
        }
     }
     // false because we are not supposed to do this.
@@ -207,9 +202,9 @@ public class PatientFileScreen {
         // the above in order to have access in patientFile
         treatmentDataPatient.setEditable(false);  //none can change this area
 
-        if( patientFile.getTreatment() == null) {
-            treatmentDataPatient.appendText("Τωρινή Θεραπεία:" + " - "); }
-        else {
+        if (patientFile.getTreatment() == null) {
+            treatmentDataPatient.appendText("Τωρινή Θεραπεία:" + " - ");
+        } else {
             treatmentDataPatient.appendText("Τωρινή Θεραπεία: " + patientFile.getTreatment());
         }
 
@@ -283,6 +278,23 @@ public class PatientFileScreen {
 
     // inside statusAndDiagnosisPane
     public void onSaveStatusAndDignosisClick(ActionEvent actionEvent) {
+        System.out.println("Save Status.");
+        if (!doctorDiagnosisArea.getText().isEmpty()) {
+            if (patientFile.getDiagnosis() == null) {
+                iCRUDImpl.saveNewDiagnosis(doctorDiagnosisArea.getText(), patient.getAmka());
+            } else {
+                iCRUDImpl.saveNewDiagnosis(patientFile.getDiagnosis() + " + " + doctorDiagnosisArea.getText(), patient.getAmka());
+            }
+            iCRUDImpl.getPatientFile(patientFile.getFileId());
+            doctorDiagnosisArea.clear();
+            diagnosisDataPatient.setText("Διάγνωση: " + patientFile.getDiagnosis());
+        } else {
+            System.err.println("You cannot save an empty field!");
+            warning.setTitle("Warning");
+            warning.setHeaderText("Field is empty");
+            warning.setContentText("Please fill in all fields!");
+            warning.showAndWait();
+        }
     }
 
     public void onHostClinicClick(ActionEvent actionEvent) throws IOException {
@@ -293,5 +305,8 @@ public class PatientFileScreen {
     public void onDischargeNoteSaveClick(ActionEvent actionEvent) throws IOException {
         openScene("initial_doctor_screen.fxml");
         closeButtonAction();
+    }
+
+    public void onDetailedHistoryClick(ActionEvent actionEvent) {
     }
 }

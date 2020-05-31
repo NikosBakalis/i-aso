@@ -706,11 +706,16 @@ public class ICRUDImpl implements ICRUD {
 
     public ObservableList<InitialDoctorScreenListItem> getInitialDoctorScreenListItems(String hospital, String admissionClinic) {
         try {
-            String query = "select patient.amka as amka, patient.first_name as first_name, patient.last_name as last_name, " +
-                           "admission_ticket.host_clinic as host_clinic, admission_ticket.patient_chamber as patient_chamber " +
-                           "from patient_file inner join admission_ticket on patient_file.file_id = admission_ticket.ticket_id " +
-                           "inner join patient on patient_file.patient_amka = patient.amka " +
-                           "where patient_file.hospital = ? and admission_ticket.admission_clinic = ?;";
+            String query = "SELECT patient.amka AS amka, patient.first_name AS first_name, " +
+                           "patient.last_name AS last_name, admission_ticket.host_clinic AS host_clinic, " +
+                           "admission_ticket.patient_chamber AS patient_chamber, " +
+                           "patient_file.file_id as file_id FROM patient_file " +
+                           "INNER JOIN admission_ticket ON patient_file.file_id = admission_ticket.ticket_id " +
+                           "INNER JOIN patient ON patient_file.patient_amka = patient.amka " +
+                           "LEFT JOIN discharge_note ON patient_file.file_id = discharge_note.note_id " +
+                           "WHERE patient_file.hospital = ? AND admission_ticket.admission_clinic = ? " +
+                           "AND (NOT(discharge_note.stage = \"SENT\" OR discharge_note.stage = \"APPROVED\") " +
+                           "OR discharge_note.stage IS NULL);";
             ResultSet resultSet;
             InitialDoctorScreenListItem initialDoctorScreenListItem;
             ObservableList<InitialDoctorScreenListItem> initialDoctorScreenListItems;
@@ -728,6 +733,7 @@ public class ICRUDImpl implements ICRUD {
                     initialDoctorScreenListItem.setLastName(resultSet.getString("last_name"));
                     initialDoctorScreenListItem.setHostClinic(resultSet.getString("host_clinic"));
                     initialDoctorScreenListItem.setPatientChamber(resultSet.getString("patient_chamber"));
+                    initialDoctorScreenListItem.setFileId(resultSet.getString("file_id"));
                     initialDoctorScreenListItems.add(initialDoctorScreenListItem);
                 }
             }
@@ -1117,6 +1123,19 @@ public class ICRUDImpl implements ICRUD {
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException ignore) {
+        }
+    }
+
+    public void saveNewDiagnosis(String diagnosis, String amka){
+        try {
+            String query = "UPDATE patient_file SET patient_file.diagnosis = ? WHERE patient_file.patient_amka = ?;";
+
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, diagnosis);
+                preparedStatement.setString(2, amka);
+                preparedStatement.executeUpdate();
+            }
+        }catch (SQLException ignore){
         }
     }
 
