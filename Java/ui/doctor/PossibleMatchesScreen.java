@@ -8,11 +8,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Doctor;
+import model.Patient;
 import model.PossibleMatchesScreenListItem;
 import model.User;
 
@@ -46,13 +50,28 @@ public class PossibleMatchesScreen implements Initializable {
 
     public void onConfirmationClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Patient confirmation");
-        openScene("patient_file_screen.fxml");
+        iCRUDImpl.getPatient(tableView.getSelectionModel().getSelectedItem().getAmka());
+        Parent parent = FXMLLoader.load(getClass().getResource("patient_file_screen.fxml"));
+        Scene scene = new Scene(parent);
+        System.out.println();
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("I-aso");
+        scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        Pane pane = (Pane) scene.lookup("#admissionTicketPane");
+        pane.setVisible(true);
+        VBox vBox = (VBox) scene.lookup("#buttonVBox");
+        vBox.setVisible(false);
+        ChoiceBox clinics = (ChoiceBox) scene.lookup("#clinics");
+        clinics.setItems(iCRUDImpl.getAllClinicNamesOfDoctor(user.getUsername(), doctor.getClinic()));
         closeButtonAction();
     }
 
     private void openScene(String fxmlFile) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(parent);
+        System.out.println();
         Stage primaryStage = new Stage();
         primaryStage.setTitle("I-aso");
         scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());

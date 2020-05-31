@@ -43,14 +43,17 @@ public class TemporaryAdmissionTicketScreen implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        textFieldAmka.setText(transfer.getPatientAmka());
+        textFieldAmka.setText(patient.getAmka());
+//        textFieldAmka.setText(transfer.getPatientAmka());
         textFieldFirstName.setText(patient.getFirstName());
         textFieldLastName.setText(patient.getLastName());
-        textFieldId.setText(transfer.getId().toString());
-        textFieldStage.setText(transfer.getStage());
+        textFieldId.setText(admissionTicket.getCreatedAt().toString());
+        textFieldStage.setText(admissionTicket.getStage());
+//        textFieldId.setText(transfer.getId().toString());
+//        textFieldStage.setText(transfer.getStage());
         textFieldSourceClinic.setText(admissionTicket.getHostClinic());
         textFieldDestinationClinic.setText(admissionTicket.getAdmissionClinic());
-        textFieldAuthorizedBy.setText(transfer.getAuthorisedBy());
+//        textFieldAuthorizedBy.setText(transfer.getAuthorisedBy());
     }
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
@@ -81,7 +84,4 @@ public class TemporaryAdmissionTicketScreen implements Initializable {
         stage.close();
     }
 
-    public void inspectAdmissionTicket(String fileId){
-
-    }
 }

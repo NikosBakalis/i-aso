@@ -103,11 +103,11 @@ CREATE TABLE IF NOT EXISTS patient_file (
 
 CREATE TABLE IF NOT EXISTS admission_ticket (
     ticket_id VARCHAR(20) PRIMARY KEY,
-    created_at DATETIME DEFAULT NOW() NOT NULL,
-    admission_clinic VARCHAR(30) NOT NULL,
-    host_clinic VARCHAR(30) NOT NULL,
-    patient_chamber VARCHAR(4) NOT NULL,
-    patient_bed VARCHAR(4) NOT NULL,
+    created_at DATETIME DEFAULT NOW(),
+    admission_clinic VARCHAR(30),
+    host_clinic VARCHAR(30),
+    patient_chamber VARCHAR(4),
+    patient_bed VARCHAR(4),
     admission_text TEXT,
     stage ENUM("CREATED", "SENT", "APPROVED") NOT NULL DEFAULT "CREATED",
     CONSTRAINT admission_ticket_file FOREIGN KEY (ticket_id) REFERENCES patient_file(file_id) ON UPDATE CASCADE ON DELETE CASCADE,

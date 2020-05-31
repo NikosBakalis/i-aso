@@ -20,7 +20,7 @@ public class ICRUDImpl implements ICRUD {
 
     public Hospital getHospital(String afm) {
         try {
-            String query = "SELECT * FROM hospital WHERE hospital.hospital_afm = ?";
+            String query = "SELECT * FROM hospital WHERE hospital.hospital_afm = ?;";
 
             ResultSet resultSet;
             Hospital hospital;
@@ -51,7 +51,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public Clinic getClinic(String name, String hospital_afm) {
         try {
-            String query = "SELECT * FROM clinic WHERE clinic.name = ? AND clinic.hospital_afm = ?";
+            String query = "SELECT * FROM clinic WHERE clinic.name = ? AND clinic.hospital_afm = ?;";
 
             ResultSet resultSet;
             Clinic clinic;
@@ -76,7 +76,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public Patient getPatient(String amka) {
         try {
-            String query = "SELECT * FROM patient WHERE patient.amka = ?";
+            String query = "SELECT * FROM patient WHERE patient.amka = ?;";
 
             ResultSet resultSet;
             Patient patient;
@@ -116,7 +116,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public PatientFolder getPatientFolder(String patient_amka) {
         try {
-            String query = "SELECT * FROM patient_folder WHERE patient_folder.patient_amka = ?";
+            String query = "SELECT * FROM patient_folder WHERE patient_folder.patient_amka = ?;";
 
             ResultSet resultSet;
             PatientFolder patientFolder;
@@ -145,7 +145,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public PatientFile getPatientFile(String file_id) {
         try {
-            String query = "SELECT * FROM patient_file WHERE patient_file.file_id = ?";
+            String query = "SELECT * FROM patient_file WHERE patient_file.file_id = ?;";
 
             ResultSet resultSet;
             PatientFile patientFile;
@@ -173,7 +173,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public Chamber getChamber(String id) {
         try {
-            String query = "SELECT * FROM chamber WHERE chamber.id = ?";
+            String query = "SELECT * FROM chamber WHERE chamber.id = ?;";
 
             ResultSet resultSet;
             Chamber chamber;
@@ -197,7 +197,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public Bed getBed(String number) {
         try {
-            String query = "SELECT * FROM bed WHERE bed.number = ?";
+            String query = "SELECT * FROM bed WHERE bed.number = ?;";
 
             ResultSet resultSet;
             Bed bed;
@@ -222,7 +222,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public AdmissionTicket getAdmissionTicket(String ticket_id) {
         try {
-            String query = "SELECT * FROM admission_ticket WHERE admission_ticket.ticket_id = ?";
+            String query = "SELECT * FROM admission_ticket WHERE admission_ticket.ticket_id = ?;";
 
             ResultSet resultSet;
             AdmissionTicket admissionTicket;
@@ -252,7 +252,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public DischargeNote getDischargeNote(String note_id) {
         try {
-            String query = "SELECT * FROM discharge_note WHERE discharge_note.note_id = ?";
+            String query = "SELECT * FROM discharge_note WHERE discharge_note.note_id = ?;";
 
             ResultSet resultSet;
             DischargeNote dischargeNote;
@@ -279,7 +279,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public Billing getBilling(String billing_id) {
         try {
-            String query = "SELECT * FROM billing WHERE billing.billing_id = ?";
+            String query = "SELECT * FROM billing WHERE billing.billing_id = ?;";
 
             ResultSet resultSet;
             Billing billing;
@@ -303,7 +303,7 @@ public class ICRUDImpl implements ICRUD {
 
     public User getUser(String username) {
         try {
-            String query = "SELECT * FROM user WHERE user.user_name = ?";
+            String query = "SELECT * FROM user WHERE user.user_name = ?;";
 
             ResultSet resultSet;
             User user;
@@ -331,7 +331,7 @@ public class ICRUDImpl implements ICRUD {
 
     public Doctor getDoctor(String username) {
         try {
-            String query = "SELECT * FROM doctor WHERE doctor.user_name = ?";
+            String query = "SELECT * FROM doctor WHERE doctor.user_name = ?;";
 
             ResultSet resultSet;
             Doctor doctor;
@@ -356,7 +356,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public Transfer getTransfer(Timestamp id, String patient_amka) {
         try {
-            String query = "SELECT * FROM transfer WHERE transfer.id = ? AND transfer.patient_amka = ?";
+            String query = "SELECT * FROM transfer WHERE transfer.id = ? AND transfer.patient_amka = ?;";
 
             ResultSet resultSet;
             Transfer transfer;
@@ -385,7 +385,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public PatientTransferOffice getPatientTransferOffice(String number) {
         try {
-            String query = "SELECT * FROM patient_transfer_office WHERE patient_transfer_office.number = ?";
+            String query = "SELECT * FROM patient_transfer_office WHERE patient_transfer_office.number = ?;";
 
             ResultSet resultSet;
             PatientTransferOffice patientTransferOffice;
@@ -409,7 +409,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public TransferOfficeAgent getTransferOfficeAgent(String username) {
         try {
-            String query = "SELECT * FROM transfer_office_agent WHERE transfer_office_agent.user_name = ?";
+            String query = "SELECT * FROM transfer_office_agent WHERE transfer_office_agent.user_name = ?;";
 
             ResultSet resultSet;
             TransferOfficeAgent transferOfficeAgent;
@@ -433,7 +433,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public Lab getLab(String name, String hospital_afm) {
         try {
-            String query = "SELECT * FROM lab WHERE lab.name = ? AND lab.hospital_afm = ?";
+            String query = "SELECT * FROM lab WHERE lab.name = ? AND lab.hospital_afm = ?;";
 
             ResultSet resultSet;
             Lab lab;
@@ -458,7 +458,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public LabAgent getLabAgent(String username) {
         try {
-            String query = "SELECT * FROM lab_agent WHERE lab_agent.user_name = ?";
+            String query = "SELECT * FROM lab_agent WHERE lab_agent.user_name = ?;";
 
             ResultSet resultSet;
             LabAgent labAgent;
@@ -482,7 +482,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public ClinicAgent getClinicAgent(String username) {
         try {
-            String query = "SELECT * FROM clinic_agent WHERE clinic_agent.user_name = ?";
+            String query = "SELECT * FROM clinic_agent WHERE clinic_agent.user_name = ?;";
 
             ResultSet resultSet;
             ClinicAgent clinicAgent;
@@ -506,7 +506,7 @@ public class ICRUDImpl implements ICRUD {
     @Override
     public ClinicAgentPost getClinicAgentPost(String postId) {
         try {
-            String query = "SELECT * FROM clinic_agent_post WHERE clinic_agent_post.post_id = ?";
+            String query = "SELECT * FROM clinic_agent_post WHERE clinic_agent_post.post_id = ?;";
 
             ResultSet resultSet;
             ClinicAgentPost clinicAgentPost;
@@ -1077,7 +1077,7 @@ public class ICRUDImpl implements ICRUD {
     }
 
     public void allocateBed(String number) {
-        String query = "update bed set is_free = 1 where bed.number = ?";
+        String query = "update bed set is_free = 1 where bed.number = ?;";
         try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, number);
             preparedStatement.executeUpdate();
@@ -1087,7 +1087,7 @@ public class ICRUDImpl implements ICRUD {
     }
 
     public void updateTicket(String ticketId, String chamber, String bed) {
-        String query = "update admission_ticket set patient_chamber = ?, patient_bed = ?, stage = 2 where ticket_id = ?";
+        String query = "update admission_ticket set patient_chamber = ?, patient_bed = ?, stage = 2 where ticket_id = ?;";
         try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, chamber);
             preparedStatement.setString(2, bed);
@@ -1195,13 +1195,28 @@ public class ICRUDImpl implements ICRUD {
     public void insertDischargeNote(String note_id, String discharge_text, String clinic) {
         try {
             String query = "INSERT INTO discharge_note (note_id, created_at, discharge_text, admission_clinic, stage) " +
-                           "VALUES (?, NOW(), ?, ?, \"SENT\")";
+                           "VALUES (?, NOW(), ?, ?, \"SENT\");";
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
                 preparedStatement.setString(1,note_id);
                 preparedStatement.setString(2,discharge_text);
                 preparedStatement.setString(3,clinic);
                 preparedStatement.executeUpdate();
+            }
+        } catch (SQLException ignore) {
+        }
+    }
 
+    public void insertAdmissionTicket(String ticketId, String admissionClinic, String hostClinic, String admissionText){
+        try {
+            String query = "INSERT INTO admission_ticket (ticket_id, created_at, admission_clinic, host_clinic, admission_text, stage) " +
+                    "VALUES (?, NOW(), ?, ?, ?, \"CREATED\");";
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1,ticketId);
+                preparedStatement.setString(2,admissionClinic);
+                preparedStatement.setString(3,hostClinic);
+                preparedStatement.setString(4,admissionText);
+                int x = preparedStatement.executeUpdate();
+                System.out.println("admInsert " + x);
             }
         } catch (SQLException ignore) {
         }
@@ -1210,7 +1225,7 @@ public class ICRUDImpl implements ICRUD {
     public  PatientFile getFileIdFromAmka(String amka) {
         try {
             String query = "select file_id from patient_file " +
-                           "where patient_amka =? ";
+                           "where patient_amka = ?;";
 
             ResultSet resultSet;
             PatientFile patientFile;
@@ -1252,5 +1267,64 @@ public class ICRUDImpl implements ICRUD {
 
     public void setConnection(Connection connection) {
         ICRUDImpl.connection = connection;
+    }
+
+
+    public String insertPatientFile(String amka, String hospital_afm, String username) {
+        String rand = random(19);
+        try {
+            String query = "INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) " +
+                    "VALUES (?, ?, ?, ?);";
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1,amka);
+                preparedStatement.setString(2,rand);
+                preparedStatement.setString(3,hospital_afm);
+                preparedStatement.setString(4,username);
+                int x = preparedStatement.executeUpdate();
+                System.out.println("patFileInsert " + x);
+            }
+        } catch (SQLException ignore) {
+        }
+        return rand;
+    }
+
+    public PatientFile getFileIdFromAmkaAndHospital(String amka, String hospital_afm) {
+        try {
+            String query = "select file_id from patient_file " +
+                    "where patient_amka = ? " +
+                    "and hospital = ?;";
+
+            ResultSet resultSet;
+            PatientFile patientFile;
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, amka);
+                preparedStatement.setString(2,hospital_afm);
+                resultSet = preparedStatement.executeQuery();
+                patientFile = null;
+                if (resultSet.next()) {
+                    patientFile = new PatientFile();
+                    patientFile.setFileId(resultSet.getString("file_id"));
+                    patientFile.setHospital(hospital_afm);
+                }
+            }
+            resultSet.close();
+            return patientFile;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    public void insertBilling(String fileId, float generatedFloat) {
+        try {
+            String query = "INSERT INTO billing (billing_id, created_at, price) " +
+                    "VALUES (?, NOW(), ?);";
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, fileId);
+                preparedStatement.setString(2, String.valueOf(generatedFloat));
+                int x = preparedStatement.executeUpdate();
+                System.out.println("insBill " + x);
+            }
+        } catch (SQLException ignore) {
+        }
     }
 }

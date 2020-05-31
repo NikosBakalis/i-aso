@@ -152,7 +152,7 @@ INSERT INTO bed (number, chamber_id, is_free) VALUES ('3520', '4356', TRUE);
 INSERT INTO bed (number, chamber_id, is_free) VALUES ('4564', '7234', FALSE);
 INSERT INTO bed (number, chamber_id, is_free) VALUES ('1256', '7234', TRUE);
 
-INSERT INTO admission_ticket (ticket_id, created_at, admission_clinic, host_clinic, patient_chamber, patient_bed, admission_text, stage) VALUES ('5627092159', NOW(), 'ΜΕΘ', 'ΜΕΘ', '7374', '3423', 'Καλησπέρα σας', 2);
+INSERT INTO admission_ticket (ticket_id, created_at, admission_clinic, host_clinic, patient_chamber, patient_bed, admission_text, stage) VALUES ('5627092159', NOW(), 'ΜΕΘ', 'ΜΕΘ', '7374', '3423', 'Καλησπέρα σας', 1);
 INSERT INTO admission_ticket (ticket_id, created_at, admission_clinic, host_clinic, patient_chamber, patient_bed, admission_text, stage) VALUES ('2346234633', NOW(), 'ΜΕΘ', 'ΜΕΘ', '4356', '5263', 'Χρόνια πολλά', 3);
 INSERT INTO admission_ticket (ticket_id, created_at, admission_clinic, host_clinic, patient_chamber, patient_bed, admission_text, stage) VALUES ('8943678443', NOW(), 'ΟΡΘΟΠΑΙΔΙΚΗ', 'ΟΡΘΟΠΑΙΔΙΚΗ', '7234', '4564', 'Με χμι χμι χμι', 3);
 

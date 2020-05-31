@@ -7,12 +7,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.lang.Math;
+import java.util.Random;
 
 public class PatientFileScreen {
     public Button returnButton;
@@ -41,6 +42,11 @@ public class PatientFileScreen {
     public ChoiceBox<String> hostClinic;   //inside dischargeNotePane
     public Button dischargeNoteSaveButton;  //inside dischargeNotePane
     public TextArea initialTextArea;
+    public Pane admissionTicketPane;
+    public ChoiceBox<String> clinics;
+    public Button admissionTicketSaveButton;
+    public TextArea admissionText;
+    public VBox buttonVBox;
 
     Alert warning = new Alert(Alert.AlertType.WARNING);
 
@@ -139,6 +145,7 @@ public class PatientFileScreen {
         initialTextArea.appendText("\nΚείμενο Εισιτηρίου: \t\t" + admissionTicket.getAdmissionText());
         initialTextArea.appendText("\nΣτάδιο: \t\t\t\t\t" + admissionTicket.getStage());
     }
+
     public void onStatusAndDiagnosisClick(ActionEvent actionEvent) {
         initialPane.setVisible(false);
         statusAndDiagnosisPane.setVisible(true);
@@ -243,16 +250,47 @@ public class PatientFileScreen {
     }
 
     public void onDischargeNoteSaveClick(ActionEvent actionEvent) throws IOException {
-       patientFile = iCRUDImpl.getFileIdFromAmka(patient.getAmka());
+//        System.out.println(fileId);
+        patientFile = iCRUDImpl.getFileIdFromAmkaAndHospital(patient.getAmka(), user.getHospital_afm());
         String newText;
+        int max = 100000;
+        int min = 100;
+        double random = min + Math.random() * (max - min);
+        float generatedFloat = (float) random;
         if(!dischargeText.getText().isEmpty()) {
             newText = dischargeText.getText();
             if (!hostClinic.getSelectionModel().isEmpty() && !hostClinic.getSelectionModel().getSelectedItem().equals("-")){
                 newText += " + Ενδονοσοκομειακή μετακίνηση: " + hostClinic.getSelectionModel().getSelectedItem();
             }
             iCRUDImpl.insertDischargeNote(patientFile.getFileId(), newText, doctor.getClinic());
+            iCRUDImpl.insertBilling(patientFile.getFileId(), generatedFloat);
             openScene("initial_doctor_screen.fxml");
             closeButtonAction();
+        } else {
+            System.err.println("You cannot save an empty field!");
+            warning.setTitle("Warning");
+            warning.setHeaderText("Field is empty");
+            warning.setContentText("Please fill in all fields!");
+            warning.showAndWait();
+        }
+    }
+
+    public void onAdmissionTicketSaveClick(ActionEvent actionEvent) {
+        String fileId = iCRUDImpl.insertPatientFile(patient.getAmka(), user.getHospital_afm(), user.getUsername());
+        iCRUDImpl.getPatientFile(fileId);
+        String newText;
+        String hostClinic;
+        if(!admissionText.getText().isEmpty()) {
+            newText = admissionText.getText();
+            if (!clinics.getSelectionModel().isEmpty() && !clinics.getSelectionModel().getSelectedItem().equals("-")){
+                hostClinic = clinics.getSelectionModel().getSelectedItem();
+            } else {
+                hostClinic = doctor.getClinic();
+            }
+            iCRUDImpl.insertAdmissionTicket(fileId, doctor.getClinic(), hostClinic, newText);
+            iCRUDImpl.getAdmissionTicket(fileId);
+            buttonVBox.setVisible(true);
+            admissionTicketPane.setVisible(false);
         } else {
             System.err.println("You cannot save an empty field!");
             warning.setTitle("Warning");
@@ -276,4 +314,5 @@ public class PatientFileScreen {
         Stage stage = (Stage) returnButton.getScene().getWindow();
         stage.close();
     }
+
 }
