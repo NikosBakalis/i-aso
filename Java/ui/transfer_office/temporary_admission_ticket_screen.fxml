@@ -21,12 +21,12 @@
    <Label fx:id="labelLastName" layoutX="138.0" layoutY="353.0" text="ΕΠΩΝΥΜΟ" />
    <Label fx:id="labelId" layoutX="138.0" layoutY="435.0" text="ΗΜΕΡΟΜΗΝΙΑ" />
    <TextField fx:id="textFieldId" editable="false" layoutX="256.0" layoutY="431.0" />
-   <Label fx:id="labelStage" layoutX="603.0" layoutY="353.0" text="ΣΤΑΔΙΟ" />
+   <Label fx:id="labelStage" layoutX="562.0" layoutY="353.0" text="ΣΤΑΔΙΟ" />
    <TextField fx:id="textFieldStage" editable="false" layoutX="721.0" layoutY="349.0" />
-   <Label fx:id="labelSourceClinic" layoutX="602.0" layoutY="191.0" text="ΚΛΙΝΙΚΗ ΝΟΣΗΛΕΙΑΣ" />
+   <Label fx:id="labelSourceClinic" layoutX="561.0" layoutY="191.0" text="ΚΛΙΝΙΚΗ ΝΟΣΗΛΕΙΑΣ" />
    <TextField fx:id="textFieldSourceClinic" editable="false" layoutX="720.0" layoutY="187.0" />
    <TextField fx:id="textFieldDestinationClinic" editable="false" layoutX="720.0" layoutY="274.0" />
-   <Label fx:id="labelDestinationClinic" layoutX="603.0" layoutY="278.0" text="ΚΛΙΝΙΚΗ ΥΠΟΔΟΧΗΣ" />
+   <Label fx:id="labelDestinationClinic" layoutX="562.0" layoutY="278.0" text="ΚΛΙΝΙΚΗ ΥΠΟΔΟΧΗΣ" />
    <Label fx:id="labelAuthorizedBy" layoutX="602.0" layoutY="435.0" text="ΙΑΤΡΟΣ" visible="false" />
    <TextField fx:id="textFieldAuthorizedBy" editable="false" layoutX="720.0" layoutY="431.0" visible="false" />
 
