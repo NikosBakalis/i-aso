@@ -744,46 +744,48 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
-    public AdmissionTicket getAdmissionTicketByAmka(String amka) {
-        try {
-            String query = "select admission_ticket.ticket_id from admission_ticket " +
-                           "inner join patient_file on patient_file.file_id = admission_ticket.ticket_id " +
-                           "where patient_file.patient_amka = ? order by admission_ticket.created_at DESC " +
-                           "limit 1;";
+//    public AdmissionTicket getAdmissionTicketByAmka(String amka) {
+//        try {
+//            String query = "select admission_ticket.ticket_id from admission_ticket " +
+//                           "inner join patient_file on patient_file.file_id = admission_ticket.ticket_id " +
+//                           "where patient_file.patient_amka = ? order by admission_ticket.created_at DESC " +
+//                           "limit 1;";
+//
+//            ResultSet resultSet;
+//            AdmissionTicket admissionTicket;
+//            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+//                preparedStatement.setString(1, amka);
+//                resultSet = preparedStatement.executeQuery();
+//                admissionTicket = null;
+//                if (resultSet.next()) {
+//                    admissionTicket = new AdmissionTicket();
+//                    admissionTicket.setTicketId(resultSet.getString("ticket_id"));
+//                }
+//            }
+//            resultSet.close();
+//            return admissionTicket;
+//        } catch (SQLException e) {
+//            return null;
+//        }
+//    }
 
-            ResultSet resultSet;
-            AdmissionTicket admissionTicket;
-            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
-                preparedStatement.setString(1, amka);
-                resultSet = preparedStatement.executeQuery();
-                admissionTicket = null;
-                if (resultSet.next()) {
-                    admissionTicket = new AdmissionTicket();
-                    admissionTicket.setTicketId(resultSet.getString("ticket_id"));
-                }
-            }
-            resultSet.close();
-            return admissionTicket;
-        } catch (SQLException e) {
-            return null;
-        }
-    }
-
-    public ObservableList<String> getAllClinicNamesOfDoctor(String username) {
+    public ObservableList<String> getAllClinicNamesOfDoctor(String username, String doctorClinic) {
         try {
-            String query = "select clinic.name from user " +
-                           "inner join clinic " +
-                           "on clinic.hospital_afm = user.hospital_afm " +
-                           "where user.user_name = ?;";
+            String query = "SELECT clinic.name FROM user " +
+                           "INNER JOIN clinic " +
+                           "ON clinic.hospital_afm = user.hospital_afm " +
+                           "WHERE user.user_name = ? " +
+                           "AND clinic.name != ?;";
             ResultSet resultSet;
             Clinic clinic;
             ObservableList<String> clinics;
 
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)){
                 preparedStatement.setString(1, username);
+                preparedStatement.setString(2, doctorClinic);
                 resultSet = preparedStatement.executeQuery();
                 clinics = FXCollections.observableArrayList();
-
+                clinics.add("-");
                 while (resultSet.next()) {
                     clinic = new Clinic();
                     clinic.setName(resultSet.getString("name"));
@@ -1126,12 +1128,25 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
-    public void saveNewDiagnosis(String diagnosis, String amka){
+    public void saveNewDiagnosis(String diagnosis, String amka) {
         try {
             String query = "UPDATE patient_file SET patient_file.diagnosis = ? WHERE patient_file.patient_amka = ?;";
 
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
                 preparedStatement.setString(1, diagnosis);
+                preparedStatement.setString(2, amka);
+                preparedStatement.executeUpdate();
+            }
+        }catch (SQLException ignore){
+        }
+    }
+
+    public void saveNewTreatment(String treatment, String amka) {
+        try {
+            String query = "UPDATE patient_file SET patient_file.treatment = ? WHERE patient_file.patient_amka = ?;";
+
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, treatment);
                 preparedStatement.setString(2, amka);
                 preparedStatement.executeUpdate();
             }
@@ -1177,15 +1192,14 @@ public class ICRUDImpl implements ICRUD {
         return sb.toString();
     }
 
-    public void insertDischargeNote(String note_id, String date , String discharge_text,String clinic) {
+    public void insertDischargeNote(String note_id, String discharge_text, String clinic) {
         try {
-            String query = "insert into discharge_note (note_id,created_at,discharge_text,admission_clinic,stage)" +
-                    " values (?,?,?,?,\"SENT\")";
+            String query = "INSERT INTO discharge_note (note_id, created_at, discharge_text, admission_clinic, stage) " +
+                           "VALUES (?, NOW(), ?, ?, \"SENT\")";
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
                 preparedStatement.setString(1,note_id);
-                preparedStatement.setString(2,date);
-                preparedStatement.setString(3,discharge_text);
-                preparedStatement.setString(4,clinic);
+                preparedStatement.setString(2,discharge_text);
+                preparedStatement.setString(3,clinic);
                 preparedStatement.executeUpdate();
 
             }

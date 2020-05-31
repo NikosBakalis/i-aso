@@ -41,6 +41,7 @@ INSERT INTO patient_folder (patient_amka, chronic_disease, patient_allergies, bl
 INSERT INTO user (user_name, hospital_afm, first_name, last_name, birth_date, password, specification) VALUES ('56798024', '0123456789', 'ALATOLY', 'KARPOV', NOW(), 'pa$$word', 1);
 INSERT INTO user (user_name, hospital_afm, first_name, last_name, birth_date, password, specification) VALUES ('04272840', '0123456789', 'GARRY', 'KASPAROV', NOW(), 'pa$$w0rd', 2);
 INSERT INTO user (user_name, hospital_afm, first_name, last_name, birth_date, password, specification) VALUES ('37464012', '0123456789', 'BOBBY', 'FISCHER', NOW(), 'pA$$word', 3);
+INSERT INTO user (user_name, hospital_afm, first_name, last_name, birth_date, password, specification) VALUES ('37464013', '0123456789', 'BOB', 'FISCHER', NOW(), 'pA$$word', 3);
 INSERT INTO user (user_name, hospital_afm, first_name, last_name, birth_date, password, specification) VALUES ('79830825', '0123456789', 'MAGNUS', 'CARLSEN', NOW(), 'passw0rd', 4);
 INSERT INTO user (user_name, hospital_afm, first_name, last_name, birth_date, password, specification) VALUES ('64980190', '1234567890', 'JOSE', 'CAPABLANCA', NOW(), 'Password', 1);
 INSERT INTO user (user_name, hospital_afm, first_name, last_name, birth_date, password, specification) VALUES ('90987322', '1234567890', 'VISWANATHAN', 'ANAND', NOW(), 'password', 2);
@@ -85,6 +86,7 @@ INSERT INTO lab_agent (user_name, lab_name) VALUES ('93724572', 'ΑΙΜΑΤΟΛ�
 INSERT INTO lab_agent (user_name, lab_name) VALUES ('94878429', 'ΑΙΜΑΤΟΛΟΓΙΚΟ');
 
 INSERT INTO clinic_agent (user_name, clinic_name) VALUES ('37464012', 'ΜΕΘ');
+INSERT INTO clinic_agent (user_name, clinic_name) VALUES ('37464013', 'ΜΕΘ');
 INSERT INTO clinic_agent (user_name, clinic_name) VALUES ('65273929', 'Α ΠΑΘΟΛΟΓΙΚΗ');
 INSERT INTO clinic_agent (user_name, clinic_name) VALUES ('75403203', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ');
 INSERT INTO clinic_agent (user_name, clinic_name) VALUES ('47938047', 'ΑΙΜΑΤΟΛΟΓΙΚΗ ΚΛΙΝΙΚΗ');

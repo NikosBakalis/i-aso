@@ -10,13 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
-import model.ClinicAgent;
 import model.ClinicAgentPost;
-import model.User;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class PostDescriptionScreen  {
     public Button returnButton;

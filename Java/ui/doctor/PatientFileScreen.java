@@ -38,7 +38,7 @@ public class PatientFileScreen {
     public TextArea treatmentDataPatient;  //inside treatmentPane
     public Pane dischargeNotePane;
     public TextArea dischargeText; //inside dischargeNotePane
-    public ComboBox<String> hostClinic;   //inside dischargeNotePane
+    public ChoiceBox<String> hostClinic;   //inside dischargeNotePane
     public Button dischargeNoteSaveButton;  //inside dischargeNotePane
     public TextArea initialTextArea;
 
@@ -58,8 +58,6 @@ public class PatientFileScreen {
     AdmissionTicket admissionTicket = new AdmissionTicket();
     User user = new User();
     Doctor doctor = new Doctor();
-
-
 
     public void onReturnClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Return to initial doctor screen");
@@ -113,29 +111,15 @@ public class PatientFileScreen {
         initialTextArea.appendText("\nHBV: \t\t\t\t" + patientFolder.getHBV());
         initialTextArea.appendText("\nHBC: \t\t\t\t" + patientFolder.getHBC());
     }
-   // false because we are not supposed to do this.
-   /* public void onDetailedHistoryClick(ActionEvent actionEvent) {
+    // false because we are not supposed to do this.
+    public void onDetailedHistoryClick(ActionEvent actionEvent) {
         initialPane.setVisible(false);
-        statusAndDiagnosisPane.setVisible(false);
         treatmentPane.setVisible(false);
         dischargeNotePane.setVisible(false);
-        //initialPane.setVisible(true);
+        statusAndDiagnosisPane.setVisible(false);
         System.out.println("Show detailed history");
-        patientFile = iCRUDImpl.getFileIdFromAmka(patient.getAmka());
-        // in order to get treatment we have to access patientFile with the getPatientFile from icrudimpl
-        patientFile = iCRUDImpl.getPatientFile(patientFile.getFileId());
-        initialTextArea.setWrapText(true);  //texts never exceeds
-        initialTextArea.setText("ΑΜΚΑ:"+patient.getAmka());
-        initialTextArea.appendText("\nΌνομα:"+patient.getFirstName());
-        initialTextArea.appendText("\nΕπώνημο:"+patient.getLastName());
-        initialTextArea.appendText("\nΑριθμός Αρχείου:"+patientFile.getFileId());
-        initialTextArea.appendText("\nΝοσοκομείο:"+patientFile.getHospital());
-        initialTextArea.appendText("\nΔιάγνωση:"+patientFile.getDiagnosis());
-        initialTextArea.appendText("\nΘεραπεία:"+patientFile.getTreatment());
-        initialTextArea.appendText("\nΑποτελέσματα εξετάσεων:"+patientFile.getLabTests());
     }
-    */
-// in this phase doctor can only see the admission ticket. Not change it
+
     public void onAdmissionTicketClick(ActionEvent actionEvent) {
         initialPane.setVisible(true);
         statusAndDiagnosisPane.setVisible(false);
@@ -143,9 +127,6 @@ public class PatientFileScreen {
         dischargeNotePane.setVisible(false);
         System.out.println("Show admission ticket");
 
-        admissionTicket = iCRUDImpl.getAdmissionTicketByAmka(patient.getAmka()); // This needs to be changed!
-        admissionTicket = iCRUDImpl.getAdmissionTicket(admissionTicket.getTicketId());
-        admissionTicket = iCRUDImpl.getAdmissionTicket(admissionTicket.getTicketId());  //get the patient from double click
         initialTextArea.setWrapText(true);  //texts never exceeds
         initialTextArea.setText("ΑΜΚΑ: \t\t\t\t\t" + patient.getAmka());
         initialTextArea.appendText("\nΌνομα: \t\t\t\t\t" + patient.getFirstName());
@@ -157,127 +138,21 @@ public class PatientFileScreen {
         initialTextArea.appendText("\nΚρεβάτι Ασθενή: \t\t\t" + admissionTicket.getPatientChamber());
         initialTextArea.appendText("\nΚείμενο Εισιτηρίου: \t\t" + admissionTicket.getAdmissionText());
         initialTextArea.appendText("\nΣτάδιο: \t\t\t\t\t" + admissionTicket.getStage());
-
-
     }
-
     public void onStatusAndDiagnosisClick(ActionEvent actionEvent) {
         initialPane.setVisible(false);
         statusAndDiagnosisPane.setVisible(true);
         treatmentPane.setVisible(false);
         dischargeNotePane.setVisible(false);
         System.out.println("Show status and diagnosis");
-        diagnosisDataPatient.setEditable(false);  //none can change this area
        if (patientFile.getDiagnosis() == null){
-           diagnosisDataPatient.setText("Διάγνωση: " + " -"); }
+           diagnosisDataPatient.setText("Διάγνωση: " + " - "); }
        else {
            diagnosisDataPatient.setText("Διάγνωση: " + patientFile.getDiagnosis());
        }
     }
-    // false because we are not supposed to do this.
-    public void onTestsClick(ActionEvent actionEvent) {
-        initialPane.setVisible(false);
-        treatmentPane.setVisible(false);
-        statusAndDiagnosisPane.setVisible(false);
-        dischargeNotePane.setVisible(false);
-        System.out.println("Show lab tests");
-    }
-    // false because we are not supposed to do this.
-    public void onTestResultsClick(ActionEvent actionEvent) {
-        initialPane.setVisible(false);
-        treatmentPane.setVisible(false);
-        dischargeNotePane.setVisible(false);
-        statusAndDiagnosisPane.setVisible(false);
-        System.out.println("Show lab tests results");
-    }
 
-    public void onTreatmentClick(ActionEvent actionEvent) {
-        initialPane.setVisible(false);
-        statusAndDiagnosisPane.setVisible(false);
-        treatmentPane.setVisible(true);
-        dischargeNotePane.setVisible(false);
-        System.out.println("Show treatment");
-        patientFile = iCRUDImpl.getFileIdFromAmka(patient.getAmka());
-        patientFile = iCRUDImpl.getPatientFile(patientFile.getFileId());
-        // the above in order to have access in patientFile
-        treatmentDataPatient.setEditable(false);  //none can change this area
-
-        if (patientFile.getTreatment() == null) {
-            treatmentDataPatient.appendText("Τωρινή Θεραπεία:" + " - ");
-        } else {
-            treatmentDataPatient.appendText("Τωρινή Θεραπεία: " + patientFile.getTreatment());
-        }
-
-    }
-
-    //inside treatmentPane
-    public void onSaveTreatmentClick(ActionEvent actionEvent) {
-        patientFile = iCRUDImpl.getFileIdFromAmka(patient.getAmka());
-        System.out.println(patientFile.getFileId() + "this is file id");
-        admissionTicket = iCRUDImpl.getAdmissionTicketByAmka(patient.getAmka());
-        //System.out.println(admissionTicket.getTicketId());
-        // in order to get treatment we have to access patientFile with the getPatientFile from icrudimpl
-        patientFile = iCRUDImpl.getPatientFile(patientFile.getFileId());
-        System.out.println(patientFile.getTreatment() + "this is patients treatment");
-        String Text;
-       // treatmentDataPatient.setText(patientFile.getTreatment());
-        if (patientFile.getTreatment() != null) {
-            Text = patientFile.getTreatment() + "---" + doctorTreatmentArea.getText();
-            System.out.println("1 " + Text);
-            iCRUDImpl.updateTreatment(Text, patient.getAmka(), admissionTicket.getTicketId());
-        }
-        else{
-            Text = doctorTreatmentArea.getText();
-            System.out.println("2 " + Text);
-            iCRUDImpl.updateTreatment(Text, patient.getAmka(), admissionTicket.getTicketId());
-        }
-        System.out.println(Text);
-        // i have not test yet if the updates screen works
-        treatmentDataPatient.setText("Τωρινή Θεραπεία: " + patientFile.getTreatment());
-
-    }
-
-    public void onDischargeNoteClick(ActionEvent actionEvent) {
-        initialPane.setVisible(false);
-        statusAndDiagnosisPane.setVisible(false);
-        treatmentPane.setVisible(false);
-        dischargeNotePane.setVisible(true);
-        initialTextArea.setWrapText(true);  //texts never exceeds
-        System.out.println("Show discharge note");
-        //datetime format
-        Date dt = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date = sdf.format(dt);
-       // fill the combo box
-        iCRUDImpl.getAllClinicNamesOfDoctor(user.getUsername());
-       // System.out.println(user.getUsername());
-        hostClinic.setItems(iCRUDImpl.getAllClinicNamesOfDoctor(user.getUsername()));
-        // patientFile.getFileId() = file_id = discharge note id
-       patientFile = iCRUDImpl.getFileIdFromAmka(patient.getAmka());
-        System.out.println(patientFile.getFileId() + "this id file id ");
-        if(dischargeText.getText()!=null) {
-            iCRUDImpl.insertDischargeNote(patientFile.getFileId(), date, dischargeText.getText(), doctor.getClinic());
-        }
-        else{System.out.println("nono");}
-    }
-
-    private void openScene(String fxmlFile) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
-        Scene scene = new Scene(parent);
-        Stage primaryStage = new Stage();
-        primaryStage.setTitle("I-aso");
-        scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    private void closeButtonAction(){
-        Stage stage = (Stage) returnButton.getScene().getWindow();
-        stage.close();
-    }
-
-    // inside statusAndDiagnosisPane
-    public void onSaveStatusAndDignosisClick(ActionEvent actionEvent) {
+    public void onSaveStatusAndDiagnosisClick(ActionEvent actionEvent) {
         System.out.println("Save Status.");
         if (!doctorDiagnosisArea.getText().isEmpty()) {
             if (patientFile.getDiagnosis() == null) {
@@ -297,16 +172,108 @@ public class PatientFileScreen {
         }
     }
 
-    public void onHostClinicClick(ActionEvent actionEvent) throws IOException {
-        openScene("initial_doctor_screen.fxml");
-        closeButtonAction();
-
+    public void onTestsClick(ActionEvent actionEvent) {
+        initialPane.setVisible(false);
+        treatmentPane.setVisible(false);
+        statusAndDiagnosisPane.setVisible(false);
+        dischargeNotePane.setVisible(false);
+        System.out.println("Show lab tests");
     }
+
+    public void onTestResultsClick(ActionEvent actionEvent) {
+        initialPane.setVisible(false);
+        treatmentPane.setVisible(false);
+        dischargeNotePane.setVisible(false);
+        statusAndDiagnosisPane.setVisible(false);
+        System.out.println("Show lab tests results");
+    }
+
+    public void onTreatmentClick(ActionEvent actionEvent) {
+        initialPane.setVisible(false);
+        statusAndDiagnosisPane.setVisible(false);
+        treatmentPane.setVisible(true);
+        dischargeNotePane.setVisible(false);
+        System.out.println("Show treatment");
+
+        treatmentDataPatient.setEditable(false);
+
+        if (patientFile.getTreatment() == null) {
+            treatmentDataPatient.setText("Τωρινή Θεραπεία: " + " - ");
+        } else {
+            treatmentDataPatient.setText("Τωρινή Θεραπεία: " + patientFile.getTreatment());
+        }
+    }
+
+    public void onSaveTreatmentClick(ActionEvent actionEvent) {
+        if (!doctorTreatmentArea.getText().isEmpty()){
+            if (patientFile.getTreatment() == null) {
+                iCRUDImpl.saveNewTreatment(doctorTreatmentArea.getText(), patient.getAmka());
+            } else {
+                iCRUDImpl.saveNewTreatment(patientFile.getTreatment() + " + " + doctorTreatmentArea.getText(), patient.getAmka());
+            }
+            iCRUDImpl.getPatientFile(patientFile.getFileId());
+            doctorTreatmentArea.clear();
+            treatmentDataPatient.setText("Τωρινή Θεραπεία: " + patientFile.getTreatment());
+        } else {
+            System.err.println("You cannot save an empty field!");
+            warning.setTitle("Warning");
+            warning.setHeaderText("Field is empty");
+            warning.setContentText("Please fill in all fields!");
+            warning.showAndWait();
+        }
+    }
+
+    public void onDischargeNoteClick(ActionEvent actionEvent) {
+        System.out.println(admissionTicket.getStage());
+        if (admissionTicket.getStage().equals("APPROVED")) {
+            initialPane.setVisible(false);
+            statusAndDiagnosisPane.setVisible(false);
+            treatmentPane.setVisible(false);
+            dischargeNotePane.setVisible(true);
+            initialTextArea.setWrapText(true);
+            System.out.println("Show discharge note");
+            hostClinic.setItems(iCRUDImpl.getAllClinicNamesOfDoctor(user.getUsername(), doctor.getClinic()));
+        } else {
+            System.err.println("Stage not approved!");
+            warning.setTitle("Warning");
+            warning.setHeaderText("Wait");
+            warning.setContentText("Please wait until ticket approved!");
+            warning.showAndWait();
+        }
+    }
+
     public void onDischargeNoteSaveClick(ActionEvent actionEvent) throws IOException {
-        openScene("initial_doctor_screen.fxml");
-        closeButtonAction();
+       patientFile = iCRUDImpl.getFileIdFromAmka(patient.getAmka());
+        String newText;
+        if(!dischargeText.getText().isEmpty()) {
+            newText = dischargeText.getText();
+            if (!hostClinic.getSelectionModel().isEmpty() && !hostClinic.getSelectionModel().getSelectedItem().equals("-")){
+                newText += " + Ενδονοσοκομειακή μετακίνηση: " + hostClinic.getSelectionModel().getSelectedItem();
+            }
+            iCRUDImpl.insertDischargeNote(patientFile.getFileId(), newText, doctor.getClinic());
+            openScene("initial_doctor_screen.fxml");
+            closeButtonAction();
+        } else {
+            System.err.println("You cannot save an empty field!");
+            warning.setTitle("Warning");
+            warning.setHeaderText("Field is empty");
+            warning.setContentText("Please fill in all fields!");
+            warning.showAndWait();
+        }
     }
 
-    public void onDetailedHistoryClick(ActionEvent actionEvent) {
+    private void openScene(String fxmlFile) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
+        Scene scene = new Scene(parent);
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("I-aso");
+        scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private void closeButtonAction(){
+        Stage stage = (Stage) returnButton.getScene().getWindow();
+        stage.close();
     }
 }

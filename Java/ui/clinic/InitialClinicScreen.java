@@ -31,6 +31,12 @@ public class InitialClinicScreen implements Initializable {
     User user = new User();
     ClinicAgent clinicAgent = new ClinicAgent();
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        numberOfPendingTicketLabel.setText(iCRUDImpl.getPendingAdmissionTickets(clinicAgent.getClinic(), user.getHospital_afm()));
+        postNumLabel.setText(iCRUDImpl.getClinicPosts(clinicAgent.getClinic(), user.getHospital_afm()));
+    }
+
     public void onPendingAdmissionTicketsClick(ActionEvent actionEvent) throws IOException {
         System.out.println("Show pending admission tickets");
         openScene("pending_admission_ticket_screen.fxml");
@@ -70,11 +76,5 @@ public class InitialClinicScreen implements Initializable {
     private void closeButtonAction(){
         Stage stage = (Stage) logoutButton.getScene().getWindow();
         stage.close();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        numberOfPendingTicketLabel.setText(iCRUDImpl.getPendingAdmissionTickets(clinicAgent.getClinic(), user.getHospital_afm()));
-        postNumLabel.setText(iCRUDImpl.getClinicPosts(clinicAgent.getClinic(), user.getHospital_afm()));
     }
 }
