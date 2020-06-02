@@ -1,10 +1,12 @@
 package database;
 
-import javafx.collections.ObservableList;
 import model.*;
 
 import java.sql.Timestamp;
 
+/**
+ * The interface of ICRUDImpl. Here you can find all the BASIC methods of MVC model.
+ */
 public interface ICRUD {
     Hospital getHospital(String afm);
     Clinic getClinic(String name, String hospital_afm);

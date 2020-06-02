@@ -16,8 +16,13 @@ import java.util.stream.Collectors;
 
 public class ICRUDImpl implements ICRUD {
 
-    private static Connection connection;
+    private static Connection connection; // Initialize connection with the database server.
 
+    /**
+     * Method that populates model.Hospital with values from database table.
+     * @param afm requires the primary key of hospital table in database so as to retrieve the data.
+     * @return the hospital values of this primary key to model.Hospital.
+     */
     public Hospital getHospital(String afm) {
         try {
             String query = "SELECT * FROM hospital WHERE hospital.hospital_afm = ?;";
@@ -48,6 +53,12 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.Clinic with values from database table.
+     * @param name requires the primary key of clinic table in database so as to retrieve the data.
+     * @param hospital_afm requires the primary key of clinic table in database so as to retrieve the data.
+     * @return the clinic values of this primary key to model.Clinic.
+     */
     @Override
     public Clinic getClinic(String name, String hospital_afm) {
         try {
@@ -73,6 +84,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.Patient with values from database table.
+     * @param amka requires the primary key of patient table in database so as to retrieve the data.
+     * @return the patient values of this primary key to model.Patient.
+     */
     @Override
     public Patient getPatient(String amka) {
         try {
@@ -113,6 +129,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.PatientFolder with values from database table.
+     * @param patient_amka requires the primary key of patient_folder table in database so as to retrieve the data.
+     * @return the patient_folder values of this primary key to model.PatientFolder.
+     */
     @Override
     public PatientFolder getPatientFolder(String patient_amka) {
         try {
@@ -142,6 +163,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.PatientFile with values from database table.
+     * @param file_id requires the primary key of patient_file table in database so as to retrieve the data.
+     * @return the patient_file values of this primary key to model.PatientFile.
+     */
     @Override
     public PatientFile getPatientFile(String file_id) {
         try {
@@ -170,6 +196,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.Chamber with values from database table.
+     * @param id requires the primary key of chamber table in database so as to retrieve the data.
+     * @return the chamber values of this primary key to model.Chamber.
+     */
     @Override
     public Chamber getChamber(String id) {
         try {
@@ -194,6 +225,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.Bed with values from database table.
+     * @param number requires the primary key of bed table in database so as to retrieve the data.
+     * @return the bed values of this primary key to model.Bed.
+     */
     @Override
     public Bed getBed(String number) {
         try {
@@ -219,6 +255,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.AdmissionTicket with values from database table.
+     * @param ticket_id requires the primary key of admission_ticket table in database so as to retrieve the data.
+     * @return the admission_ticket values of this primary key to model.AdmissionTicket.
+     */
     @Override
     public AdmissionTicket getAdmissionTicket(String ticket_id) {
         try {
@@ -249,6 +290,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.DischargeNote with values from database table.
+     * @param note_id requires the primary key of discharge_note table in database so as to retrieve the data.
+     * @return the discharge_note values of this primary key to model.DischargeNote.
+     */
     @Override
     public DischargeNote getDischargeNote(String note_id) {
         try {
@@ -276,6 +322,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.Billing with values from database table.
+     * @param billing_id requires the primary key of billing table in database so as to retrieve the data.
+     * @return the billing values of this primary key to model.Billing.
+     */
     @Override
     public Billing getBilling(String billing_id) {
         try {
@@ -301,6 +352,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.User with values from database table.
+     * @param username requires the primary key of user table in database so as to retrieve the data.
+     * @return the user values of this primary key to model.User.
+     */
     public User getUser(String username) {
         try {
             String query = "SELECT * FROM user WHERE user.user_name = ?;";
@@ -329,6 +385,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.Doctor with values from database table.
+     * @param username requires the primary key of doctor table in database so as to retrieve the data.
+     * @return the doctor values of this primary key to model.Doctor.
+     */
     public Doctor getDoctor(String username) {
         try {
             String query = "SELECT * FROM doctor WHERE doctor.user_name = ?;";
@@ -353,6 +414,12 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.Transfer with values from database table.
+     * @param id requires the primary key of transfer table in database so as to retrieve the data.
+     * @param patient_amka requires the primary key of transfer table in database so as to retrieve the data.
+     * @return the transfer values of this primary key to model.Transfer.
+     */
     @Override
     public Transfer getTransfer(Timestamp id, String patient_amka) {
         try {
@@ -382,6 +449,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.PatientTransferOffice with values from database table.
+     * @param number requires the primary key of patient_transfer_office table in database so as to retrieve the data.
+     * @return the patient_transfer_office values of this primary key to model.PatientTransferOffice.
+     */
     @Override
     public PatientTransferOffice getPatientTransferOffice(String number) {
         try {
@@ -406,6 +478,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.TransferOfficeAgent with values from database table.
+     * @param username requires the primary key of transfer_office_agent table in database so as to retrieve the data.
+     * @return the transfer_office_agent values of this primary key to model.TransferOfficeAgent.
+     */
     @Override
     public TransferOfficeAgent getTransferOfficeAgent(String username) {
         try {
@@ -430,6 +507,12 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.Lab with values from database table.
+     * @param name requires the primary key of lab table in database so as to retrieve the data.
+     * @param hospital_afm requires the primary key of lab table in database so as to retrieve the data.
+     * @return the lab values of this primary key to model.Lab.
+     */
     @Override
     public Lab getLab(String name, String hospital_afm) {
         try {
@@ -455,6 +538,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.LabAgent with values from database table.
+     * @param username requires the primary key of lab_agent table in database so as to retrieve the data.
+     * @return the lab_agent values of this primary key to model.LabAgent.
+     */
     @Override
     public LabAgent getLabAgent(String username) {
         try {
@@ -479,6 +567,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.ClinicAgent with values from database table.
+     * @param username requires the primary key of clinic_agent table in database so as to retrieve the data.
+     * @return the clinic_agent values of this primary key to model.ClinicAgent.
+     */
     @Override
     public ClinicAgent getClinicAgent(String username) {
         try {
@@ -503,6 +596,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that populates model.ClinicAgentPost with values from database table.
+     * @param postId requires the primary key of clinic_agent_post table in database so as to retrieve the data.
+     * @return the clinic_agent_post values of this primary key to model.ClinicAgentPost.
+     */
     @Override
     public ClinicAgentPost getClinicAgentPost(String postId) {
         try {
@@ -531,6 +629,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that sets the discharge_note.stage of discharge_note table to APPROVED.
+     * @param noteId requires the primary key of discharge_note table in database so as to change the data.
+     * @return the status of the query as integer (value must be equal to 1).
+     */
     public int setStageToFinal(String noteId) {
         int queryStatus = 0;
         String query = "UPDATE discharge_note SET discharge_note.stage = 2 WHERE discharge_note.note_id = ?;";
@@ -538,11 +641,17 @@ public class ICRUDImpl implements ICRUD {
             preparedStatement.setString(1, noteId);
             queryStatus = preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error: MySQL UPDATE failure");
+            System.err.println("MySQL UPDATE failure");
         }
         return queryStatus;
     }
 
+    /**
+     * Method that retrieves the number of all pending admission tickets.
+     * @param clinicName requires the primary key of admission_ticket table in database so as to change the data.
+     * @param hospitalAfm requires the primary key of admission_ticket table in database so as to change the data.
+     * @return the number of pending admission tickets.
+     */
     public String getPendingAdmissionTickets(String clinicName, String hospitalAfm) {
         int pendingAdmissionTickets = 0;
         String query = "SELECT COUNT(*) as count FROM admission_ticket " +
@@ -560,11 +669,17 @@ public class ICRUDImpl implements ICRUD {
                 pendingAdmissionTickets = resultSet.getInt("count");
             }
         } catch (SQLException e) {
-            System.out.println("Error: MySQL admission tickets fetching failed");
+            System.err.println("MySQL admission tickets fetching failed");
         }
         return String.valueOf(pendingAdmissionTickets);
     }
 
+    /**
+     * Method that retrieves the number of posts of a clinic of a hospital from the database.
+     * @param clinicName requires the primary key of clinic_post table in database so as to retrieve the data.
+     * @param hospitalAfm requires the primary key of clinic_post table in database so as to retrieve the data.
+     * @return the number of posts in one clinic of a hospital.
+     */
     public String getClinicPosts(String clinicName, String hospitalAfm) {
         int clinicPosts = 0;
         String query = "SELECT COUNT(*) as count FROM clinic_agent_post " +
@@ -579,11 +694,16 @@ public class ICRUDImpl implements ICRUD {
                 clinicPosts = resultSet.getInt("count");
             }
         } catch (SQLException e) {
-            System.out.println("Error: MySQL clinic posts fetching failed");
+            System.err.println("MySQL clinic posts fetching failed");
         }
         return String.valueOf(clinicPosts);
     }
 
+    /**
+     * Method that retrieves the number of transfer pending admission tickets from the database.
+     * @param hospitalAfm requires the primary key of admission_ticket table in database so as to retrieve the data.
+     * @return the number of transfer pending admission tickets.
+     */
     public String getTransferPendingAdmissionTickets(String hospitalAfm) {
         int transferPendingAdmissionTickets = 0;
         String query = "SELECT count(*) AS count FROM admission_ticket " +
@@ -597,11 +717,16 @@ public class ICRUDImpl implements ICRUD {
                 transferPendingAdmissionTickets = resultSet.getInt("count");
             }
         } catch (SQLException e) {
-            System.out.println("Error: MySQL transfer admission tickets fetching failed");
+            System.err.println("MySQL transfer admission tickets fetching failed");
         }
         return String.valueOf(transferPendingAdmissionTickets);
     }
 
+    /**
+     * Method that retrieves the number of transfer pending discharge notes from the database.
+     * @param hospitalAfm requires the primary key of discharge_note table in database so as to retrieve the data.
+     * @return the number of the number of transfer pending discharge notes.
+     */
     public String getTransferPendingDischargeNotes(String hospitalAfm) {
         int transferPendingDischargeNotes = 0;
         String query = "SELECT COUNT(*) AS count FROM discharge_note " +
@@ -616,11 +741,16 @@ public class ICRUDImpl implements ICRUD {
                 transferPendingDischargeNotes = resultSet.getInt("count");
             }
         } catch (SQLException e) {
-            System.out.println("Error: MySQL transfer discharge notes fetching failed");
+            System.err.println("MySQL transfer discharge notes fetching failed");
         }
         return String.valueOf(transferPendingDischargeNotes);
     }
 
+    /**
+     * Method that retrieves all the discharge notes to be confirmed from the database.
+     * @param hospital requires a key of discharge_note table in database so as to retrieve the data.
+     * @return an observable list of data we want to present to our user.
+     */
     public ObservableList<DischargeNoteConfirmationScreenTableItem> getDischargeNoteConfirmationScreenTableItems(String hospital) {
         try {
             String query = "SELECT " +
@@ -669,6 +799,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that retrieves all the posts data from the database.
+     * @param postClinic requires a key of clinic_agent_post table in database so as to retrieve the data.
+     * @return an observable list of data we want to present to our user.
+     */
     public ObservableList<PostListScreenTableItem> getPostListScreenTableItems(String postClinic) {
         try {
             String query = "SELECT " +
@@ -704,6 +839,12 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that retrieves all patient data from the database so as to present them to the doctors main screen.
+     * @param hospital requires a key of patient_file table in database so as to retrieve the data.
+     * @param admissionClinic requires a key of admission_ticket table in database so as to retrieve the data.
+     * @return an observable list of data we want to present to our user.
+     */
     public ObservableList<InitialDoctorScreenListItem> getInitialDoctorScreenListItems(String hospital, String admissionClinic) {
         try {
             String query = "SELECT patient.amka AS amka, patient.first_name AS first_name, " +
@@ -744,31 +885,12 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
-//    public AdmissionTicket getAdmissionTicketByAmka(String amka) {
-//        try {
-//            String query = "select admission_ticket.ticket_id from admission_ticket " +
-//                           "inner join patient_file on patient_file.file_id = admission_ticket.ticket_id " +
-//                           "where patient_file.patient_amka = ? order by admission_ticket.created_at DESC " +
-//                           "limit 1;";
-//
-//            ResultSet resultSet;
-//            AdmissionTicket admissionTicket;
-//            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
-//                preparedStatement.setString(1, amka);
-//                resultSet = preparedStatement.executeQuery();
-//                admissionTicket = null;
-//                if (resultSet.next()) {
-//                    admissionTicket = new AdmissionTicket();
-//                    admissionTicket.setTicketId(resultSet.getString("ticket_id"));
-//                }
-//            }
-//            resultSet.close();
-//            return admissionTicket;
-//        } catch (SQLException e) {
-//            return null;
-//        }
-//    }
-
+    /**
+     * Method that retrieves all data from the clinic that the doctor works.
+     * @param username requires a key of user table in database so as to retrieve the data.
+     * @param doctorClinic requires a key of clinic table in database so as to retrieve the data.
+     * @return an observable list of data we want to present to our user.
+     */
     public ObservableList<String> getAllClinicNamesOfDoctor(String username, String doctorClinic) {
         try {
             String query = "SELECT clinic.name FROM user " +
@@ -799,6 +921,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that retrieves all data from admission tickets to be confirmed.
+     * @param hospitalAfm requires a key of admission_ticket table in database so as to retrieve the data.
+     * @return an observable list of data we want to present to our user.
+     */
     public ObservableList<AdmissionTicketConfirmationScreenListItem> getAdmissionTicketConfirmationScreenListItem(String hospitalAfm){
         try {
             String query = "SELECT patient.amka AS amka, " +
@@ -842,6 +969,12 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that retrieves all the data from admission tickets.
+     * @param amka requires a key of patient table in database so as to retrieve the data.
+     * @param ticketId requires a key of admission_ticket table in database so as to retrieve the data.
+     * @return an observable list of data we want to present to our user.
+     */
     public ObservableList<AdmissionTicketDetailsScreenListItem> getAdmissionTicketDetailsScreenListItems(String amka, String ticketId) {
         String query = "select patient.first_name as first_name, patient.last_name as last_name, " +
                        "patient.birth_date as birth_date, patient.gender as gender, admission_ticket.admission_text as admission_text " +
@@ -879,6 +1012,12 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that retrieves all data from pending admission tickets.
+     * @param hospitalAfm requires a key of patient_file table in database so as to retrieve the data.
+     * @param clinicName requires a key of admission_ticket table in database so as to retrieve the data.
+     * @return an observable list of data we want to present to our user.
+     */
     public ObservableList<PendingAdmissionTicketsScreenListItem> getPendingAdmissionTicketsScreenListItems(String hospitalAfm, String clinicName) {
         String query = "SELECT patient.amka AS amka, patient.first_name AS first_name, patient.last_name AS last_name, " +
                        "admission_ticket.created_at AS created_at, admission_ticket.ticket_id AS ticket_id FROM patient_file " +
@@ -916,6 +1055,20 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that retrieves every possible match from patient table.
+     * @param amka requires a key of patient table in database so as to retrieve the data.
+     * @param afm requires a key of patient table in database so as to retrieve the data.
+     * @param firstName requires a key of patient table in database so as to retrieve the data.
+     * @param lastName requires a key of patient table in database so as to retrieve the data.
+     * @param gender requires a key of patient table in database so as to retrieve the data.
+     * @param fatherFirstName requires a key of patient table in database so as to retrieve the data.
+     * @param fatherLastName requires a key of patient table in database so as to retrieve the data.
+     * @param motherFirstName requires a key of patient table in database so as to retrieve the data.
+     * @param motherLastName requires a key of patient table in database so as to retrieve the data.
+     * @param birthDate requires a key of patient table in database so as to retrieve the data.
+     * @return an observable list of data we want to present to our user.
+     */
     public ObservableList<PossibleMatchesScreenListItem> getPossibleMatchesScreenListItems(
             String amka, String afm, String firstName, String lastName, String gender, String fatherFirstName, String fatherLastName,
             String motherFirstName, String motherLastName, String birthDate) {
@@ -1012,6 +1165,12 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that retrieves all chambers with free beds from the database.
+     * @param clinic requires a key of chamber table in database so as to retrieve the data.
+     * @param hospital requires a key of chamber table in database so as to retrieve the data.
+     * @return an observable list of data we want to present to our user.
+     */
     public ObservableList<String> getChambersWithFreeBeds(String clinic, String hospital) {
         String query = "select chamber.id as id " +
                        "from bed " +
@@ -1043,6 +1202,13 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that retrieves all free beds of a chamber from database.
+     * @param clinic requires a key of chamber table in database so as to retrieve the data.
+     * @param hospital requires a key of chamber table in database so as to retrieve the data.
+     * @param chamber requires a key of chamber table in database so as to retrieve the data.
+     * @return an observable list of data we want to present to our user.
+     */
     public ObservableList<String> getFreeBedsOfChamber(String clinic, String hospital, String chamber) {
         try {
             String query = "select bed.number as number " +
@@ -1076,6 +1242,10 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that allocates the bed.is_free value to 1 in the database.
+     * @param number requires a key of bed table in database so as to retrieve the data.
+     */
     public void allocateBed(String number) {
         String query = "update bed set is_free = 1 where bed.number = ?;";
         try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
@@ -1086,6 +1256,12 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that updates admission_ticket.stage to SENT in the database.
+     * @param ticketId requires a key of chamber table in database so as to retrieve the data.
+     * @param chamber requires a key of bed table in database so as to retrieve the data.
+     * @param bed requires a key of admission_ticket table in database so as to retrieve the data.
+     */
     public void updateTicket(String ticketId, String chamber, String bed) {
         String query = "update admission_ticket set patient_chamber = ?, patient_bed = ?, stage = 2 where ticket_id = ?;";
         try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
@@ -1098,24 +1274,10 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
-    //be advised that this function updates only the latest patient file.
-    // not all of them.
-    public void updateTreatment(String Text, String amka, String file_id) {
-        try {
-            System.out.println(amka + " " + file_id);
-            String query = "update patient_file set patient_file.treatment = ? where patient_file.patient_amka = ? and patient_file.file_id = ?;";
-
-            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
-                preparedStatement.setString(1,Text);
-                preparedStatement.setString(2,amka);
-                preparedStatement.setString(3,file_id);
-                preparedStatement.executeUpdate();
-
-            }
-        } catch (SQLException ignore) {
-        }
-    }
-
+    /**
+     * Method that finally confirms the temporary admission ticket.
+     * @param id requires a key of admission_ticket table in database so as to retrieve the data.
+     */
     public void finalConfirmationOfTemporaryAdmissionTicket(String id){
         try {
             String query = "UPDATE admission_ticket SET admission_ticket.stage = \"APPROVED\" WHERE admission_ticket.ticket_id = ?;";
@@ -1128,6 +1290,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that updates the diagnosis in patient_file table of database.
+     * @param diagnosis requires a key of patient_file table in database so as to retrieve the data.
+     * @param amka requires a key of patient_file table in database so as to retrieve the data.
+     */
     public void saveNewDiagnosis(String diagnosis, String amka) {
         try {
             String query = "UPDATE patient_file SET patient_file.diagnosis = ? WHERE patient_file.patient_amka = ?;";
@@ -1141,6 +1308,11 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that updates the treatment in patient_file table of database.
+     * @param treatment requires a key of patient_file table in database so as to retrieve the data.
+     * @param amka requires a key of chamber patient_file in database so as to retrieve the data.
+     */
     public void saveNewTreatment(String treatment, String amka) {
         try {
             String query = "UPDATE patient_file SET patient_file.treatment = ? WHERE patient_file.patient_amka = ?;";
@@ -1154,6 +1326,15 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that inserts into the clinic_agent_post table a new post.
+     * @param clinicName requires a value of clinic_name to insert into the table clinic_agent_post.
+     * @param userName requires a value of user_name to insert into the table clinic_agent_post.
+     * @param date requires a value of date to insert into the table clinic_agent_post.
+     * @param title requires a value of title to insert into the table clinic_agent_post.
+     * @param post requires a value of post to insert into the table clinic_agent_post.
+     * @return the number of insertions (Good = 1).
+     */
     public int savePost(String clinicName, String userName, String date, String title, String post) {
         int resultSet = 1;
         String constSep = "', '";
@@ -1172,26 +1353,12 @@ public class ICRUDImpl implements ICRUD {
         return resultSet;
     }
 
-    public static char[] alphanumericAlphabet() {
-        return IntStream.concat(
-                IntStream.concat(
-                        IntStream.rangeClosed('0', '9'),
-                        IntStream.rangeClosed('A', 'Z')
-                ),
-                IntStream.rangeClosed('a', 'z')
-        ).mapToObj(c -> (char) c+"").collect(Collectors.joining()).toCharArray();
-    }
-
-    public static String random(final int numChars) {
-        Random r = new Random();
-        String alpha = new String(alphanumericAlphabet());
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < numChars; i++) {
-            sb.append(alpha.charAt(r.nextInt(alpha.length())));
-        }
-        return sb.toString();
-    }
-
+    /**
+     * Method that inserts into the discharge_note table a new discharge note.
+     * @param note_id requires a value of note_id to insert into the table discharge_note.
+     * @param discharge_text requires a value of discharge_text to insert into the table discharge_note.
+     * @param clinic requires a value of clinic to insert into the table discharge_note.
+     */
     public void insertDischargeNote(String note_id, String discharge_text, String clinic) {
         try {
             String query = "INSERT INTO discharge_note (note_id, created_at, discharge_text, admission_clinic, stage) " +
@@ -1206,10 +1373,17 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that inserts into the admission_ticket table a new ticket.
+     * @param ticketId requires a value of ticket_id to insert into the table admission_ticket.
+     * @param admissionClinic requires a value of admission_clinic to insert into the table admission_ticket.
+     * @param hostClinic requires a value of host_clinic to insert into the table admission_ticket.
+     * @param admissionText requires a value of admission_text to insert into the table admission_ticket.
+     */
     public void insertAdmissionTicket(String ticketId, String admissionClinic, String hostClinic, String admissionText){
         try {
             String query = "INSERT INTO admission_ticket (ticket_id, created_at, admission_clinic, host_clinic, admission_text, stage) " +
-                    "VALUES (?, NOW(), ?, ?, ?, \"CREATED\");";
+                           "VALUES (?, NOW(), ?, ?, ?, \"CREATED\");";
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
                 preparedStatement.setString(1,ticketId);
                 preparedStatement.setString(2,admissionClinic);
@@ -1222,20 +1396,71 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
-    public  PatientFile getFileIdFromAmka(String amka) {
+    /**
+     * Method that inserts into the patient_file table a new patient file.
+     * @param amka requires a value of amka to insert into the table patient_file.
+     * @param hospitalAfm requires a value of hospital_afm to insert into the table patient_file.
+     * @param username requires a value of user_name to insert into the table patient_file.
+     */
+    public void insertPatientFile(String amka, String hospitalAfm, String username) {
+        String rand = random(19);
         try {
-            String query = "select file_id from patient_file " +
-                           "where patient_amka = ?;";
+            String query = "INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) " +
+                           "VALUES (?, ?, ?, ?);";
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1,amka);
+                preparedStatement.setString(2,rand);
+                preparedStatement.setString(3,hospitalAfm);
+                preparedStatement.setString(4,username);
+                int x = preparedStatement.executeUpdate();
+                System.out.println("patFileInsert " + x);
+            }
+        } catch (SQLException ignore) {
+        }
+    }
+
+    /**
+     * Method that inserts into the billing table a new billing.
+     * @param fileId requires a value of file_id to insert into the table billing.
+     * @param generatedFloat requires a value of generatedFloat to insert into the table billing as price.
+     */
+    public void insertBilling(String fileId, float generatedFloat) {
+        try {
+            String query = "INSERT INTO billing (billing_id, created_at, price) " +
+                    "VALUES (?, NOW(), ?);";
+            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+                preparedStatement.setString(1, fileId);
+                preparedStatement.setString(2, String.valueOf(generatedFloat));
+                int x = preparedStatement.executeUpdate();
+                System.out.println("insBill " + x);
+            }
+        } catch (SQLException ignore) {
+        }
+    }
+
+    /**
+     * Method that retrieves all patient_file from amka and hospital.
+     * @param amka requires a value of amka to retrieve the data.
+     * @param hospitalAfm requires a value of hospital_afm to insert into the table patient_file.
+     * @return the values to model.PatientFile.
+     */
+    public PatientFile getFileIdFromAmkaAndHospital(String amka, String hospitalAfm) {
+        try {
+            String query = "SELECT file_id FROM patient_file " +
+                           "WHERE patient_amka = ? " +
+                           "AND hospital = ?;";
 
             ResultSet resultSet;
             PatientFile patientFile;
             try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
                 preparedStatement.setString(1, amka);
+                preparedStatement.setString(2,hospitalAfm);
                 resultSet = preparedStatement.executeQuery();
                 patientFile = null;
                 if (resultSet.next()) {
                     patientFile = new PatientFile();
                     patientFile.setFileId(resultSet.getString("file_id"));
+                    patientFile.setHospital(hospitalAfm);
                 }
             }
             resultSet.close();
@@ -1245,6 +1470,55 @@ public class ICRUDImpl implements ICRUD {
         }
     }
 
+    /**
+     * Method that initializes all characters from 0-9, a-z and A-Z.
+     * @return a table of chars of these characters.
+     */
+    public static char[] alphanumericAlphabet() {
+        return IntStream.concat(
+                IntStream.concat(
+                        IntStream.rangeClosed('0', '9'),
+                        IntStream.rangeClosed('A', 'Z')
+                ),
+                IntStream.rangeClosed('a', 'z')
+        ).mapToObj(c -> (char) c+"").collect(Collectors.joining()).toCharArray();
+    }
+
+    /**
+     * Method that produces a random string of characters of the alphanumericAlphabet() method.
+     * @param numChars argument with the maximum number of characters.
+     * @return the string of random characters.
+     */
+    public static String random(final int numChars) {
+        Random r = new Random();
+        String alpha = new String(alphanumericAlphabet());
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < numChars; i++) {
+            sb.append(alpha.charAt(r.nextInt(alpha.length())));
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Method that gets connection with the database server.
+     * @return connection
+     */
+    public static Connection getConnection() {
+        return connection;
+    }
+
+    /**
+     * Method that sets connection with the database server.
+     * @param connection populates with DriverManager.getConnection(url_property, user_property, password_property).
+     */
+    public void setConnection(Connection connection) {
+        ICRUDImpl.connection = connection;
+    }
+
+    /**
+     * Method that initializes and opens the connection with the database server.
+     * Fill your connection properties in the connection.properties file in MySQL folder.
+     */
     public void openConnection() {
         try {
             System.out.println("Setting up connection.");
@@ -1258,73 +1532,6 @@ public class ICRUDImpl implements ICRUD {
             System.out.println("Connection established successfully with the database server.");
         } catch (ClassNotFoundException | SQLException | IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    public static Connection getConnection() {
-        return connection;
-    }
-
-    public void setConnection(Connection connection) {
-        ICRUDImpl.connection = connection;
-    }
-
-
-    public String insertPatientFile(String amka, String hospital_afm, String username) {
-        String rand = random(19);
-        try {
-            String query = "INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) " +
-                    "VALUES (?, ?, ?, ?);";
-            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
-                preparedStatement.setString(1,amka);
-                preparedStatement.setString(2,rand);
-                preparedStatement.setString(3,hospital_afm);
-                preparedStatement.setString(4,username);
-                int x = preparedStatement.executeUpdate();
-                System.out.println("patFileInsert " + x);
-            }
-        } catch (SQLException ignore) {
-        }
-        return rand;
-    }
-
-    public PatientFile getFileIdFromAmkaAndHospital(String amka, String hospital_afm) {
-        try {
-            String query = "select file_id from patient_file " +
-                    "where patient_amka = ? " +
-                    "and hospital = ?;";
-
-            ResultSet resultSet;
-            PatientFile patientFile;
-            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
-                preparedStatement.setString(1, amka);
-                preparedStatement.setString(2,hospital_afm);
-                resultSet = preparedStatement.executeQuery();
-                patientFile = null;
-                if (resultSet.next()) {
-                    patientFile = new PatientFile();
-                    patientFile.setFileId(resultSet.getString("file_id"));
-                    patientFile.setHospital(hospital_afm);
-                }
-            }
-            resultSet.close();
-            return patientFile;
-        } catch (SQLException e) {
-            return null;
-        }
-    }
-
-    public void insertBilling(String fileId, float generatedFloat) {
-        try {
-            String query = "INSERT INTO billing (billing_id, created_at, price) " +
-                    "VALUES (?, NOW(), ?);";
-            try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
-                preparedStatement.setString(1, fileId);
-                preparedStatement.setString(2, String.valueOf(generatedFloat));
-                int x = preparedStatement.executeUpdate();
-                System.out.println("insBill " + x);
-            }
-        } catch (SQLException ignore) {
         }
     }
 }
