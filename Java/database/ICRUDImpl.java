@@ -1404,8 +1404,9 @@ public class ICRUDImpl implements ICRUD {
      * @param amka requires a value of amka to insert into the table patient_file.
      * @param hospitalAfm requires a value of hospital_afm to insert into the table patient_file.
      * @param username requires a value of user_name to insert into the table patient_file.
+     * @return the random number.
      */
-    public void insertPatientFile(String amka, String hospitalAfm, String username) {
+    public String insertPatientFile(String amka, String hospitalAfm, String username) {
         String rand = random(19);
         try {
             String query = "INSERT INTO patient_file (patient_amka, file_id, hospital, doctor) " +
@@ -1420,6 +1421,7 @@ public class ICRUDImpl implements ICRUD {
             }
         } catch (SQLException ignore) {
         }
+        return rand;
     }
 
     /**
