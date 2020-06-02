@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.to_delete.PostClinic">
+   <children>
+      <Button fx:id="returnButton" layoutX="57.0" layoutY="58.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="133.0" text="Επιστροφή" />
+      <Label fx:id="postLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="413.0" layoutY="129.0" prefHeight="17.0" prefWidth="146.0" text="Posts" />
+      <ScrollPane fx:id="postList" layoutX="124.0" layoutY="175.0" prefHeight="305.0" prefWidth="724.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+        </content>
+      </ScrollPane>
+      <Button fx:id="createPostButton" layoutX="337.0" layoutY="492.0" mnemonicParsing="false" onAction="#onCreatePostClick" prefHeight="25.0" prefWidth="286.0" text="Δημιουργία Post" />
+      <Label fx:id="iasoLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="450.0" layoutY="565.0" prefHeight="17.0" prefWidth="61.0" text="i-aso" />
+   </children>
+</AnchorPane>

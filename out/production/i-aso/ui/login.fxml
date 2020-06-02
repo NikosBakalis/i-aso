@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="332.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.Login">
+   <Button fx:id="loginButtonId" layoutX="227.0" layoutY="256.0" mnemonicParsing="false" onAction="#clickLoginButton" text="Login" />
+   <TextField fx:id="usernameTextId" layoutX="226.0" layoutY="145.0" />
+   <Label layoutX="148.0" layoutY="145.0" style="-fx-font-weight: bold;" text="Username" />
+   <Label layoutX="148.0" layoutY="195.0" style="-fx-font-weight: bold;" text="Password" />
+   <PasswordField fx:id="passwordTextId" layoutX="226.0" layoutY="195.0" />
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="81.0" prefHeight="34.0" prefWidth="141.0" text="Login Form">
+      <font>
+         <Font name="System Bold" size="20.0" />
+      </font>
+   </Label>
+</Pane>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.clinic.PendingAdmissionTicketScreen">
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:     rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
+    <Button fx:id="logoutButton" layoutX="55.0" layoutY="52.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="25.0" prefWidth="112.0" text="Αποσύνδεση" />
+    <Button fx:id="returnButton" layoutX="789.0" layoutY="52.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="112.0" text="Επιστροφή" />
+    <Label fx:id="clinicNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="444.0" layoutY="124.0" prefHeight="17.0" prefWidth="112.0" style="-fx-background-color: rgba(255,255,255,0.75);" text="Όνομα κλινικής">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+      <TableView fx:id="tableView" layoutX="200.0" layoutY="166.0" prefHeight="332.0" prefWidth="602.0">
+          <columns>
+              <TableColumn fx:id="colAmka" prefWidth="150.0" text="ΑΜΚΑ" />
+              <TableColumn fx:id="colFirstName" prefWidth="150.0" text="ΟΝΟΜΑ" />
+         <TableColumn fx:id="colLastName" prefWidth="150.0" text="ΕΠΩΝΥΜΟ" />
+         <TableColumn fx:id="colCreatedAt" prefWidth="150.0" text="ΗΜ. ΔΗΜΙΟΥΡΓΙΑΣ" />
+          </columns>
+      <padding>
+         <Insets left="1.0" right="1.0" />
+      </padding>
+      </TableView>
+</AnchorPane>

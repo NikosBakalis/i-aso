@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.to_delete.DoctorPatientFile">
+    <Button alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="118.0" mnemonicParsing="false"
+            prefHeight="25.0" prefWidth="176.0" text="Αρχικό menu | επιστροφή" textAlignment="CENTER"/>
+    <Button alignment="CENTER" contentDisplay="CENTER" layoutX="607.0" layoutY="118.0" mnemonicParsing="false"
+            prefHeight="25.0" prefWidth="161.0" text="Επεξεργασία" textAlignment="CENTER"/>
+    <ScrollPane hbarPolicy="NEVER" layoutX="530.0" layoutY="158.0" prefHeight="365.0" prefWidth="315.0"/>
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="585.0" prefHeight="17.0"
+           prefWidth="176.0" text="Όνομα κλινικής" textAlignment="CENTER"/>
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="578.0" layoutY="585.0" prefHeight="17.0"
+           prefWidth="219.0" text="i-aso" textAlignment="CENTER"/>
+    <ImageView fitHeight="63.0" fitWidth="79.0" layoutX="461.0" layoutY="31.0" pickOnBounds="true"
+               preserveRatio="true"/>
+    <DatePicker layoutX="758.0" layoutY="50.0"/>
+    <AnchorPane layoutX="779.0" layoutY="228.0" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0"/>
+    <ScrollPane layoutX="159.0" layoutY="158.0" prefHeight="365.0" prefWidth="315.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0"/>
+    </ScrollPane>
+    <Button layoutX="122.0" layoutY="50.0" mnemonicParsing="false" text="Επιστροφή"/>
+</AnchorPane>

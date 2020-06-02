@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.transfer_office.AdmissionTicketConfirmationScreen">
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:     rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
+    <Button fx:id="logoutButton" layoutX="40.0" layoutY="52.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="25.0" prefWidth="112.0" text="Αποσύνδεση" />
+    <Button fx:id="returnButton" layoutX="849.0" layoutY="52.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="112.0" text="Επιστροφή" />
+      <TableView fx:id="admissionTicketList" layoutX="96.0" layoutY="138.0" onMouseClicked="#onRowClick" prefHeight="389.0" prefWidth="809.0">
+          <columns>
+              <TableColumn fx:id="colAmka" prefWidth="76.0" text="ΑΜΚΑ" />
+              <TableColumn fx:id="colFirstName" prefWidth="102.0" text="ΟΝΟΜΑ" />
+              <TableColumn fx:id="colLastName" prefWidth="113.0" text="ΕΠΩΝΥΜΟ" />
+              <TableColumn fx:id="colSourceClinic" prefWidth="168.0" text="ΚΛΙΝΙΚΗ ΥΠΟΔΟΧΗΣ" />
+              <TableColumn fx:id="colDestinationClinic" prefWidth="139.0" text="ΚΛΙΝΙΚΗ ΦΙΛΟΞΕΝΙΑΣ" />
+              <TableColumn fx:id="colStage" prefWidth="76.0" text="ΣΤΑΔΙΟ" />
+              <TableColumn fx:id="colId" prefWidth="134.0" text="ΗΜΕΡΟΜΗΝΙΑ" />
+              <TableColumn fx:id="colTicketId" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" resizable="false" text="ΑΡΙΘΜΟΣ" visible="false" />
+          </columns>
+      <padding>
+         <Insets left="1.0" right="1.0" />
+      </padding>
+      </TableView>
+</AnchorPane>

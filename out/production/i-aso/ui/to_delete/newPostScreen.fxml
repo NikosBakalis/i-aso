@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.to_delete.NewPostScreen">
+   <children>
+      <Button fx:id="returnButton" layoutX="37.0" layoutY="35.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="108.0" text="Επιστροφή" />
+      <Label fx:id="authorLabel" layoutX="57.0" layoutY="277.0" prefHeight="17.0" prefWidth="98.0" text="Συντάκτης" />
+      <Label layoutX="57.0" layoutY="233.0" prefHeight="17.0" prefWidth="98.0" text="Label" />
+      <Label fx:id="dateLabel" layoutX="57.0" layoutY="315.0" prefHeight="17.0" prefWidth="98.0" text="Ημερομηνία" />
+      <Label fx:id="clinicNameLabel" layoutX="57.0" layoutY="349.0" prefHeight="17.0" prefWidth="98.0" text="'Ονομα κλινικής" />
+      <Label fx:id="iasoLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="314.0" layoutY="521.0" prefHeight="17.0" prefWidth="86.0" text="i-aso" />
+      <TextArea fx:id="postText" layoutX="458.0" layoutY="194.0" prefHeight="200.0" prefWidth="372.0" />
+      <Button fx:id="uploadButton" layoutX="584.0" layoutY="430.0" mnemonicParsing="false" onAction="#onUploadClick" prefHeight="25.0" prefWidth="132.0" text="Ανάρτηση" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="dischargeNoteList" prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.transfer_office.DischargeNoteConfirmationScreen">
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="618.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color:     rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
+    <Button fx:id="logoutButton" layoutX="49.0" layoutY="52.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="25.0" prefWidth="112.0" text="Αποσύνδεση" />
+    <Button fx:id="returnButton" layoutX="839.0" layoutY="52.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="25.0" prefWidth="112.0" text="Επιστροφή" />
+   <TableView fx:id="tableDischargeNotes" layoutX="50.0" layoutY="155.0" prefHeight="354.0" prefWidth="902.0">
+     <columns>
+         <TableColumn fx:id="colAmka" prefWidth="160.0" text="ΑΜΚΑ" />
+         <TableColumn fx:id="colFirstName" prefWidth="150.0" text="ΟΝΟΜΑ" />
+       <TableColumn fx:id="colLastName" prefWidth="180.0" text="ΕΠΩΝΥΜΟ" />
+       <TableColumn fx:id="colCreatedAt" prefWidth="200.0" text="ΗΜ. ΔΗΜΙΟΥΡΓΙΑΣ" />
+         <TableColumn fx:id="admissionClinic" prefWidth="210.0" text="ΚΛΙΝΙΚΗ ΥΠΟΔΟΧΗΣ" />
+     </columns>
+      <padding>
+         <Insets left="1.0" right="1.0" />
+      </padding>
+   </TableView>
+</AnchorPane>

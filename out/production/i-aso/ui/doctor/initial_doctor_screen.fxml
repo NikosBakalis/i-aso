@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="patientFileTable" prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.doctor.InitialDoctorScreen">
+    <Label fx:id="titleLabelId" alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="CENTER" layoutX="356.0" layoutY="29.0" prefHeight="31.0" prefWidth="289.0" textAlignment="CENTER" />
+    <Button fx:id="newPatientButton" alignment="CENTER" contentDisplay="CENTER" layoutX="361.0" layoutY="547.0" mnemonicParsing="false" onAction="#onNewPatientClick" prefHeight="31.0" prefWidth="278.0" text="Προσθήκη ασθενή" textAlignment="CENTER" />
+    <ImageView fitHeight="50.0" fitWidth="72.0" layoutX="268.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" />
+    <Button fx:id="logoutButton" layoutX="95.0" layoutY="32.0" mnemonicParsing="false" onAction="#onLogoutClick" text="Αποσύνδεση" />
+    <Button fx:id="profileButton" layoutX="800.0" layoutY="32.0" mnemonicParsing="false" onAction="#onProfileClick" text="Επεξεργασία Προφίλ" />
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color: rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
+   <TableView fx:id="tableView" layoutX="126.0" layoutY="156.0" onMouseClicked="#onRowClick" prefHeight="352.0" prefWidth="752.0">
+     <columns>
+         <TableColumn fx:id="colAmka" prefWidth="150.0" text="ΑΜΚΑ" />
+         <TableColumn fx:id="colFirstName" prefWidth="150.0" text="ΟΝΟΜΑ" />
+         <TableColumn fx:id="colLastName" prefWidth="150.0" text="ΕΠΩΝΥΜΟ" />
+         <TableColumn fx:id="colHostClinic" prefWidth="150.0" text="ΚΛΙΝΙΚΗ ΦΙΛΟΞΕΝΙΑΣ" />
+         <TableColumn fx:id="colChamber" minWidth="0.0" prefWidth="150.0" text="ΘΑΛΑΜΟΣ" />
+         <TableColumn fx:id="colFileId" minWidth="0.0" prefWidth="150.0" text="ΑΡΙΘΜΟΣ" visible="false" />
+     </columns>
+      <padding>
+         <Insets left="1.0" right="1.0" />
+      </padding>
+   </TableView>
+</AnchorPane>

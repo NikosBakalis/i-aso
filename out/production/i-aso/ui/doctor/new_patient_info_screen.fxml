@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="664.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.doctor.NewPatientInfoScreen">
+   <Pane layoutX="128.0" layoutY="152.0" prefHeight="360.0" prefWidth="745.0" style="-fx-background-color: rgba(255,255,255,0.75);">
+      <Label alignment="CENTER_RIGHT" layoutX="58.0" layoutY="95.0" prefHeight="17.0" prefWidth="121.0" text="ΑΜΚΑ" textAlignment="RIGHT" />
+      <Label alignment="CENTER_RIGHT" layoutX="58.0" layoutY="130.0" prefHeight="17.0" prefWidth="121.0" text="ΑΦΜ" />
+      <TextField fx:id="amkaField" layoutX="185.0" layoutY="91.0" />
+      <TextField fx:id="afmField" layoutX="185.0" layoutY="126.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="58.0" layoutY="164.0" prefHeight="17.0" prefWidth="121.0" text="Όνομα" />
+      <Label alignment="CENTER_RIGHT" layoutX="58.0" layoutY="199.0" prefHeight="17.0" prefWidth="121.0" text="Επώνυμο" />
+      <TextField fx:id="firstNameField" layoutX="185.0" layoutY="160.0" />
+      <TextField fx:id="lastNameField" layoutX="185.0" layoutY="195.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="31.0" layoutY="233.0" prefHeight="17.0" prefWidth="149.0" text="Ημερομηνία γέννησης" />
+      <Label alignment="CENTER_RIGHT" layoutX="406.0" layoutY="93.0" prefHeight="17.0" prefWidth="121.0" text="Όνομα πατέρα" />
+      <TextField fx:id="fatherFirstNameField" layoutX="533.0" layoutY="89.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="408.0" layoutY="128.0" prefHeight="17.0" prefWidth="121.0" text="Επώνυμο πατέρα" />
+      <Label alignment="CENTER_RIGHT" layoutX="408.0" layoutY="164.0" prefHeight="17.0" prefWidth="121.0" text="Όνομα μητέρας" />
+      <TextField fx:id="fatherLastNameField" layoutX="533.0" layoutY="124.0" />
+      <TextField fx:id="motherFirstNameField" layoutX="533.0" layoutY="160.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="406.0" layoutY="196.0" prefHeight="17.0" prefWidth="121.0" text="Επώνυμο μητέρας" />
+      <Label alignment="CENTER_RIGHT" layoutX="406.0" layoutY="231.0" prefHeight="17.0" prefWidth="121.0" text="Φύλο" />
+      <TextField fx:id="motherLastNameField" layoutX="533.0" layoutY="192.0" />
+      <DatePicker fx:id="birthDateField" layoutX="185.0" layoutY="229.0" prefHeight="25.0" prefWidth="149.0" />
+      <ChoiceBox fx:id="genderChoiceBox" layoutX="532.0" layoutY="227.0" prefWidth="150.0" />
+   </Pane>
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="619.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color: rgba(0,0,0,0.75); -fx-text-fill: white; -fx-font-weight: bold;" text="i-aso" />
+    <Button fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="566.0" mnemonicParsing="false" onAction="#onSearchClick" prefHeight="31.0" prefWidth="163.0" text="Αναζήτηση" textAlignment="CENTER" />
+    <Button fx:id="returnButton" layoutX="56.0" layoutY="48.0" mnemonicParsing="false" onAction="#onReturnClick" prefHeight="38.0" prefWidth="85.0" text="Επιστροφή" />
+</AnchorPane>
