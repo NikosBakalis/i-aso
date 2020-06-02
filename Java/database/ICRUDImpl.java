@@ -13,7 +13,10 @@ import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.stream.Collectors;
 
-
+/**
+ * This is the class that's responsible for every communication
+ * between the program and the database server.
+ */
 public class ICRUDImpl implements ICRUD {
 
     private static Connection connection; // Initialize connection with the database server.
