@@ -14,10 +14,14 @@ This project named after a deity intertwined with the concept of healing Iaso *(
 * With IntelliJ Idea:
 ***
 1. Clone the project to your IDE.
-⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
-2. 
+    1. Copy the GitHub web page url: *https://github.com/NikosBakalis/i-aso*.
+    2. Open IntelliJ IDEA click on: *Get from Version Control*.
+    3. Paste the link into the URL area.
+    4. Click clone.
+2. Set your JRE version to 1.8 or above.
+3. In *i-aso* folder expand *Java* and right click *Main.java*. Then clink on *Run 'Main.main()'*.
 ***
 * With .jar file:
 ***
-
+NOT READY YET!!!
 ***
