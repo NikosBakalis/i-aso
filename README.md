@@ -24,7 +24,7 @@ This project named after a deity intertwined with the concept of healing Iaso *(
 ***
 * With .jar file:
 ```
-NOT READY YET!!!
+Future update.
 ```
 ***
 
