@@ -10,3 +10,14 @@ This project named after a deity intertwined with the concept of healing Iaso *(
 * [Mayaki Anna](https://github.com/annamayaki): magiaki@ceid.upatras.gr
 * [Tsakas Panagiotis](https://github.com/TsakasPanagiotis): tsakas@ceid.upatras.gr
 
+## Execution
+* With IntelliJ Idea:
+***
+1. Clone the project to your IDE.
+⋅⋅⋅ test
+2. 
+***
+* With .jar file:
+***
+
+***
