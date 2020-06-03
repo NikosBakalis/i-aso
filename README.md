@@ -14,7 +14,7 @@ This project named after a deity intertwined with the concept of healing Iaso *(
 * With IntelliJ Idea:
 ***
 1. Clone the project to your IDE.
-... test
+⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
 2. 
 ***
 * With .jar file:
