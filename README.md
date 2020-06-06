@@ -53,8 +53,31 @@ Future update.
 3. Your connection properties are now ready.
 ```
 
+#### Library Connection.
+```
+For this project we used one library which you can find in the "Libraries" folder.
+```
+
 ## Demo Video
 ##### The video below explains how to use the i-aso application step-by-step.
+The video language is Greek.
 ***
 [![https://www.youtube.com/watch?v=GWVcuAEsNBs](Images/Demo.PNG)](https://www.youtube.com/watch?v=GWVcuAEsNBs "Demo Video")
 ***
+
+## File Management and MVC Model
+1. Project code that is based on MVC model can be found into the "Java" folder. This folder contains three packages and to .java files:
+    1. File with name Main.java is the main class of the program, and it generates the login screen so as the user can log in to the application.
+    2. File with name TestTheMain.java created only for code testing, and it can be completely ignored by you.
+    3. Package with name database is the Control of our MVC model, and it contains every communication with the database server.
+    4. Package with name model is the Model of our MVC model, and it contains every table and every variable  of our database.
+    5. Package with name ui is the View of our MVC model, and it contains all the user interfaces that our users can reach by navigating into the application.
+2. Images folder contains all the images that our program and GitHub web-page uses.
+3. Libraries folder contains the "mysql-connector-java-8.0.19.jar" library and assists us with the program-database connection.
+4. MySQL folder contains 3 files:
+    1. The connection.properties file that mast get the info of the user that wants to use the database.
+    2. The iaso_prototype-v08.2.sql file that contains all the table creations of our database.
+    3. The iaso_prototype-v08.2-inserts.sql file that contains some inserts for testing the program.
+5. i-aso.iml file contains the xml version the encoding etc.
+6. README.md is the GitHub file you are reading right now.
+7. Finally, all the project specific files goes to ".idea" folder, and it will be recreated if you delete the project and "out" folder contains the output of your project when you build/compile it.
