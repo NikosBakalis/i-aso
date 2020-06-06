@@ -1,5 +1,5 @@
 # i-aso
-In Greece almost every hospital uses it's own software platform to register doctors, nurses, patients and other information. That causes various problems like lack of compatibility between different platforms and many communication problems. I-aso, willing to help these hospitals provides this platform to all of them.
+In Greece almost every hospital uses its own software platform to register doctors, nurses, patients and other information. That causes various problems like lack of compatibility between different platforms and many communication problems. I-aso, willing to help these hospitals provides this platform to all of them.
 
 ## Name
 This project named after a deity intertwined with the concept of healing Iaso *(Ιασώ)*.
