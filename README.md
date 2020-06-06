@@ -78,6 +78,6 @@ The video language is Greek.
     1. The connection.properties file that mast get the info of the user that wants to use the database.
     2. The iaso_prototype-v08.2.sql file that contains all the table creations of our database.
     3. The iaso_prototype-v08.2-inserts.sql file that contains some inserts for testing the program.
-5. i-aso.iml file contains IntelliJ’s project specific settings files. like the xml version, the encoding, etc.
+5. i-aso.iml file contains IntelliJ’s project specific settings files like the xml version, the encoding, etc.
 6. README.md is the GitHub file you are reading right now.
 7. Finally, all the project specific files goes to ".idea" folder, and it will be recreated if you delete the project and "out" folder contains the output of your project when you build/compile it.
