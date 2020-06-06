@@ -15,13 +15,14 @@ public class TestTheMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("ui/doctor/patient_file_screen.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("ui/transfer_office/initial_transfer_office_screen.fxml"));
         Scene scene = new Scene(parent);
         primaryStage.setTitle("I-aso");
         scene.getStylesheets().add(getClass().getResource("ui/application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
+
         ICRUDImpl iCRUDImpl = new ICRUDImpl();
         iCRUDImpl.openConnection();
     }
