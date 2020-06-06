@@ -52,3 +52,9 @@ Future update.
 2. Set your personal database connection info into the file.
 3. Your connection properties are now ready.
 ```
+
+## Demo Video
+##### The video below explains how to use the i-aso application step-to-step
+***
+![](Images/Demo.PNG)
+***
