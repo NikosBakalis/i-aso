@@ -29,33 +29,25 @@ This project named after a deity intertwined with the concept of healing Iaso *(
 
 ## Dependencies
 #### Database
-```
 1. You need to have a database server installed on your computer like MySQL Worckbench, XAMPP, etc.
 2. Find our MySQL folder expand it and get iaso_prototype-v08.2.sql and iaso_prototype-v08.2-inserts.sql
 3. Execute the MySQL code of these two files to your database server.
 4. Your database is now ready.
-```
 
 #### Connection
-```
 1. Open up IntelliJ IDEA and load i-aso.
 2. Use "Ctrl + Alt + Shift + S" to open Project Structure.
 3. Click on "Libraries", add a "New Project Library" and click "Java".
 4. On the new window find "Libraries\mysql-connector-java-8.0.19.jar" and click "Ok".
 5. Your connection is now ready.
-```
 
 #### Connection Properties
-```
 1. Into the MySQL folder find connection.properties file and open it up.
 2. Set your personal database connection info into the file.
 3. Your connection properties are now ready.
-```
 
 #### Library Connection.
-```
 For this project we used one library which you can find in the "Libraries" folder.
-```
 
 ## Demo Video
 ##### The video below explains how to use the i-aso application step-by-step.
