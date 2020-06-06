@@ -54,7 +54,7 @@ Future update.
 ```
 
 ## Demo Video
-##### The video below explains how to use the i-aso application step-to-step
+##### The video below explains how to use the i-aso application step-by-step.
 ***
 [![https://www.youtube.com/watch?v=GWVcuAEsNBs](Images/Demo.PNG)](https://www.youtube.com/watch?v=GWVcuAEsNBs "Demo Video")
 ***
