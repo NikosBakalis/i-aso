@@ -30,7 +30,7 @@ This project named after a deity intertwined with the concept of healing Iaso *(
 ## Dependencies
 #### Database
 1. You need to have a database server installed on your computer like MySQL Worckbench, XAMPP, etc.
-2. Find our MySQL folder expand it and get iaso_prototype-v08.2.sql and iaso_prototype-v08.2-inserts.sql
+2. Find our MySQL folder expand it and get iaso_prototype-v08.2.sql and iaso_prototype-v08.2-inserts.sql.
 3. Execute the MySQL code of these two files to your database server.
 4. Your database is now ready.
 
@@ -53,14 +53,14 @@ For this project we used one library which you can find in the "Libraries" folde
     2. Click on "Project Structure".
     3. In "Project Settings" section click "Libraries".
 2. If you can see the "mysql-connector-java-8.0.19.jar" on the open window:
-    1. Click "Ok"
+    1. Click "Ok".
     2. Your library connection is now ready.
 3. If you cannot see "mysql-connector-java-8.0.19.jar" on the open window:
     1. Click on the "+" sign.
     2. Click "Java".
     3. On the "Select Library Files" window click on "i-aso" folder, then click on "Libraries" folder and then click on "mysql-connector-java-8.0.19.jar".
     4. Click "Ok".
-    5. Click "Ok"
+    5. Click "Ok".
     6. Click "Apply".
     7. Click "Ok".
     8. Your library connection is now ready.
