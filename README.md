@@ -1,4 +1,4 @@
-# i-aso ![# i-aso](Images/logo.png "I-aso Logo")
+# ![# I-aso](Images/logo.png "I-aso Logo")
 In Greece almost every hospital uses its own software platform to register doctors, nurses, patients and other information. That causes various problems like lack of compatibility between different platforms and many communication problems. I-aso, willing to help these hospitals provides this platform to all of them.
 
 ## Name
