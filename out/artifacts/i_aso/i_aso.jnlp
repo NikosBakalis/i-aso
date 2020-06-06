@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="i_aso.jnlp">
+  <information>
+    <title>i-aso</title>
+    <vendor>Unknown</vendor>
+    <description>i-aso</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="i_aso.jar" size="114955" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="600" height="400" main-class="C:\Users\Nikolas\IdeaProjects\i-aso\Java\Main.java"  name="i-aso" />
+  <update check="background"/>
+</jnlp>
