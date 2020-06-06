@@ -12,20 +12,19 @@ This project named after a deity intertwined with the concept of healing Iaso *(
 
 ## Execution
 * With IntelliJ Idea:
-```
-1. Clone the project to the IDE.
-    1. Copy the GitHub web page url: *https://github.com/NikosBakalis/i-aso*.
-    2. Open IntelliJ IDEA click on: *Get from Version Control*.
-    3. Paste the link into the URL area.
-    4. Click clone.
-2. Set your JRE version to 1.8 or above.
-3. In *i-aso* folder expand *Java* and right click *Main.java*. Then clink on *Run 'Main.main()'*.
-```
+
+    1. Make sure you have completed all the [dependencies](https://github.com/NikosBakalis/i-aso#dependencies) of this project.
+    2. Clone the project to the IDE.
+        1. Copy the GitHub web page url: *https://github.com/NikosBakalis/i-aso*.
+        2. Open IntelliJ IDEA click on: *Get from Version Control*.
+        3. Paste the link into the URL area.
+        4. Click clone.
+    3. Set your JRE version to 1.8 or above.
+    4. In *i-aso* folder expand *Java* and right click *Main.java*. Then clink on *Run 'Main.main()'*.
 ***
 * With .jar file:
-```
-Future update.
-```
+    
+    Future update.
 ***
 
 ## Dependencies
