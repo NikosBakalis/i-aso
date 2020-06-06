@@ -48,6 +48,22 @@ This project named after a deity intertwined with the concept of healing Iaso *(
 
 #### Library Connection.
 For this project we used one library which you can find in the "Libraries" folder.
+1. Find if this library has already been added to your project:
+    1. Click on "File".
+    2. Click on "Project Structure".
+    3. In "Project Settings" section click "Libraries".
+2. If you can see the "mysql-connector-java-8.0.19.jar" on the open window:
+    1. Click "Ok"
+    2. Your library connection is now ready.
+3. If you cannot see "mysql-connector-java-8.0.19.jar" on the open window:
+    1. Click on the "+" sign.
+    2. Click "Java".
+    3. On the "Select Library Files" window click on "i-aso" folder, then click on "Libraries" folder and then click on "mysql-connector-java-8.0.19.jar".
+    4. Click "Ok".
+    5. Click "Ok"
+    6. Click "Apply".
+    7. Click "Ok".
+    8. Your library connection is now ready.
 
 ## Demo Video
 ##### The video below explains how to use the i-aso application step-by-step.
