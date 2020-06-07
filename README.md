@@ -30,7 +30,7 @@ This project named after a deity intertwined with the concept of healing Iaso *(
 ## Dependencies
 #### Database
 1. You need to have a database server installed on your computer like MySQL Worckbench, XAMPP, etc.
-2. Find our MySQL folder expand it and get iaso_prototype-v08.2.sql and iaso_prototype-v08.2-inserts.sql.
+2. Find our MySQL folder expand it and get iaso_prototype-v08.2.sql and iaso_prototype-v08.3-inserts.sql.
 3. Execute the MySQL code of these two files to your database server.
 4. Your database is now ready.
 
